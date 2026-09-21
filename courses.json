@@ -1,0 +1,23 @@
+[
+  {
+    "id": "c1",
+    "title": "Python for Beginners",
+    "fee": 15000,
+    "duration": "8 Weeks",
+    "active": true
+  },
+  {
+    "id": "c2",
+    "title": "Full-Stack Web Development",
+    "fee": 25000,
+    "duration": "12 Weeks",
+    "active": true
+  },
+  {
+    "id": "c3",
+    "title": "Data Science Fundamentals",
+    "fee": 30000,
+    "duration": "10 Weeks",
+    "active": true
+  }
+]
