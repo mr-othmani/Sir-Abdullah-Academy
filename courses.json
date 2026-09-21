@@ -1,23 +1,51 @@
 [
   {
-    "id": "c1",
-    "title": "Python for Beginners",
-    "fee": 15000,
-    "duration": "8 Weeks",
+    "id": 1,
+    "title": "O Level / IGCSE Computer Science (2210 / 0478)",
+    "fee": "PKR 5,000 / month",
+    "duration": "Full Session",
     "active": true
   },
   {
-    "id": "c2",
-    "title": "Full-Stack Web Development",
-    "fee": 25000,
-    "duration": "12 Weeks",
+    "id": 2,
+    "title": "O Level / IGCSE Mathematics (4024 / 0580)",
+    "fee": "PKR 5,000 / month",
+    "duration": "Full Session",
     "active": true
   },
   {
-    "id": "c3",
-    "title": "Data Science Fundamentals",
-    "fee": 30000,
-    "duration": "10 Weeks",
+    "id": 3,
+    "title": "O Level / IGCSE Physics (5054 / 0625)",
+    "fee": "PKR 5,000 / month",
+    "duration": "Full Session",
+    "active": true
+  },
+  {
+    "id": 4,
+    "title": "O Level / IGCSE Chemistry (5070 / 0620)",
+    "fee": "PKR 5,000 / month",
+    "duration": "Full Session",
+    "active": true
+  },
+  {
+    "id": 5,
+    "title": "O Level / IGCSE Biology (5090 / 0610)",
+    "fee": "PKR 5,000 / month",
+    "duration": "Full Session",
+    "active": true
+  },
+  {
+    "id": 6,
+    "title": "O Level / IGCSE Islamiat (2058 / 0493)",
+    "fee": "PKR 4,000 / month",
+    "duration": "Full Session",
+    "active": true
+  },
+  {
+    "id": 7,
+    "title": "O Level / IGCSE Pakistan Studies / PST (2059 / 0448)",
+    "fee": "PKR 4,000 / month",
+    "duration": "Full Session",
     "active": true
   }
 ]
