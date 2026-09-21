@@ -113,7 +113,7 @@ st.markdown("""
         line-height: 1.5;
     }
 
-    /* Course Cards */
+    /* Course & Combo Cards */
     .course-card {
         background: #1e293b;
         border: 1px solid #334155;
@@ -122,12 +122,39 @@ st.markdown("""
         margin-bottom: 1.2rem;
         box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
+    .combo-card {
+        background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%);
+        border: 2px solid #6366f1;
+        border-radius: 14px;
+        padding: 1.8rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.25);
+    }
+    .subject-logo-badge {
+        font-size: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 0.4rem 0.8rem;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
     .course-badge {
         background: #312e81;
         color: #a5b4fc;
         font-size: 0.75rem;
         font-weight: 700;
         padding: 0.3rem 0.7rem;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .combo-badge {
+        background: #4f46e5;
+        color: #ffffff;
+        font-size: 0.75rem;
+        font-weight: 800;
+        padding: 0.35rem 0.8rem;
         border-radius: 20px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -161,70 +188,100 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# --- 3. COURSES LISTING ---
+# --- 3. COURSES & PACKAGES LISTING ---
+SPECIAL_COMBOS = [
+    {
+        "title": "The Pre-Medical Combo (Bio, Physics, Chem, Math)",
+        "logo": "🩺",
+        "badge": "PRE-MEDICAL SPECIAL BUNDLE",
+        "fee": "PKR 16,000 / mo",
+        "duration": "Online Live Classes",
+        "desc": "Complete 4-subject package for aspiring medical students covering Biology, Physics, Chemistry, and Mathematics. Includes intensive syllabus coverage, topical past papers, and ATP exam preparation.",
+        "highlights": ["Save PKR 4,000/mo vs individual enrolment", "Full coverage of Bio, Physics, Chemistry & Math", "Weekly Mocks & Topical Past Paper Drills"]
+    },
+    {
+        "title": "The Computer Science Combo (CS, Physics, Chem, Math)",
+        "logo": "💻",
+        "badge": "PRE-ENGINEERING & CS BUNDLE",
+        "fee": "PKR 16,000 / mo",
+        "duration": "Online Live Classes",
+        "desc": "Complete 4-subject package designed for future Engineers & Tech students: Computer Science, Physics, Chemistry, and Mathematics. Focuses on Pseudocode, Logic Gates, Calculations & ATPs.",
+        "highlights": ["Save PKR 4,000/mo vs individual enrolment", "Full coverage of CS, Physics, Chem & Math", "Logic Drills, Code Practice & Marking Scheme Mastery"]
+    },
+    {
+        "title": "O1 / O2 Core Appearing Combo (Islamiat + PST)",
+        "logo": "⭐",
+        "badge": "CORE SUBJECTS BUNDLE",
+        "fee": "PKR 4,500 / mo",
+        "duration": "Online Live Classes",
+        "desc": "Complete dual-subject bundle for early appearing O Level / IGCSE subjects (Islamiat 2058 / PST 2059). Covers full Paper 1 & Paper 2 syllabus for both subjects with structured exam notes and past paper practice.",
+        "highlights": ["Save PKR 500/mo vs individual enrolment", "Full coverage of Islamiat, History & Geography modules", "Topical Past Paper Revision & Mock Exam Assessments"]
+    }
+]
+
 O_LEVEL_COURSES = [
     {
         "title": "O Level / IGCSE Computer Science",
-        "icon": "💻",
+        "logo": "🖥️",
         "badge": "CAIE 2210 / 0478",
-        "fee": "PKR 12,000 / mo",
+        "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
         "desc": "Master Theory (Hardware, Logic Gates, Data Transmission) & Paper 2 Problem Solving. Comprehensive practice in Pseudocode, Flowcharts, and Algorithm Design.",
         "highlights": ["10+ Years Past Paper Practice", "Pseudocode & Logic Drills", "Paper 1 & 2 Marking Scheme Mastery"]
     },
     {
         "title": "O Level / IGCSE Mathematics",
-        "icon": "📐",
+        "logo": "📐",
         "badge": "CAIE 4024 / 0580",
-        "fee": "PKR 12,000 / mo",
+        "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
         "desc": "Clear step-by-step conceptual learning across Algebra, Trigonometry, Vectors, Mensuration, and Probability with intensive exam-style problem solving.",
         "highlights": ["Topical Worksheets & Solutions", "Exam Speed & Accuracy Drills", "Regular Assessment Tests"]
     },
     {
         "title": "O Level / IGCSE Physics",
-        "icon": "⚡",
+        "logo": "⚡",
         "badge": "CAIE 5054 / 0625",
-        "fee": "PKR 12,000 / mo",
+        "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
         "desc": "In-depth physics coverage: Mechanics, Thermal Physics, Waves, Electricity & Magnetism, Space Physics, and ATP (Paper 4) exam techniques.",
         "highlights": ["Formula Memorization Sheets", "Alternative to Practical (ATP) Focus", "MCQ Paper 1 Strategies"]
     },
     {
         "title": "O Level / IGCSE Chemistry",
-        "icon": "🧪",
+        "logo": "🧪",
         "badge": "CAIE 5070 / 0620",
-        "fee": "PKR 12,000 / mo",
+        "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
         "desc": "Build deep clarity in Stoichiometry, Organic Chemistry, Chemical Energetics, and Electrochemistry combined with dedicated ATP Paper preparation.",
         "highlights": ["Stoichiometry Problem Drills", "Organic Chemistry Flowcharts", "ATP Practical Exam Prep"]
     },
     {
         "title": "O Level / IGCSE Biology",
-        "icon": "🧬",
+        "logo": "🧬",
         "badge": "CAIE 5090 / 0610",
-        "fee": "PKR 12,000 / mo",
+        "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
         "desc": "Cell Biology, Plant Physiology, Genetics, Biotechnology, and Human Systems taught with precise examiner keywords to ensure maximum marks.",
         "highlights": ["Cambridge Marking Scheme Keywords", "Diagram & Function Practice", "Past Paper Revision Packs"]
     },
     {
         "title": "O Level / IGCSE Islamiat",
-        "icon": "🕌",
+        "logo": "🕌",
         "badge": "CAIE 2058 / 0493",
-        "fee": "PKR 10,000 / mo",
+        "fee": "PKR 2,500 / mo",
         "duration": "Online Live Classes",
         "desc": "Structured preparation for Paper 1 & Paper 2: Quranic Passages, Life of Prophet (PBUH), Caliphates, Hadiths, and Articles of Faith with ready-to-learn notes.",
         "highlights": ["14-Mark & 4-Mark Structured Outlines", "Quranic & Hadith References", "Topical Exam Practice"]
     },
     {
-        "title": "O Level / IGCSE Pakistan Studies (PST)",
-        "icon": "🇵🇰",
+        "title": "O Level / IGCSE PST (Pakistan Studies)",
+        "logo": "📜",
         "badge": "CAIE 2059 / 0448",
-        "fee": "PKR 10,000 / mo",
+        "fee": "PKR 2,500 / mo",
         "duration": "Online Live Classes",
-        "desc": "Complete coverage of History (Paper 1) and Geography / Environment (Paper 2) focusing on level-of-response scoring methods and critical analysis.",
-        "highlights": ["Chronological History Timelines", "Geography Map Work & Case Studies", "High-Scoring Answer Templates"]
+        "desc": "Complete coverage of Paper 1 (History & Culture of Pakistan) and Paper 2 (Environment of Pakistan). Features level-of-response answer templates, maps, and case studies.",
+        "highlights": ["Chronological Timelines & Answer Templates", "Geography Map Skills & Case Studies", "Topical Source-Based Questions"]
     }
 ]
 
@@ -311,15 +368,41 @@ if menu == "🏠 Academy Home":
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<br><h2 style='text-align: center; color: white;'>O Level & IGCSE Online Courses</h2><p style='text-align: center; color: #94a3b8; margin-bottom: 2rem;'>Comprehensive online subject preparation tailored for Cambridge International Examinations (CAIE).</p>", unsafe_allow_html=True)
+    st.markdown("<br><h2 style='text-align: center; color: white;'>O Level & IGCSE Special Combo Packages</h2><p style='text-align: center; color: #94a3b8; margin-bottom: 2rem;'>Discounted bundle offerings for Science, Computer, and Core subjects.</p>", unsafe_allow_html=True)
 
+    # Render Combos
+    for combo in SPECIAL_COMBOS:
+        col_main, col_side = st.columns([3, 1])
+        with col_main:
+            st.markdown(f"""
+            <div class="combo-card">
+                <div class="subject-logo-badge">{combo['logo']}</div>
+                <span class="combo-badge" style="vertical-align: middle; margin-left: 0.5rem;">{combo['badge']}</span>
+                <h3 style="color: white; margin-top: 0.6rem; margin-bottom: 0.5rem;">{combo['title']}</h3>
+                <p style="color: #c7d2fe; font-size: 0.95rem; line-height: 1.5;">{combo['desc']}</p>
+                <p style="color: #38bdf8; font-size: 0.85rem; font-weight: 700;">Package Features: {', '.join(combo['highlights'])}</p>
+            </div>
+            """, unsafe_allow_html=True)
+        with col_side:
+            st.markdown(f"""
+            <div class="combo-card" style="text-align: center;">
+                <p style="color: #a5b4fc; margin: 0; font-size: 0.85rem; font-weight: 700;">Bundle Fee</p>
+                <p class="course-fee">{combo['fee']}</p>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 0;">⏱️ {combo['duration']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+    st.markdown("<h2 style='text-align: center; color: white; margin-top: 2rem;'>Individual Subject Courses</h2><p style='text-align: center; color: #94a3b8; margin-bottom: 2rem;'>Select single subjects based on student requirement.</p>", unsafe_allow_html=True)
+
+    # Render Individual Subjects
     for course in O_LEVEL_COURSES:
         col_main, col_side = st.columns([3, 1])
         with col_main:
             st.markdown(f"""
             <div class="course-card">
-                <span class="course-badge">{course['badge']}</span>
-                <h3 style="color: white; margin-top: 0.6rem; margin-bottom: 0.5rem;">{course['icon']} {course['title']}</h3>
+                <div class="subject-logo-badge">{course['logo']}</div>
+                <span class="course-badge" style="vertical-align: middle; margin-left: 0.5rem;">{course['badge']}</span>
+                <h3 style="color: white; margin-top: 0.6rem; margin-bottom: 0.5rem;">{course['title']}</h3>
                 <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">{course['desc']}</p>
                 <p style="color: #cbd5e1; font-size: 0.85rem; font-weight: 600;">Key Focus: {', '.join(course['highlights'])}</p>
             </div>
@@ -341,11 +424,7 @@ elif menu == "📝 Course Admission":
     st.title("📝 Student Admission Form")
     st.caption("Please complete the form below to enroll for online live classes. Our team will contact you shortly via WhatsApp.")
 
-    courses = load_json("courses.json", [])
-    active_courses = [c["title"] for c in courses if c.get("active", True)]
-
-    if not active_courses:
-        active_courses = [c["title"] for c in O_LEVEL_COURSES]
+    all_options = [f"{c['logo']} {c['title']}" for c in SPECIAL_COMBOS] + [f"{c['logo']} {c['title']}" for c in O_LEVEL_COURSES]
 
     with st.form("admission_form"):
         col_a, col_b = st.columns(2)
@@ -354,7 +433,7 @@ elif menu == "📝 Course Admission":
             email = st.text_input("Parent / Student Email Address *", placeholder="e.g. parent@example.com")
         with col_b:
             phone = st.text_input("WhatsApp Number (for class updates) *", placeholder="e.g. +92 332 1234567")
-            selected_course = st.selectbox("Select Target Subject *", active_courses)
+            selected_course = st.selectbox("Select Target Course / Combo *", all_options)
         
         submitted = st.form_submit_button("Submit Online Enrollment")
 
@@ -373,12 +452,12 @@ elif menu == "📝 Course Admission":
                 enrollments.append(new_entry)
                 save_json("enrollments.json", enrollments)
                 sync_to_github("enrollments.json", enrollments)
-                st.success(f"Thank you, {name}! Your admission request has been received. We will send class joining details to {norm_phone} via WhatsApp shortly.")
+                st.success(f"Thank you, {name}! Your admission request for {selected_course} has been received. We will send class joining details to {norm_phone} via WhatsApp shortly.")
 
 # === PAGE 3: CHAT ASSISTANT ===
 elif menu == "🤖 Chat Assistant":
     st.title("🤖 Online Academy Assistant")
-    st.caption("Have questions about subject syllabus, online schedules, fee packages, or exam preparation strategies? Ask our assistant below!")
+    st.caption("Have questions about subject syllabus, online schedules, combo fee packages, or exam preparation strategies? Ask our assistant below!")
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -387,7 +466,7 @@ elif menu == "🤖 Chat Assistant":
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    if prompt := st.chat_input("Ask about online live classes, fees, subjects, or past paper practice..."):
+    if prompt := st.chat_input("Ask about online live classes, combo fees, subjects, or past paper practice..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
@@ -416,7 +495,7 @@ elif menu == "🔒 Admin Dashboard":
                 st.info("No enrollment submissions found.")
                 
         with tab2:
-            st.subheader("Active O Level / IGCSE Subjects")
+            st.subheader("Active O Level / IGCSE Subjects & Combos")
             courses = load_json("courses.json", [])
             st.json(courses)
     else:
