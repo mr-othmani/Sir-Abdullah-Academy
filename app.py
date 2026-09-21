@@ -7,7 +7,7 @@ from github_store import sync_to_github
 
 # --- 1. PAGE CONFIG ---
 st.set_page_config(
-    page_title="Sir Abdullah Academy | O Level & IGCSE Coaching",
+    page_title="Sir Abdullah Academy | Online O Level & IGCSE Coaching",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -129,8 +129,8 @@ O_LEVEL_COURSES = [
         "icon": "💻",
         "badge": "CAIE 2210 / 0478",
         "fee": "PKR 12,000 / mo",
-        "duration": "Full Session",
-        "desc": "Comprehensive coverage of theory (hardware, logic gates, networking) and Paper 2 problem-solving, pseudocode, and algorithm design.",
+        "duration": "Online Live Classes",
+        "desc": "Comprehensive live interactive classes covering theory (hardware, logic gates, networking) and Paper 2 problem-solving, pseudocode, and algorithm design.",
         "highlights": ["Past Paper Practice (2015-2025)", "Pseudocode Mastery", "Paper 1 & 2 Exam Techniques"]
     },
     {
@@ -138,17 +138,17 @@ O_LEVEL_COURSES = [
         "icon": "📐",
         "badge": "CAIE 4024 / 0580",
         "fee": "PKR 12,000 / mo",
-        "duration": "Full Session",
-        "desc": "In-depth coaching in Algebra, Trigonometry, Vectors, Calculus basics, Mensuration, and Probability with rigorous topical past paper sessions.",
-        "highlights": ["Topical Worksheets", "Step-by-Step Marking Schemes", "Timed Mock Exams"]
+        "duration": "Online Live Classes",
+        "desc": "In-depth online coaching in Algebra, Trigonometry, Vectors, Calculus basics, Mensuration, and Probability with live topical past paper drills.",
+        "highlights": ["Topical Worksheets", "Step-by-Step Marking Schemes", "Timed Online Mocks"]
     },
     {
         "title": "O Level / IGCSE Physics",
         "icon": "⚡",
         "badge": "CAIE 5054 / 0625",
         "fee": "PKR 12,000 / mo",
-        "duration": "Full Session",
-        "desc": "Complete syllabus coverage: General Physics, Thermal Physics, Waves, Electricity & Magnetism, Atomic Physics, and ATP (Paper 4) preparation.",
+        "duration": "Online Live Classes",
+        "desc": "Complete online syllabus coverage: General Physics, Thermal Physics, Waves, Electricity & Magnetism, Atomic Physics, and ATP (Paper 4) preparation.",
         "highlights": ["Formula Memorization Guides", "ATP Practical Skills", "MCQ Solving Strategies"]
     },
     {
@@ -156,8 +156,8 @@ O_LEVEL_COURSES = [
         "icon": "🧪",
         "badge": "CAIE 5070 / 0620",
         "fee": "PKR 12,000 / mo",
-        "duration": "Full Session",
-        "desc": "Master Stoichiometry, Organic Chemistry, Chemical Energetics, Electrochemistry, and Alternative to Practical (ATP) exam preparation.",
+        "duration": "Online Live Classes",
+        "desc": "Master Stoichiometry, Organic Chemistry, Chemical Energetics, Electrochemistry, and Alternative to Practical (ATP) exam preparation via live interactive sessions.",
         "highlights": ["Stoichiometry Problem Drills", "Organic Chem Roadmap", "ATP Exam Prep"]
     },
     {
@@ -165,8 +165,8 @@ O_LEVEL_COURSES = [
         "icon": "🧬",
         "badge": "CAIE 5090 / 0610",
         "fee": "PKR 12,000 / mo",
-        "duration": "Full Session",
-        "desc": "Cell Biology, Plant & Human Physiology, Genetics, Biotechnology, and Ecological concepts tailored precisely to Cambridge assessment standards.",
+        "duration": "Online Live Classes",
+        "desc": "Cell Biology, Plant & Human Physiology, Genetics, Biotechnology, and Ecological concepts tailored precisely to Cambridge standards with digital notes.",
         "highlights": ["Diagram & Key Phrase Drills", "Marking Scheme Keyword Focus", "Past Papers"]
     },
     {
@@ -174,8 +174,8 @@ O_LEVEL_COURSES = [
         "icon": "🕌",
         "badge": "CAIE 2058 / 0493",
         "fee": "PKR 10,000 / mo",
-        "duration": "Full Session",
-        "desc": "Paper 1 & Paper 2 breakdown: Quranic Passages, Life of Prophet (PBUH), Rightly Guided Caliphs, Hadiths, and Articles of Faith.",
+        "duration": "Online Live Classes",
+        "desc": "Paper 1 & Paper 2 breakdown: Quranic Passages, Life of Prophet (PBUH), Rightly Guided Caliphs, Hadiths, and Articles of Faith with digital study packs.",
         "highlights": ["Structured References & Quotes", "14-mark & 4-mark Answer Formatting", "Topical Mocks"]
     },
     {
@@ -183,8 +183,8 @@ O_LEVEL_COURSES = [
         "icon": "🇵🇰",
         "badge": "CAIE 2059 / 0448",
         "fee": "PKR 10,000 / mo",
-        "duration": "Full Session",
-        "desc": "History of Pakistan (Paper 1) and Environment / Geography of Pakistan (Paper 2) with detailed focus on level-of-response exam questions.",
+        "duration": "Online Live Classes",
+        "desc": "History of Pakistan (Paper 1) and Environment / Geography of Pakistan (Paper 2) with detailed focus on high-scoring answer structures.",
         "highlights": ["Chronological History Timelines", "Map Skills for Geography", "High-Scoring Answer Structures"]
     }
 ]
@@ -203,10 +203,10 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
     <div style="background: #1e293b; padding: 1rem; border-radius: 10px; border: 1px solid #334155;">
-        <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.3rem;">📍 Campus Address</p>
-        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">Main Campus, Gulshan-e-Iqbal, Karachi</p>
+        <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.3rem;">💻 Class Format</p>
+        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">100% Online Live Classes (Zoom / Google Meet)</p>
         <hr style="border-color: #334155; margin: 0.6rem 0;">
-        <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.3rem;">📞 Contact</p>
+        <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.3rem;">📞 Contact & Enquiries</p>
         <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">WhatsApp: +92 332 1234567</p>
     </div>
     """, unsafe_allow_html=True)
@@ -218,7 +218,7 @@ if menu == "🏠 Academy Home":
     st.markdown("""
     <div class="hero-banner">
         <div class="hero-title">Sir Abdullah Academy</div>
-        <div class="hero-subtitle">Premier O Level & IGCSE Coaching in Karachi. Exam-focused prep, topical past paper practice, and dedicated Cambridge syllabus coverage.</div>
+        <div class="hero-subtitle">Premier 100% Online O Level & IGCSE Coaching. Live interactive sessions, topical past paper practice, and dedicated Cambridge exam preparation worldwide.</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -226,12 +226,20 @@ if menu == "🏠 Academy Home":
     with c1:
         st.markdown("""
         <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <div class="feature-title">Live Interactive Classes</div>
+            <div class="feature-desc">Learn from home via live interactive online sessions.</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with c2:
+        st.markdown("""
+        <div class="feature-card">
             <div class="feature-icon">📚</div>
             <div class="feature-title">Topical Past Papers</div>
             <div class="feature-desc">10+ years of solved past papers & marking schemes.</div>
         </div>
         """, unsafe_allow_html=True)
-    with c2:
+    with c3:
         st.markdown("""
         <div class="feature-card">
             <div class="feature-icon">🎯</div>
@@ -239,24 +247,16 @@ if menu == "🏠 Academy Home":
             <div class="feature-desc">Learn Cambridge examiner keywords & answer structuring.</div>
         </div>
         """, unsafe_allow_html=True)
-    with c3:
-        st.markdown("""
-        <div class="feature-card">
-            <div class="feature-icon">📝</div>
-            <div class="feature-title">Regular Mocks</div>
-            <div class="feature-desc">Weekly assessments and realistic mock examination series.</div>
-        </div>
-        """, unsafe_allow_html=True)
     with c4:
         st.markdown("""
         <div class="feature-card">
-            <div class="feature-icon">👥</div>
-            <div class="feature-title">Small Batch Sizes</div>
-            <div class="feature-desc">Personalized attention for every individual student.</div>
+            <div class="feature-icon">📝</div>
+            <div class="feature-title">Regular Online Mocks</div>
+            <div class="feature-desc">Weekly assessments and realistic mock examination series.</div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<br><h2 style='text-align: center; color: white;'>O Level & IGCSE Course Offerings</h2><br>", unsafe_allow_html=True)
+    st.markdown("<br><h2 style='text-align: center; color: white;'>O Level & IGCSE Online Courses Offered</h2><br>", unsafe_allow_html=True)
 
     for course in O_LEVEL_COURSES:
         col_main, col_side = st.columns([3, 1])
@@ -283,8 +283,8 @@ if menu == "🏠 Academy Home":
 
 # === PAGE 2: COURSE ADMISSION ===
 elif menu == "📝 Course Admission":
-    st.title("📝 Admission Application")
-    st.caption("Select your subject(s) to reserve your seat for the upcoming O Level / IGCSE batch.")
+    st.title("📝 Online Admission Application")
+    st.caption("Select your subject(s) to reserve your seat for the upcoming online batch.")
 
     courses = load_json("courses.json", [])
     active_courses = [c["title"] for c in courses if c.get("active", True)]
@@ -299,10 +299,10 @@ elif menu == "📝 Course Admission":
             name = st.text_input("Student Full Name *")
             email = st.text_input("Email Address *")
         with col_b:
-            phone = st.text_input("WhatsApp / Mobile Number * (e.g. 03321234567)")
+            phone = st.text_input("WhatsApp / Mobile Number * (e.g. +923321234567)")
             selected_course = st.selectbox("Select Subject / Course *", active_courses)
         
-        submitted = st.form_submit_button("Submit Application")
+        submitted = st.form_submit_button("Submit Online Application")
 
         if submitted:
             if not name or not phone or not email:
@@ -319,12 +319,12 @@ elif menu == "📝 Course Admission":
                 enrollments.append(new_entry)
                 save_json("enrollments.json", enrollments)
                 sync_to_github("enrollments.json", enrollments)
-                st.success(f"Application submitted! Thank you, {name}. We will contact you on WhatsApp shortly.")
+                st.success(f"Application submitted! Thank you, {name}. We will contact you on WhatsApp with class access links shortly.")
 
 # === PAGE 3: CHAT ASSISTANT ===
 elif menu == "🤖 Chat Assistant":
     st.title("🤖 Academy Assistant")
-    st.caption("Ask questions about O Level / IGCSE subjects, fee structures, past paper practice, or class schedules.")
+    st.caption("Ask questions about online live classes, O Level / IGCSE subjects, fees, past paper practice, or class timings.")
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -333,7 +333,7 @@ elif menu == "🤖 Chat Assistant":
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    if prompt := st.chat_input("Ask about O Level subjects, fees, past papers..."):
+    if prompt := st.chat_input("Ask about online classes, subjects, fees, past papers..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
