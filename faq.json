@@ -1,0 +1,17 @@
+[
+  {
+    "intent": "admission_info",
+    "patterns": ["admission process", "how to enroll", "apply for course", "register"],
+    "response": "You can apply directly using our live Enrollment form in the main menu! Select your desired course, fill in your details, and submit."
+  },
+  {
+    "intent": "contact_info",
+    "patterns": ["contact number", "phone", "whatsapp", "address", "location"],
+    "response": "You can reach Sir Abdullah Academy via Phone/WhatsApp at +92 332 1234567 or visit our main campus in Karachi."
+  },
+  {
+    "intent": "timing_info",
+    "patterns": ["timings", "class schedule", "days", "batch timings"],
+    "response": "Classes run Monday through Saturday with flexible morning and evening batches (4:00 PM - 8:00 PM PKT)."
+  }
+]
