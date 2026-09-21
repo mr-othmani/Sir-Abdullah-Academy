@@ -113,7 +113,7 @@ st.markdown("""
         line-height: 1.5;
     }
 
-    /* Course & Combo Cards */
+    /* Course Cards */
     .course-card {
         background: #1e293b;
         border: 1px solid #334155;
@@ -129,15 +129,6 @@ st.markdown("""
         padding: 1.8rem;
         margin-bottom: 1.5rem;
         box-shadow: 0 6px 20px rgba(99, 102, 241, 0.25);
-    }
-    .subject-logo-badge {
-        font-size: 2rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 0.4rem 0.8rem;
-        display: inline-block;
-        margin-bottom: 0.5rem;
     }
     .course-badge {
         background: #312e81;
@@ -165,16 +156,10 @@ st.markdown("""
         font-weight: 800;
     }
 
-    /* Callout & Buttons */
-    .stButton>button {
-        background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%);
-        color: white;
-        font-weight: 700;
-        border-radius: 8px;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        width: 100%;
-        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+    /* Streamlit Image Formatting for Course Cards */
+    [data-testid="stImage"] img {
+        border-radius: 12px;
+        border: 1px solid #334155;
     }
 
     .sidebar-head {
@@ -188,11 +173,11 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# --- 3. COURSES & PACKAGES LISTING ---
+# --- 3. COURSES & PACKAGES LISTING WITH IMAGE LOGOS ---
 SPECIAL_COMBOS = [
     {
         "title": "The Pre-Medical Combo (Bio, Physics, Chem, Math)",
-        "logo": "🩺",
+        "image_url": "assets/pre_medical_combo_logo.png",
         "badge": "PRE-MEDICAL SPECIAL BUNDLE",
         "fee": "PKR 16,000 / mo",
         "duration": "Online Live Classes",
@@ -201,7 +186,7 @@ SPECIAL_COMBOS = [
     },
     {
         "title": "The Computer Science Combo (CS, Physics, Chem, Math)",
-        "logo": "💻",
+        "image_url": "assets/cs_combo_logo.png",
         "badge": "PRE-ENGINEERING & CS BUNDLE",
         "fee": "PKR 16,000 / mo",
         "duration": "Online Live Classes",
@@ -210,7 +195,7 @@ SPECIAL_COMBOS = [
     },
     {
         "title": "O1 / O2 Core Appearing Combo (Islamiat + PST)",
-        "logo": "⭐",
+        "image_url": "assets/core_combo_logo.png",
         "badge": "CORE SUBJECTS BUNDLE",
         "fee": "PKR 4,500 / mo",
         "duration": "Online Live Classes",
@@ -222,7 +207,7 @@ SPECIAL_COMBOS = [
 O_LEVEL_COURSES = [
     {
         "title": "O Level / IGCSE Computer Science",
-        "logo": "🖥️",
+        "image_url": "assets/cs_logo.png",
         "badge": "CAIE 2210 / 0478",
         "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
@@ -231,7 +216,7 @@ O_LEVEL_COURSES = [
     },
     {
         "title": "O Level / IGCSE Mathematics",
-        "logo": "📐",
+        "image_url": "assets/math_logo.png",
         "badge": "CAIE 4024 / 0580",
         "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
@@ -240,7 +225,7 @@ O_LEVEL_COURSES = [
     },
     {
         "title": "O Level / IGCSE Physics",
-        "logo": "⚡",
+        "image_url": "assets/physics_logo.png",
         "badge": "CAIE 5054 / 0625",
         "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
@@ -249,7 +234,7 @@ O_LEVEL_COURSES = [
     },
     {
         "title": "O Level / IGCSE Chemistry",
-        "logo": "🧪",
+        "image_url": "assets/chemistry_logo.png",
         "badge": "CAIE 5070 / 0620",
         "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
@@ -258,7 +243,7 @@ O_LEVEL_COURSES = [
     },
     {
         "title": "O Level / IGCSE Biology",
-        "logo": "🧬",
+        "image_url": "assets/biology_logo.png",
         "badge": "CAIE 5090 / 0610",
         "fee": "PKR 5,000 / mo",
         "duration": "Online Live Classes",
@@ -267,7 +252,7 @@ O_LEVEL_COURSES = [
     },
     {
         "title": "O Level / IGCSE Islamiat",
-        "logo": "🕌",
+        "image_url": "assets/islamiat_logo.png",
         "badge": "CAIE 2058 / 0493",
         "fee": "PKR 2,500 / mo",
         "duration": "Online Live Classes",
@@ -276,7 +261,7 @@ O_LEVEL_COURSES = [
     },
     {
         "title": "O Level / IGCSE PST (Pakistan Studies)",
-        "logo": "📜",
+        "image_url": "assets/pst_logo.png",
         "badge": "CAIE 2059 / 0448",
         "fee": "PKR 2,500 / mo",
         "duration": "Online Live Classes",
@@ -372,12 +357,14 @@ if menu == "🏠 Academy Home":
 
     # Render Combos
     for combo in SPECIAL_COMBOS:
-        col_main, col_side = st.columns([3, 1])
+        col_img, col_main, col_side = st.columns([1.2, 2.5, 1])
+        with col_img:
+            # Displays graphic banner image logo
+            st.image(combo['image_url'], use_container_width=True)
         with col_main:
             st.markdown(f"""
             <div class="combo-card">
-                <div class="subject-logo-badge">{combo['logo']}</div>
-                <span class="combo-badge" style="vertical-align: middle; margin-left: 0.5rem;">{combo['badge']}</span>
+                <span class="combo-badge">{combo['badge']}</span>
                 <h3 style="color: white; margin-top: 0.6rem; margin-bottom: 0.5rem;">{combo['title']}</h3>
                 <p style="color: #c7d2fe; font-size: 0.95rem; line-height: 1.5;">{combo['desc']}</p>
                 <p style="color: #38bdf8; font-size: 0.85rem; font-weight: 700;">Package Features: {', '.join(combo['highlights'])}</p>
@@ -396,12 +383,14 @@ if menu == "🏠 Academy Home":
 
     # Render Individual Subjects
     for course in O_LEVEL_COURSES:
-        col_main, col_side = st.columns([3, 1])
+        col_img, col_main, col_side = st.columns([1.2, 2.5, 1])
+        with col_img:
+            # Displays graphic banner image logo
+            st.image(course['image_url'], use_container_width=True)
         with col_main:
             st.markdown(f"""
             <div class="course-card">
-                <div class="subject-logo-badge">{course['logo']}</div>
-                <span class="course-badge" style="vertical-align: middle; margin-left: 0.5rem;">{course['badge']}</span>
+                <span class="course-badge">{course['badge']}</span>
                 <h3 style="color: white; margin-top: 0.6rem; margin-bottom: 0.5rem;">{course['title']}</h3>
                 <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">{course['desc']}</p>
                 <p style="color: #cbd5e1; font-size: 0.85rem; font-weight: 600;">Key Focus: {', '.join(course['highlights'])}</p>
@@ -424,7 +413,7 @@ elif menu == "📝 Course Admission":
     st.title("📝 Student Admission Form")
     st.caption("Please complete the form below to enroll for online live classes. Our team will contact you shortly via WhatsApp.")
 
-    all_options = [f"{c['logo']} {c['title']}" for c in SPECIAL_COMBOS] + [f"{c['logo']} {c['title']}" for c in O_LEVEL_COURSES]
+    all_options = [c["title"] for c in SPECIAL_COMBOS] + [c["title"] for c in O_LEVEL_COURSES]
 
     with st.form("admission_form"):
         col_a, col_b = st.columns(2)
