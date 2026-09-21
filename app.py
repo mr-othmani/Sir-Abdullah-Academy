@@ -5,22 +5,63 @@ from utils import normalize_phone, sanitize_csv_field
 from chatbot import get_bot_response
 from github_store import sync_to_github
 
+# Page Configuration
 st.set_page_config(page_title="Sir Abdullah Academy", page_icon="🎓", layout="wide")
 
+# Custom Styling
 st.markdown("""
 <style>
     .stApp { background-color: #0b0f19; color: #f3f4f6; }
+    .hero-box {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        border: 1px solid #4338ca;
+    }
+    .stat-card {
+        background-color: #1f2937;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid #374151;
+    }
     .stButton>button { background-color: #4f46e5; color: white; border-radius: 8px; border: none; }
 </style>
 """, unsafe_allow_html=True)
 
 ADMIN_PASSWORD = "osmanibhai112233"
 
+# Sidebar Navigation
 st.sidebar.title("🎓 Navigation")
-menu = st.sidebar.radio("Go to", ["Chat Assistant", "Course Admission", "Admin Dashboard"])
+menu = st.sidebar.radio("Go to", ["Home & Assistant", "Course Admission", "Admin Dashboard"])
 
-if menu == "Chat Assistant":
-    st.title("🤖 Academy Assistant")
+if menu == "Home & Assistant":
+    # Hero Banner
+    st.markdown("""
+    <div class="hero-box">
+        <h1>🎓 Welcome to Sir Abdullah Academy</h1>
+        <p style="font-size: 1.1rem; color: #cbd5e1;">
+            Empowering the next generation of tech leaders with practical, industry-focused IT education. 
+            Explore our courses or chat with our automated assistant below!
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Quick Stats Row
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown('<div class="stat-card"><h3>📚 3+</h3><p>Active Programs</p></div>', unsafe_allow_html=True)
+    with col2:
+        st.markdown('<div class="stat-card"><h3>⚡ Flexible</h3><p>Online & On-Site</p></div>', unsafe_allow_html=True)
+    with col3:
+        st.markdown('<div class="stat-card"><h3>📍 Location</h3><p>Karachi Campus</p></div>', unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.subheader("🤖 Academy Assistant")
+    st.caption("Ask questions about admissions, fees, timings, or course modules below.")
+
+    # Chat Logic
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
@@ -89,4 +130,4 @@ elif menu == "Admin Dashboard":
             courses = load_json("courses.json", [])
             st.json(courses)
     else:
-                st.warning("Enter valid password to access admin logs.")
+        st.warning("Enter valid password to access admin logs.")
