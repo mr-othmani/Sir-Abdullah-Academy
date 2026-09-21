@@ -5,310 +5,335 @@ from utils import normalize_phone, sanitize_csv_field
 from chatbot import get_bot_response
 from github_store import sync_to_github
 
-# --- 1. PREMIUM PAGE CONFIGURATION ---
+# --- 1. PAGE CONFIG ---
 st.set_page_config(
-    page_title="Sir Abdullah Academy | Premier IT Education",
+    page_title="Sir Abdullah Academy | O Level & IGCSE Coaching",
     page_icon="🎓",
     layout="wide",
-    initial_sidebar_state="collapsed" # Starts collapsed for cleaner home view
+    initial_sidebar_state="expanded"
 )
 
-# --- 2. ADVANCED PROFESSIONAL STYLING (CSS) ---
-# Midnight Navy, Crimson Accent, and Charcoal Palette
+# --- 2. MODERN ACADEMY STYLING ---
 st.markdown("""
 <style>
-    /* Main App Background */
-    .stApp { background-color: #0d1117; color: #e6edf3; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-
-    /* Hide Streamlit branding */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-
-    /* Custom Main Container Padding */
-    .main .block-container { padding-top: 1rem; padding-bottom: 3rem; }
-
-    /* Professional Header/Nav Sim */
-    .academy-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid #30363d;
+    .stApp {
+        background: #090d16;
+        color: #f1f5f9;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    .logo-text { font-size: 1.8rem; font-weight: 700; color: #f0f6fc; }
-    .contact-cta { background-color: transparent; border: 1px solid #4f46e5; color: #4f46e5; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem;}
-    .contact-cta:hover { background-color: #4f46e5; color: white; }
 
-    /* Hero Section */
-    .hero-container {
+    [data-testid="stSidebar"] {
+        background-color: #0f172a !important;
+        border-right: 1px solid #1e293b;
+    }
+
+    .hero-banner {
+        background: linear-gradient(135deg, #1e1b4b 0%, #311b92 50%, #0f172a 100%);
+        border: 1px solid #3730a3;
+        border-radius: 16px;
+        padding: 3.5rem 2rem;
         text-align: center;
-        padding: 4rem 2rem;
-        background: radial-gradient(circle, rgba(31,38,105,1) 0%, rgba(13,17,23,1) 100%);
+        margin-bottom: 2.5rem;
+        box-shadow: 0 10px 30px rgba(49, 27, 146, 0.3);
+    }
+    .hero-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #ffffff;
+        margin-bottom: 0.8rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+        color: #c7d2fe;
+        max-width: 750px;
+        margin: 0 auto 1.5rem auto;
+        line-height: 1.6;
+    }
+
+    .feature-card {
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid #334155;
         border-radius: 12px;
-        margin-bottom: 3rem;
-        border: 1px solid #1e293b;
-    }
-    .hero-title { font-size: 3.2rem; font-weight: 800; color: white; margin-bottom: 0.5rem; letter-spacing: -1px; }
-    .hero-subtitle { font-size: 1.3rem; color: #94a3b8; max-width: 700px; margin: 0 auto 2rem auto; line-height: 1.6; }
-
-    /* Feature/Highlight Cards */
-    .highlight-card {
-        background-color: #161b22;
-        padding: 1.5rem;
-        border-radius: 10px;
-        border: 1px solid #30363d;
+        padding: 1.5rem 1rem;
+        text-align: center;
         height: 100%;
-        transition: transform 0.2s ease, border-color 0.2s ease;
+        transition: all 0.3s ease;
     }
-    .highlight-card:hover { transform: translateY(-3px); border-color: #4f46e5; }
-    .icon-box { font-size: 2rem; color: #4f46e5; margin-bottom: 1rem; }
-    .card-title { font-size: 1.25rem; font-weight: 600; color: #f0f6fc; margin-bottom: 0.5rem; }
-    .card-text { font-size: 0.95rem; color: #8b949e; line-height: 1.5; }
+    .feature-card:hover {
+        border-color: #6366f1;
+        transform: translateY(-4px);
+    }
+    .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    .feature-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 0.3rem;
+    }
+    .feature-desc {
+        font-size: 0.85rem;
+        color: #94a3b8;
+    }
 
-    /* Course Cards */
     .course-card {
-        background-color: #161b22;
-        border-radius: 8px;
-        border: 1px solid #30363d;
-        margin-bottom: 1rem;
-        overflow: hidden;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 14px;
+        padding: 1.5rem;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    .course-header {
-        background-color: #1f2937;
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid #30363d;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .course-badge {
+        background: #312e81;
+        color: #a5b4fc;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.25rem 0.6rem;
+        border-radius: 20px;
+        text-transform: uppercase;
     }
-    .course-title { font-size: 1.3rem; font-weight: 700; color: white; margin: 0; }
-    .course-price { font-size: 1.1rem; font-weight: 600; color: #10b981; }
-    .course-body { padding: 1.5rem; }
-    .course-meta { font-size: 0.85rem; color: #8b949e; margin-bottom: 1rem; display: flex; gap: 1rem;}
+    .course-fee {
+        color: #34d399;
+        font-size: 1.2rem;
+        font-weight: 800;
+    }
 
-    /* Premium Buttons */
     .stButton>button {
-        background-color: #4f46e5;
+        background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%);
         color: white;
-        border-radius: 6px;
+        font-weight: 700;
+        border-radius: 8px;
         border: none;
-        padding: 0.6rem 1.2rem;
-        font-weight: 600;
-        transition: background-color 0.2s;
+        padding: 0.7rem 1.5rem;
         width: 100%;
     }
-    .stButton>button:hover { background-color: #4338ca; }
-    .stButton>button:active { background-color: #3730a3; }
 
-    /* Chat Styling */
-    .stChatMessage { background-color: #161b22; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 0.5rem; }
-    .stChatInputContainer { background-color: #161b22 !important; border: 1px solid #30363d !important; border-radius: 8px !important; }
-
-    /* Contact Sidebar styling */
-    .contact-box { background-color: #161b22; padding: 1rem; border-radius: 8px; border: 1px solid #30363d; margin-top: 1rem;}
+    .sidebar-head {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #ffffff;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #312e81;
+        margin-bottom: 1rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-# --- 3. HELPER DATA ( Hardcoded for premium homepage display) ---
-HOMEPAGE_COURSES = [
+# --- 3. COURSES LISTING ---
+O_LEVEL_COURSES = [
     {
-        "title": "Python for Beginners",
-        "icon": "🐍",
-        "desc": "Master the fundamentals of Python programming, the world's most popular language for AI, Data Science, and Web Development. Ideal for absolute beginners.",
-        "duration": "8 Weeks",
-        "level": "Beginner",
-        "fee": "PKR 15,000"
+        "title": "O Level / IGCSE Computer Science",
+        "icon": "💻",
+        "badge": "CAIE 2210 / 0478",
+        "fee": "PKR 12,000 / mo",
+        "duration": "Full Session",
+        "desc": "Comprehensive coverage of theory (hardware, logic gates, networking) and Paper 2 problem-solving, pseudocode, and algorithm design.",
+        "highlights": ["Past Paper Practice (2015-2025)", "Pseudocode Mastery", "Paper 1 & 2 Exam Techniques"]
     },
     {
-        "title": "Full-Stack Web Development",
-        "icon": "🌐",
-        "desc": "Become a modern web developer. Learn HTML5, CSS3, JavaScript (ES6+), React.js, Node.js, and MongoDB. Build and deploy real-world applications.",
-        "duration": "12 Weeks",
-        "level": "Intermediate",
-        "fee": "PKR 25,000"
+        "title": "O Level / IGCSE Mathematics",
+        "icon": "📐",
+        "badge": "CAIE 4024 / 0580",
+        "fee": "PKR 12,000 / mo",
+        "duration": "Full Session",
+        "desc": "In-depth coaching in Algebra, Trigonometry, Vectors, Calculus basics, Mensuration, and Probability with rigorous topical past paper sessions.",
+        "highlights": ["Topical Worksheets", "Step-by-Step Marking Schemes", "Timed Mock Exams"]
     },
     {
-        "title": "Data Science Fundamentals",
-        "icon": "📊",
-        "desc": "Learn to analyze data, extract insights, and build predictive models using Python, Pandas, NumPy, and Scikit-Learn. A structured path to AI.",
-        "duration": "10 Weeks",
-        "level": "Beginner-Friendly",
-        "fee": "PKR 30,000"
+        "title": "O Level / IGCSE Physics",
+        "icon": "⚡",
+        "badge": "CAIE 5054 / 0625",
+        "fee": "PKR 12,000 / mo",
+        "duration": "Full Session",
+        "desc": "Complete syllabus coverage: General Physics, Thermal Physics, Waves, Electricity & Magnetism, Atomic Physics, and ATP (Paper 4) preparation.",
+        "highlights": ["Formula Memorization Guides", "ATP Practical Skills", "MCQ Solving Strategies"]
+    },
+    {
+        "title": "O Level / IGCSE Chemistry",
+        "icon": "🧪",
+        "badge": "CAIE 5070 / 0620",
+        "fee": "PKR 12,000 / mo",
+        "duration": "Full Session",
+        "desc": "Master Stoichiometry, Organic Chemistry, Chemical Energetics, Electrochemistry, and Alternative to Practical (ATP) exam preparation.",
+        "highlights": ["Stoichiometry Problem Drills", "Organic Chem Roadmap", "ATP Exam Prep"]
+    },
+    {
+        "title": "O Level / IGCSE Biology",
+        "icon": "🧬",
+        "badge": "CAIE 5090 / 0610",
+        "fee": "PKR 12,000 / mo",
+        "duration": "Full Session",
+        "desc": "Cell Biology, Plant & Human Physiology, Genetics, Biotechnology, and Ecological concepts tailored precisely to Cambridge assessment standards.",
+        "highlights": ["Diagram & Key Phrase Drills", "Marking Scheme Keyword Focus", "Past Papers"]
+    },
+    {
+        "title": "O Level / IGCSE Islamiat",
+        "icon": "🕌",
+        "badge": "CAIE 2058 / 0493",
+        "fee": "PKR 10,000 / mo",
+        "duration": "Full Session",
+        "desc": "Paper 1 & Paper 2 breakdown: Quranic Passages, Life of Prophet (PBUH), Rightly Guided Caliphs, Hadiths, and Articles of Faith.",
+        "highlights": ["Structured References & Quotes", "14-mark & 4-mark Answer Formatting", "Topical Mocks"]
+    },
+    {
+        "title": "O Level / IGCSE Pakistan Studies (PST)",
+        "icon": "🇵🇰",
+        "badge": "CAIE 2059 / 0448",
+        "fee": "PKR 10,000 / mo",
+        "duration": "Full Session",
+        "desc": "History of Pakistan (Paper 1) and Environment / Geography of Pakistan (Paper 2) with detailed focus on level-of-response exam questions.",
+        "highlights": ["Chronological History Timelines", "Map Skills for Geography", "High-Scoring Answer Structures"]
     }
 ]
 
-# --- 4. APPLICATION LOGIC ---
 ADMIN_PASSWORD = "osmanibhai112233"
 
-# - Professional Navigation Bar Sim -
-st.markdown(f"""
-<div class="academy-header">
-    <div class="logo-text">Sir Abdullah Academy</div>
-    <a href="https://wa.me/923321234567" class="contact-cta" target="_blank">Contact on WhatsApp</a>
-</div>
-""", unsafe_allow_html=True)
-
-# - Sidebar (Simplified) -
+# --- 4. SIDEBAR NAVIGATION ---
 with st.sidebar:
-    st.markdown("<h2 style='text-align:center; color:white;'>Menu</h2>", unsafe_allow_html=True)
-    menu = st.radio("Navigate", ["🏛️ Academy Home", "📝 Start Admission", "🤖 Chat Assistant", "🔒 Admin Panel"], label_visibility="collapsed")
+    st.markdown('<div class="sidebar-head">🎓 Main Menu</div>', unsafe_allow_html=True)
+    menu = st.radio(
+        "Navigate",
+        ["🏠 Academy Home", "📝 Course Admission", "🤖 Chat Assistant", "🔒 Admin Dashboard"],
+        label_visibility="collapsed"
+    )
+    
     st.markdown("---")
     st.markdown("""
-    <div class="contact-box">
-        <p style='color:white; font-weight:600; margin-bottom:0.2rem;'>Campus Location:</p>
-        <p style='color:#8b949e; font-size:0.9rem; margin:0;'>Gulshan-e-Iqbal, Karachi, Pakistan</p>
+    <div style="background: #1e293b; padding: 1rem; border-radius: 10px; border: 1px solid #334155;">
+        <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.3rem;">📍 Campus Address</p>
+        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">Main Campus, Gulshan-e-Iqbal, Karachi</p>
+        <hr style="border-color: #334155; margin: 0.6rem 0;">
+        <p style="color: #ffffff; font-weight: 700; margin-bottom: 0.3rem;">📞 Contact</p>
+        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">WhatsApp: +92 332 1234567</p>
     </div>
     """, unsafe_allow_html=True)
 
 # --- 5. PAGE ROUTING ---
 
-# --- PAGE A: ACADEMY HOME (The new premium landing page) ---
-if menu == "🏛️ Academy Home":
-    # 1. Hero Section
+# === PAGE 1: ACADEMY HOME ===
+if menu == "🏠 Academy Home":
     st.markdown("""
-    <div class="hero-container">
-        <div class="hero-title">Premier IT Education in Karachi</div>
-        <div class="hero-subtitle">Empowering the next generation of tech leaders with practical, industry-focused skills in programming, web development, and data science.</div>
+    <div class="hero-banner">
+        <div class="hero-title">Sir Abdullah Academy</div>
+        <div class="hero-subtitle">Premier O Level & IGCSE Coaching in Karachi. Exam-focused prep, topical past paper practice, and dedicated Cambridge syllabus coverage.</div>
     </div>
     """, unsafe_allow_html=True)
 
-    # 2. Academy Highlights Row
-    col1, col2, col3 = st.columns(3)
-    with col1:
+    c1, c2, c3, c4 = st.columns(4)
+    with c1:
         st.markdown("""
-        <div class="highlight-card">
-            <div class="icon-box">👨‍🏫</div>
-            <div class="card-title">Expert Faculty</div>
-            <div class="card-text">Learn from seasoned industry professionals with real-world experience.</div>
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <div class="feature-title">Topical Past Papers</div>
+            <div class="feature-desc">10+ years of solved past papers & marking schemes.</div>
         </div>
         """, unsafe_allow_html=True)
-    with col2:
+    with c2:
         st.markdown("""
-        <div class="highlight-card">
-            <div class="icon-box">💻</div>
-            <div class="card-title">Project-Based Learning</div>
-            <div class="card-text">Build a portfolio of completed projects to showcase your skills.</div>
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-title">A* Exam Techniques</div>
+            <div class="feature-desc">Learn Cambridge examiner keywords & answer structuring.</div>
         </div>
         """, unsafe_allow_html=True)
-    with col3:
+    with c3:
         st.markdown("""
-        <div class="highlight-card">
-            <div class="icon-box">🏆</div>
-            <div class="card-title">Career Support</div>
-            <div class="card-text">Gain interview preparation and job placement assistance.</div>
+        <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <div class="feature-title">Regular Mocks</div>
+            <div class="feature-desc">Weekly assessments and realistic mock examination series.</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with c4:
+        st.markdown("""
+        <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <div class="feature-title">Small Batch Sizes</div>
+            <div class="feature-desc">Personalized attention for every individual student.</div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("---")
+    st.markdown("<br><h2 style='text-align: center; color: white;'>O Level & IGCSE Course Offerings</h2><br>", unsafe_allow_html=True)
 
-    # 3. Featured Courses Section
-    st.markdown("<h2 style='text-align:center; color:white; margin-bottom:2rem;'>Explore Our Programs</h2>", unsafe_allow_html=True)
-
-    # Display hardcoded courses professionally
-    for course in HOMEPAGE_COURSES:
-        with st.container():
+    for course in O_LEVEL_COURSES:
+        col_main, col_side = st.columns([3, 1])
+        with col_main:
             st.markdown(f"""
             <div class="course-card">
-                <div class="course-header">
-                    <h3 class="course-title">{course['icon']} {course['title']}</h3>
-                    <span class="course-price">{course['fee']}</span>
-                </div>
-                <div class="course-body">
-                    <div class="course-meta">
-                        <span>⏱️ {course['duration']}</span>
-                        <span>📈 {course['level']}</span>
-                    </div>
-                    <p class="course-text" style="color:#8b949e; margin-bottom:1rem;">{course['desc']}</p>
-                </div>
+                <span class="course-badge">{course['badge']}</span>
+                <h3 style="color: white; margin-top: 0.5rem; margin-bottom: 0.5rem;">{course['icon']} {course['title']}</h3>
+                <p style="color: #94a3b8; font-size: 0.95rem;">{course['desc']}</p>
+                <p style="color: #cbd5e1; font-size: 0.85rem; font-weight: 600;">Focus Points: {', '.join(course['highlights'])}</p>
+            </div>
+            """, unsafe_allow_html=True)
+        with col_side:
+            st.markdown(f"""
+            <div class="course-card" style="text-align: center;">
+                <p style="color: #94a3b8; margin: 0; font-size: 0.85rem;">Monthly Fee</p>
+                <p class="course-fee">{course['fee']}</p>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 0;">⏱️ {course['duration']}</p>
             </div>
             """, unsafe_allow_html=True)
 
     st.markdown("---")
+    st.info("💡 **Ready to enroll?** Select **Course Admission** from the sidebar to register!")
 
-    # 4. Final Call to Action
-    c1, c2, c3 = st.columns([1,2,1])
-    with c2:
-        st.markdown("<h3 style='text-align:center; color:white;'>Ready to kickstart your career?</h3>", unsafe_allow_html=True)
-        st.markdown("<p style='text-align:center; color:#8b949e; margin-bottom:1rem;'>Apply today or chat with our automated assistant for instant answers.</p>", unsafe_allow_html=True)
-        col_btn1, col_btn2 = st.columns(2)
-        with col_btn1:
-            if st.button("Start Admission Form"):
-                # Programmatically switch menu state
-                st.session_state['menu_state'] = "📝 Start Admission"
-                st.rerun() # Requires Streamlit >= 1.27
-        with col_btn2:
-             if st.button("Open Chat Assistant"):
-                st.session_state['menu_state'] = "🤖 Chat Assistant"
-                st.rerun()
+# === PAGE 2: COURSE ADMISSION ===
+elif menu == "📝 Course Admission":
+    st.title("📝 Admission Application")
+    st.caption("Select your subject(s) to reserve your seat for the upcoming O Level / IGCSE batch.")
 
-    # Footer
-    st.markdown("""
-    <div style="text-align:center; padding-top:3rem; border-top: 1px solid #30363d; margin-top:2rem; color:#8b949e; font-size:0.85rem;">
-        © 2024 Sir Abdullah Academy. All rights reserved. <br>
-        Gulshan-e-Iqbal, Karachi | +92 332 1234567 | info@sirabdullah.edu.pk
-    </div>
-    """, unsafe_allow_html=True)
-
-# --- PAGE B: ADMISSION FORM (Standard Form, Professional Styling) ---
-elif menu == "📝 Start Admission":
-    st.markdown("<h1 style='color:white; margin-bottom:2rem;'>📝 Admission Application</h1>", unsafe_allow_html=True)
-    
-    courses_data = load_json("courses.json", [])
-    active_courses = [c["title"] for c in courses_data if c.get("active", True)]
+    courses = load_json("courses.json", [])
+    active_courses = [c["title"] for c in courses if c.get("active", True)]
 
     if not active_courses:
-         st.warning("No courses are currently open for enrollment.")
-    else:
-        with st.form("admission_form"):
-            st.markdown("<p style='color:#8b949e;'>Fill in your details accurately. Our team will contact you shortly after submission.</p>", unsafe_allow_html=True)
-            
-            col_f1, col_f2 = st.columns(2)
-            with col_f1:
-                name = st.text_input("Full Name (as per CNIC/B-Form)*")
-                email = st.text_input("Email Address (for correspondence)*")
-            with col_f2:
-                phone = st.text_input("WhatsApp/Phone Number (e.g. 03321234567)*")
-                selected_course = st.selectbox("Select Your Desired Course*", active_courses)
-            
-            st.markdown("<br>", unsafe_allow_html=True)
-            col_sb1, col_sb2, col_sb3 = st.columns([1,1,1])
-            with col_sb2:
-                submitted = st.form_submit_button("Submit Application")
+        # Fallback list if json is empty
+        active_courses = [c["title"] for c in O_LEVEL_COURSES]
 
-            if submitted:
-                if not name or not phone or not email:
-                    st.error("Please fill in all required fields (*) before submitting.")
-                else:
-                    norm_phone = normalize_phone(phone)
-                    enrollments = load_json("enrollments.json", [])
-                    new_entry = {
-                        "name": sanitize_csv_field(name),
-                        "email": sanitize_csv_field(email),
-                        "phone": norm_phone,
-                        "course": selected_course
-                    }
-                    enrollments.append(new_entry)
-                    save_json("enrollments.json", enrollments)
-                    sync_to_github("enrollments.json", enrollments)
-                    st.success(f"Thank you {name}. Your application for '{selected_course}' has been submitted. Check your email for confirmation.")
+    with st.form("admission_form"):
+        col_a, col_b = st.columns(2)
+        with col_a:
+            name = st.text_input("Student Full Name *")
+            email = st.text_input("Email Address *")
+        with col_b:
+            phone = st.text_input("WhatsApp / Mobile Number * (e.g. 03321234567)")
+            selected_course = st.selectbox("Select Subject / Course *", active_courses)
+        
+        submitted = st.form_submit_button("Submit Application")
 
-# --- PAGE C: CHAT ASSISTANT (Dedicated Chat Interface) ---
+        if submitted:
+            if not name or not phone or not email:
+                st.error("Please fill in all required fields.")
+            else:
+                norm_phone = normalize_phone(phone)
+                enrollments = load_json("enrollments.json", [])
+                new_entry = {
+                    "name": sanitize_csv_field(name),
+                    "email": sanitize_csv_field(email),
+                    "phone": norm_phone,
+                    "course": selected_course
+                }
+                enrollments.append(new_entry)
+                save_json("enrollments.json", enrollments)
+                sync_to_github("enrollments.json", enrollments)
+                st.success(f"Application submitted! Thank you, {name}. We will contact you on WhatsApp shortly.")
+
+# === PAGE 3: CHAT ASSISTANT ===
 elif menu == "🤖 Chat Assistant":
-    st.markdown("<h1 style='color:white; margin-bottom:1rem;'>🤖 Academy Assistant</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='color:#8b949e; margin-bottom:2rem;'>Our automated bot can answer questions about admissions, fees, timings, and campus locations. Just type your query below.</p>", unsafe_allow_html=True)
+    st.title("🤖 Academy Assistant")
+    st.caption("Ask questions about O Level / IGCSE subjects, fee structures, past paper practice, or class schedules.")
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
-    # Display chat history
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    # Chat input
-    if prompt := st.chat_input("Ask about courses, fees, timings..."):
+    if prompt := st.chat_input("Ask about O Level subjects, fees, past papers..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
@@ -318,47 +343,27 @@ elif menu == "🤖 Chat Assistant":
         with st.chat_message("assistant"):
             st.write(response)
 
-# --- PAGE D: ADMIN PANEL (Requires Authentication) ---
-elif menu == "🔒 Admin Panel":
-    st.markdown("<h1 style='color:white; margin-bottom:2rem;'>🔒 Admin Dashboard</h1>", unsafe_allow_html=True)
+# === PAGE 4: ADMIN DASHBOARD ===
+elif menu == "🔒 Admin Dashboard":
+    st.title("🔒 Admin Dashboard")
+    pwd = st.sidebar.text_input("Admin Password", type="password")
     
-    # Simple Authentication
-    if 'authenticated' not in st.session_state:
-        st.session_state['authenticated'] = False
-
-    if not st.session_state['authenticated']:
-        st.markdown("<div style='background-color:#161b22; padding:2rem; border-radius:8px; border:1px solid #30363d; max-width:400px; margin:0 auto;'>", unsafe_allow_html=True)
-        st.subheader("Authentication Required")
-        pwd_input = st.text_input("Enter Admin Password", type="password")
-        if st.button("Access Dashboard"):
-            if pwd_input == ADMIN_PASSWORD:
-                st.session_state['authenticated'] = True
-                st.rerun()
-            else:
-                st.error("Invalid password. Access denied.")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    # Display Admin Content if authenticated
-    else:
-        st.success("Authenticated Successfully")
-        tab_log, tab_course = st.tabs(["Enrollment Logs", "Course Management"])
+    if pwd == ADMIN_PASSWORD:
+        st.success("Authenticated")
+        tab1, tab2 = st.tabs(["Enrollments Log", "Course Catalog"])
         
-        with tab_log:
+        with tab1:
             st.subheader("Submitted Enrollments")
             enrollments = load_json("enrollments.json", [])
             if enrollments:
                 df = pd.DataFrame(enrollments)
                 st.dataframe(df, use_container_width=True)
             else:
-                st.info("No enrollments have been submitted yet.")
+                st.info("No enrollments submitted yet.")
                 
-        with tab_course:
-            st.subheader("Manage Active Courses")
-            courses_data = load_json("courses.json", [])
-            st.json(courses_data)
-            st.markdown("<p style='font-size:0.9rem; color:#8b949e;'>Edit 'courses.json' on GitHub to modify available courses.</p>", unsafe_allow_html=True)
-        
-        # Logout button
-        if st.sidebar.button("Log Out"):
-            st.session_state['authenticated'] = False
-            st.rerun()
+        with tab2:
+            st.subheader("O Level Subject List")
+            courses = load_json("courses.json", [])
+            st.json(courses)
+    else:
+        st.warning("Enter valid password in the sidebar to access admin logs.")
