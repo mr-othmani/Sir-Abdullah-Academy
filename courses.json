@@ -1,51 +1,72 @@
 [
   {
+    "id": 0,
+    "title": "The Pre-Medical Combo (Bio, Physics, Chem, Math)",
+    "fee": "PKR 16,000 / month",
+    "duration": "Online Live Classes",
+    "active": true
+  },
+  {
     "id": 1,
-    "title": "O Level / IGCSE Computer Science (2210 / 0478)",
-    "fee": "PKR 5,000 / month",
-    "duration": "Full Session",
+    "title": "The Computer Science Combo (CS, Physics, Chem, Math)",
+    "fee": "PKR 16,000 / month",
+    "duration": "Online Live Classes",
     "active": true
   },
   {
     "id": 2,
-    "title": "O Level / IGCSE Mathematics (4024 / 0580)",
-    "fee": "PKR 5,000 / month",
-    "duration": "Full Session",
+    "title": "O1 / O2 Core Appearing Combo (Islamiat + PST)",
+    "fee": "PKR 4,500 / month",
+    "duration": "Online Live Classes",
     "active": true
   },
   {
     "id": 3,
-    "title": "O Level / IGCSE Physics (5054 / 0625)",
+    "title": "O Level / IGCSE Computer Science",
     "fee": "PKR 5,000 / month",
-    "duration": "Full Session",
+    "duration": "Online Live Classes",
     "active": true
   },
   {
     "id": 4,
-    "title": "O Level / IGCSE Chemistry (5070 / 0620)",
+    "title": "O Level / IGCSE Mathematics",
     "fee": "PKR 5,000 / month",
-    "duration": "Full Session",
+    "duration": "Online Live Classes",
     "active": true
   },
   {
     "id": 5,
-    "title": "O Level / IGCSE Biology (5090 / 0610)",
+    "title": "O Level / IGCSE Physics",
     "fee": "PKR 5,000 / month",
-    "duration": "Full Session",
+    "duration": "Online Live Classes",
     "active": true
   },
   {
     "id": 6,
-    "title": "O Level / IGCSE Islamiat (2058 / 0493)",
-    "fee": "PKR 4,000 / month",
-    "duration": "Full Session",
+    "title": "O Level / IGCSE Chemistry",
+    "fee": "PKR 5,000 / month",
+    "duration": "Online Live Classes",
     "active": true
   },
   {
     "id": 7,
-    "title": "O Level / IGCSE Pakistan Studies / PST (2059 / 0448)",
-    "fee": "PKR 4,000 / month",
-    "duration": "Full Session",
+    "title": "O Level / IGCSE Biology",
+    "fee": "PKR 5,000 / month",
+    "duration": "Online Live Classes",
+    "active": true
+  },
+  {
+    "id": 8,
+    "title": "O Level / IGCSE Islamiat",
+    "fee": "PKR 2,500 / month",
+    "duration": "Online Live Classes",
+    "active": true
+  },
+  {
+    "id": 9,
+    "title": "O Level / IGCSE PST (Pakistan Studies)",
+    "fee": "PKR 2,500 / month",
+    "duration": "Online Live Classes",
     "active": true
   }
 ]
