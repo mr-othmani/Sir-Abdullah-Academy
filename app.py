@@ -670,6 +670,4 @@ with st.expander("🔒 Admin Portal Access"):
         else:
             st.info("No enrollment submissions found.")
     elif admin_pwd:
-        st.error("Incorrect password.") # --- Place this near line 670 / end of app.py ---
-
-# Initialize active tab state if not already present
+        st.error("Incorrect password.")
