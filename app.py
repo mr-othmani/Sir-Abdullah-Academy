@@ -11,180 +11,193 @@ st.set_page_config(
     page_title="Sir Abdullah Academy | Premier O & A Level Online Platform",
     page_icon="🎓",
     layout="wide",
-    initial_sidebar_state="collapsed"  # Collapsed by default for clean web layout
+    initial_sidebar_state="collapsed"
 )
 
-# --- 2. IVY-STYLE LIGHT THEMING & CSS ---
+# --- 2. ADVANCED COMMERCIAL STYLING ---
 st.markdown("""
 <style>
-    /* Hide Streamlit Chrome */
+    /* Hide Default Streamlit Chrome */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
-    /* Main Background with Soft Lavender Glow */
+    /* Global Page Styling */
     .stApp {
-        background: radial-gradient(circle at 10% 20%, #f3e8ff 0%, #f8fafc 45%, #f1f5f9 100%);
+        background: radial-gradient(circle at 5% 10%, #f5f0ff 0%, #faf8ff 40%, #f8fafc 100%);
         color: #0f172a;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    /* Top Navigation Header */
-    .ivy-navbar {
+    /* Container Spacing Fix */
+    .block-container {
+        padding-top: 1.5rem !important;
+        padding-bottom: 2rem !important;
+        max-width: 1280px;
+    }
+
+    /* Navbar Custom Layout */
+    .navbar-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
         background: #ffffff;
-        padding: 0.8rem 2rem;
-        border-radius: 50px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        margin-bottom: 2.5rem;
+        padding: 0.75rem 2rem;
+        border-radius: 100px;
+        box-shadow: 0 4px 20px rgba(109, 40, 217, 0.05);
         border: 1px solid #f1f5f9;
+        margin-bottom: 2.5rem;
     }
-    .ivy-brand {
+    .brand-logo {
         display: flex;
         align-items: center;
         gap: 12px;
-        font-weight: 900;
-        font-size: 1.3rem;
-        color: #4c1d95;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: #3b0764;
     }
     .brand-circle {
-        background: #6d28d9;
+        background: #6b21a8;
         color: #ffffff;
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 800;
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
-    /* Floating Pill Badge */
-    .floating-badge {
+    /* Floating Badge */
+    .pill-badge {
         display: inline-flex;
         align-items: center;
         gap: 6px;
         background: #ffffff;
         color: #475569;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 700;
-        padding: 0.4rem 1rem;
+        padding: 0.35rem 1rem;
         border-radius: 50px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         border: 1px solid #e2e8f0;
-        margin-bottom: 1.2rem;
-    }
-
-    /* Large Ivy Hero Typography */
-    .ivy-hero-heading {
-        font-size: 3.4rem;
-        font-weight: 900;
-        color: #0f172a;
-        line-height: 1.15;
-        letter-spacing: -1px;
         margin-bottom: 1rem;
     }
-    .highlight-purple {
-        color: #6d28d9;
+
+    /* Hero Typography */
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #0f172a;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+        margin-bottom: 1.2rem;
     }
-    .highlight-gold {
+    .text-purple {
+        color: #6b21a8;
+    }
+    .text-orange {
         color: #d97706;
     }
-    .ivy-hero-subtext {
-        font-size: 1.15rem;
+    .hero-description {
+        font-size: 1.1rem;
         color: #64748b;
         line-height: 1.6;
-        margin-bottom: 1.8rem;
+        margin-bottom: 2rem;
+        max-width: 580px;
     }
 
-    /* Device / App Showcase Box */
-    .device-mockup-container {
+    /* Smartphone / App Graphic Frame */
+    .phone-mockup-wrapper {
         position: relative;
-        background: #ffffff;
-        border-radius: 28px;
-        padding: 1.5rem;
-        box-shadow: 0 20px 40px rgba(109, 40, 217, 0.12);
-        border: 2px solid #f1f5f9;
-        text-align: center;
+        padding: 10px;
     }
-    .floating-result-tag {
+    .phone-mockup {
+        background: #0f172a;
+        border: 12px solid #1e293b;
+        border-radius: 36px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(109, 40, 217, 0.25);
+        position: relative;
+    }
+    .phone-screen {
+        background: linear-gradient(135deg, #581c87 0%, #3b0764 100%);
+        padding: 3rem 1.8rem 2.5rem 1.8rem;
+        text-align: center;
+        color: #ffffff;
+    }
+    .floating-result-badge {
         position: absolute;
-        top: -15px;
-        right: 15px;
+        top: -12px;
+        right: 20px;
         background: #ffffff;
         color: #0f172a;
         font-size: 0.8rem;
         font-weight: 800;
-        padding: 0.5rem 1rem;
+        padding: 0.45rem 1rem;
         border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         border: 1px solid #e2e8f0;
+        z-index: 10;
     }
 
-    /* Light Theme Cards */
+    /* Course Cards */
     .ivy-card {
         background: #ffffff;
         border-radius: 20px;
-        padding: 1.8rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        padding: 1.6rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
         border: 1px solid #f1f5f9;
-        height: 100%;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .ivy-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 12px 30px rgba(109, 40, 217, 0.08);
-        border-color: #ddd6fe;
+        border-color: #e9d5ff;
     }
     .ivy-combo-card {
         background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
         border-radius: 20px;
-        padding: 1.8rem;
+        padding: 1.6rem;
         box-shadow: 0 6px 20px rgba(109, 40, 217, 0.08);
         border: 2px solid #c084fc;
-        height: 100%;
     }
-    .tag-purple {
+    .badge-purple {
         background: #f3e8ff;
         color: #7e22ce;
         font-weight: 800;
         font-size: 0.72rem;
         padding: 0.3rem 0.8rem;
         border-radius: 50px;
-        text-transform: uppercase;
     }
-    .tag-gold {
+    .badge-gold {
         background: #fef3c7;
         color: #b45309;
         font-weight: 800;
         font-size: 0.72rem;
         padding: 0.3rem 0.8rem;
         border-radius: 50px;
-        text-transform: uppercase;
     }
-    .price-text {
-        font-size: 1.4rem;
+    .price-tag {
+        font-size: 1.35rem;
         font-weight: 900;
-        color: #6d28d9;
+        color: #6b21a8;
     }
 
-    /* Buttons Override */
+    /* Clean Button Tweaks */
     .stButton>button {
-        background: #fbbf24 !important;
-        color: #0f172a !important;
-        font-weight: 800 !important;
         border-radius: 50px !important;
-        border: none !important;
-        padding: 0.6rem 1.5rem !important;
-        box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+        font-weight: 700 !important;
         transition: all 0.2s ease !important;
     }
-    .stButton>button:hover {
-        background: #f59e0b !important;
-        transform: scale(1.02);
+    
+    /* Radio Filter Styling */
+    [data-testid="stRadio"] div[role="radiogroup"] {
+        background: #ffffff;
+        padding: 6px;
+        border-radius: 50px;
+        border: 1px solid #e2e8f0;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -201,8 +214,8 @@ SPECIAL_COMBOS = [
         "fee": "PKR 16,000 / mo",
         "category": "Combos",
         "duration": "Online Live Classes",
-        "desc": "Complete 4-subject package for Biology, Physics, Chemistry, and Mathematics. Includes complete syllabus, topical solved papers, and ATP prep.",
-        "highlights": ["Save PKR 4,000/mo", "Full 4-Subject Coverage", "Weekly Mocks & Topical Papers"]
+        "desc": "Complete 4-subject package for Biology, Physics, Chemistry, and Mathematics. Includes full syllabus coverage, topical solved past papers, and ATP practical preparation.",
+        "highlights": ["Save PKR 4,000/mo", "Full 4-Subject Coverage", "Weekly Mocks & Past Papers"]
     },
     {
         "id": "combo_cs",
@@ -314,90 +327,96 @@ def is_valid_email(email: str) -> bool:
 if "selected_course_for_enrollment" not in st.session_state:
     st.session_state.selected_course_for_enrollment = SPECIAL_COMBOS[0]["title"]
 
-# --- 4. TOP NAVIGATION BAR (IVY STYLE) ---
-st.markdown("""
-<div class="ivy-navbar">
-    <div class="ivy-brand">
-        <div class="brand-circle">SAA</div>
-        <span>Sir Abdullah Academy</span>
-    </div>
-    <div style="color: #64748b; font-size: 0.9rem; font-weight: 600;">
-        📍 Live Cambridge O & A Level Online Prep
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# Main Section Switcher
-nav_col1, nav_col2, nav_col3, nav_col4 = st.columns([1, 1, 1, 1])
-with nav_col1:
-    btn_home = st.button("🏠 Home", use_container_width=True)
-with nav_col2:
-    btn_courses = st.button("📚 Courses & Pricing", use_container_width=True)
-with nav_col3:
-    btn_admission = st.button("📝 Direct Admission", use_container_width=True)
-with nav_col4:
-    btn_assistant = st.button("🤖 AI Assistant", use_container_width=True)
-
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "Home"
 
-if btn_home:
-    st.session_state.active_tab = "Home"
-elif btn_courses:
-    st.session_state.active_tab = "Courses"
-elif btn_admission:
-    st.session_state.active_tab = "Admission"
-elif btn_assistant:
-    st.session_state.active_tab = "Assistant"
+# --- 4. TOP NAVIGATION HEADER ---
+col_logo, col_nav_items, col_cta = st.columns([1.5, 3, 1.2])
 
-st.markdown("<br>", unsafe_allow_html=True)
+with col_logo:
+    st.markdown("""
+    <div class="brand-logo">
+        <div class="brand-circle">SAA</div>
+        <span>Sir Abdullah Academy</span>
+    </div>
+    """, unsafe_allow_html=True)
 
-# --- 5. PAGE CONTROLLER ---
+with col_nav_items:
+    n1, n2, n3, n4 = st.columns(4)
+    with n1:
+        if st.button("Home", key="nav_home", type="tertiary" if st.session_state.active_tab != "Home" else "primary"):
+            st.session_state.active_tab = "Home"
+            st.rerun()
+    with n2:
+        if st.button("Courses", key="nav_courses", type="tertiary" if st.session_state.active_tab != "Courses" else "primary"):
+            st.session_state.active_tab = "Courses"
+            st.rerun()
+    with n3:
+        if st.button("Admission", key="nav_admission", type="tertiary" if st.session_state.active_tab != "Admission" else "primary"):
+            st.session_state.active_tab = "Admission"
+            st.rerun()
+    with n4:
+        if st.button("AI Tutor", key="nav_ai", type="tertiary" if st.session_state.active_tab != "Assistant" else "primary"):
+            st.session_state.active_tab = "Assistant"
+            st.rerun()
 
-# PAGE: HOME & HERO
+with col_cta:
+    if st.button("⚡ Enroll Now", key="nav_enroll_btn", use_container_width=True):
+        st.session_state.active_tab = "Admission"
+        st.rerun()
+
+st.markdown("<hr style='border-color: #f1f5f9; margin-top: 0.5rem; margin-bottom: 2rem;'>", unsafe_allow_html=True)
+
+# --- 5. ROUTE CONTROLLER ---
+
+# PAGE: HOME HERO
 if st.session_state.active_tab == "Home":
-    hero_left, hero_right = st.columns([1.3, 1])
+    hero_left, hero_right = st.columns([1.2, 1])
 
     with hero_left:
         st.markdown("""
-        <div class="floating-badge">⭐ Every Lesson Counts</div>
-        <div class="ivy-hero-heading">
-            Pakistan's <span class="highlight-purple">#1 Online Platform</span> for <span class="highlight-gold">O & A Level Success</span>
+        <div class="pill-badge">⭐ Every Lesson Counts</div>
+        <div class="hero-title">
+            Pakistan's <span class="text-purple">#1 Online</span> Platform for <span class="text-orange">O & A Level</span> Success
         </div>
-        <div class="ivy-hero-subtext">
+        <div class="hero-description">
             High-quality interactive live classes, topical solved past papers, examiner keyword mastery, and expert teachers — designed to guarantee top A* grades.
         </div>
         """, unsafe_allow_html=True)
 
-        col_btn1, col_btn2 = st.columns(2)
-        with col_btn1:
-            if st.button("🚀 Explore Courses Now", use_container_width=True):
+        cta1, cta2 = st.columns(2)
+        with cta1:
+            if st.button("🚀 Explore Courses", key="hero_explore", use_container_width=True):
                 st.session_state.active_tab = "Courses"
                 st.rerun()
-        with col_btn2:
-            if st.button("📝 Apply for Admission", use_container_width=True):
+        with cta2:
+            if st.button("📝 Apply for Admission", key="hero_apply", use_container_width=True):
                 st.session_state.active_tab = "Admission"
                 st.rerun()
 
     with hero_right:
         st.markdown("""
-        <div class="device-mockup-container">
-            <div class="floating-result-tag">🎗️ 10,000+ A* Results</div>
-            <div style="background: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%); padding: 2.5rem 1.5rem; border-radius: 20px; color: white;">
-                <h2 style="font-weight: 900; margin-bottom: 0.5rem; color: #fbbf24;">NOW STUDY ONLINE</h2>
-                <p style="font-size: 0.95rem; opacity: 0.9;">Join Live Zoom & Google Meet Classes with Sir Abdullah</p>
-                <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 12px; margin-top: 1.5rem; backdrop-filter: blur(8px);">
-                    <p style="margin: 0; font-weight: 700; font-size: 0.9rem;">📚 Interactive Whiteboards</p>
-                    <p style="margin: 0; font-weight: 700; font-size: 0.9rem; margin-top: 0.4rem;">📑 10+ Yrs Topical Solved Papers</p>
+        <div class="phone-mockup-wrapper">
+            <div class="floating-result-badge">🎗️ 10,000+ A* Results</div>
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <p style="text-transform: uppercase; letter-spacing: 1px; font-weight: 800; font-size: 0.8rem; opacity: 0.8; margin-bottom: 0.5rem;">Live Online Batch</p>
+                    <h2 style="font-weight: 900; font-size: 1.8rem; color: #fbbf24; margin-bottom: 0.5rem;">NOW STUDY ONLINE</h2>
+                    <p style="font-size: 0.88rem; opacity: 0.9; margin-bottom: 1.5rem;">Interactive Zoom & Meet Classes with Sir Abdullah</p>
+                    <div style="background: rgba(255,255,255,0.12); padding: 0.9rem; border-radius: 14px; text-align: left; margin-bottom: 0.8rem; border: 1px solid rgba(255,255,255,0.15);">
+                        <p style="margin: 0; font-weight: 700; font-size: 0.85rem;">💻 Digital Whiteboard & Live Doubts</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.12); padding: 0.9rem; border-radius: 14px; text-align: left; border: 1px solid rgba(255,255,255,0.15);">
+                        <p style="margin: 0; font-weight: 700; font-size: 0.85rem;">📚 10+ Yrs Solved Past Papers</p>
+                    </div>
                 </div>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<br><hr style='border-color: #e2e8f0;'><br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # Feature Highlights Grid
-    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 2rem;'>Why Students Choose Sir Abdullah Academy</h2>", unsafe_allow_html=True)
+    # Trust Features Grid
     f1, f2, f3, f4 = st.columns(4)
     features = [
         ("💻", "Live Interactive Classes", "Engage directly with expert faculty with immediate doubt resolution."),
@@ -410,24 +429,23 @@ if st.session_state.active_tab == "Home":
             st.markdown(f"""
             <div class="ivy-card" style="text-align: center;">
                 <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">{icon}</div>
-                <h4 style="font-weight: 800; color: #0f172a; margin-bottom: 0.4rem;">{title}</h4>
-                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5;">{desc}</p>
+                <h4 style="font-weight: 800; color: #0f172a; margin-bottom: 0.4rem; font-size: 1rem;">{title}</h4>
+                <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin: 0;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
 
-# PAGE: COURSES & PRICING
+# PAGE: COURSES
 elif st.session_state.active_tab == "Courses":
-    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.5rem;'>O Level & IGCSE Course Offerings</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Filter by subject category or search for your required subject.</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.3rem;'>O Level & IGCSE Courses</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Select an individual subject or discount combo package below.</p>", unsafe_allow_html=True)
 
-    # Filter Bar
+    # Filters
     f_col1, f_col2 = st.columns([2, 1])
     with f_col1:
         cat_filter = st.radio("Category Filter", ["All", "Combos", "Sciences", "Humanities"], horizontal=True, label_visibility="collapsed")
     with f_col2:
-        search_txt = st.text_input("Search subject...", placeholder="e.g. Physics or Pre-Medical", label_visibility="collapsed")
+        search_txt = st.text_input("Search subject...", placeholder="e.g. Computer Science or Pre-Medical", label_visibility="collapsed")
 
-    # Filter Logic
     combined_courses = []
     for c in SPECIAL_COMBOS:
         combined_courses.append({**c, "is_combo": True})
@@ -445,7 +463,7 @@ elif st.session_state.active_tab == "Courses":
     for item in filtered:
         c_img, c_main, c_side = st.columns([1, 2.5, 1])
         card_style = "ivy-combo-card" if item["is_combo"] else "ivy-card"
-        badge_style = "tag-gold" if item["is_combo"] else "tag-purple"
+        badge_style = "badge-gold" if item["is_combo"] else "badge-purple"
 
         with c_img:
             st.image(item["image_url"], use_container_width=True)
@@ -454,15 +472,15 @@ elif st.session_state.active_tab == "Courses":
             <div class="{card_style}">
                 <span class="{badge_style}">{item['badge']}</span>
                 <h3 style="font-weight: 800; color: #0f172a; margin-top: 0.5rem; margin-bottom: 0.4rem;">{item['title']}</h3>
-                <p style="color: #475569; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">{item['desc']}</p>
-                <p style="color: #6d28d9; font-size: 0.82rem; font-weight: 700;">Highlights: {', '.join(item['highlights'])}</p>
+                <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.8rem;">{item['desc']}</p>
+                <p style="color: #6b21a8; font-size: 0.82rem; font-weight: 700;">Key Features: {', '.join(item['highlights'])}</p>
             </div>
             """, unsafe_allow_html=True)
         with c_side:
             st.markdown(f"""
             <div class="{card_style}" style="text-align: center;">
                 <p style="color: #64748b; font-size: 0.8rem; font-weight: 700; margin: 0;">Monthly Tuition Fee</p>
-                <div class="price-text">{item['fee']}</div>
+                <div class="price-tag">{item['fee']}</div>
                 <p style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 1rem;">⏱️ {item['duration']}</p>
             </div>
             """, unsafe_allow_html=True)
@@ -474,24 +492,24 @@ elif st.session_state.active_tab == "Courses":
 
 # PAGE: ADMISSION
 elif st.session_state.active_tab == "Admission":
-    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.5rem;'>📝 Online Admission Form</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Fill out your details to reserve your seat in the upcoming online batch.</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.3rem;'>📝 Online Admission Portal</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Complete the details below to reserve your seat in the upcoming batch.</p>", unsafe_allow_html=True)
 
     all_options = [c["title"] for c in SPECIAL_COMBOS] + [c["title"] for c in O_LEVEL_COURSES]
     default_idx = 0
     if st.session_state.selected_course_for_enrollment in all_options:
         default_idx = all_options.index(st.session_state.selected_course_for_enrollment)
 
-    with st.form("ivy_admission_form", clear_on_submit=True):
+    with st.form("admission_form_ivy", clear_on_submit=True):
         a1, a2 = st.columns(2)
         with a1:
             name = st.text_input("Student's Full Name *", placeholder="e.g. Ali Ahmed")
             email = st.text_input("Parent / Student Email *", placeholder="e.g. parent@example.com")
         with a2:
             phone = st.text_input("WhatsApp Number *", placeholder="e.g. +92 332 1234567")
-            selected_course = st.selectbox("Select Target Course / Combo *", all_options, index=default_idx)
+            selected_course = st.selectbox("Target Course / Combo *", all_options, index=default_idx)
 
-        submitted = st.form_submit_button("Submit Application")
+        submitted = st.form_submit_button("Submit Admission Application")
 
         if submitted:
             if not name.strip():
@@ -512,12 +530,12 @@ elif st.session_state.active_tab == "Admission":
                 enrollments.append(new_entry)
                 save_json("enrollments.json", enrollments)
                 sync_to_github("enrollments.json", enrollments)
-                st.success(f"Application submitted successfully for **{name}**! Class details will be sent to **{norm_phone}** via WhatsApp.")
+                st.success(f"Application submitted successfully for **{name}**! Details will be sent to **{norm_phone}** via WhatsApp.")
 
-# PAGE: AI ASSISTANT
+# PAGE: AI TUTOR
 elif st.session_state.active_tab == "Assistant":
-    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.5rem;'>🤖 AI Learning Assistant</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Ask questions about course syllabi, fee structures, or past paper strategy.</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.3rem;'>🤖 AI Learning Assistant</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Ask questions about course syllabi, class schedules, or exam strategies.</p>", unsafe_allow_html=True)
 
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "assistant", "content": "Hello! How can I assist you with Cambridge O Level / IGCSE subjects today?"}]
@@ -536,8 +554,8 @@ elif st.session_state.active_tab == "Assistant":
         with st.chat_message("assistant"):
             st.write(response)
 
-# ADMIN PANEL FOOTER TRIGGER
-st.markdown("<br><hr style='border-color: #e2e8f0;'><br>", unsafe_allow_html=True)
+# ADMIN MODAL EXPANDER
+st.markdown("<br><hr style='border-color: #f1f5f9;'><br>", unsafe_allow_html=True)
 with st.expander("🔒 Admin Portal Access"):
     admin_pwd = st.text_input("Enter Admin Password", type="password")
     if admin_pwd == ADMIN_PASSWORD:
