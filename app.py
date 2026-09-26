@@ -284,15 +284,6 @@ st.markdown("""
         font-weight: 700;
     }
 
-    /* Review Cards */
-    .review-card {
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 20px;
-        padding: 1.5rem;
-        border: 1px solid #f1f5f9;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.03);
-    }
-
     /* Course Cards */
     .course-card-wrapper {
         background: #ffffff;
@@ -362,7 +353,7 @@ O_LEVEL_COURSES = [
         "category": "Sciences",
         "duration": "Online Live Classes",
         "desc": "Master Theory & Paper 2 Problem Solving. Extensive practice with pseudocode, algorithms, flowcharts, and hardware theory.",
-        "highlights": ["Past Papers Practice", "Pseudocode Practice", "Paper 1 & 2 Focus"]
+        "highlights": ["10+ Yrs Past Papers", "Pseudocode Practice", "Paper 1 & 2 Focus"]
     },
     {
         "id": "math",
@@ -529,7 +520,7 @@ if st.session_state.active_tab == "Home":
                         <p style="margin:0; font-size:0.88rem; font-weight:700;">💻 Digital Whiteboard & Instant Doubts</p>
                     </div>
                     <div class="screen-pill">
-                        <p style="margin:0; font-size:0.88rem; font-weight:700;">📚 Comprehensive Topical Solved Papers</p>
+                        <p style="margin:0; font-size:0.88rem; font-weight:700;">📚 10+ Yrs Topical Solved Papers</p>
                     </div>
                 </div>
             </div>
@@ -544,7 +535,7 @@ if st.session_state.active_tab == "Home":
     with s1:
         st.markdown('<div class="stat-card"><div class="stat-number">10,000+</div><div class="stat-label">A* & A Grades Secured</div></div>', unsafe_allow_html=True)
     with s2:
-        st.markdown('<div class="stat-card"><div class="stat-number">Expert</div><div class="stat-label">Top Tier Faculty</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Years Faculty Experience</div></div>', unsafe_allow_html=True)
     with s3:
         st.markdown('<div class="stat-card"><div class="stat-number">98.4%</div><div class="stat-label">CAIE Exam Pass Rate</div></div>', unsafe_allow_html=True)
     with s4:
@@ -556,7 +547,7 @@ if st.session_state.active_tab == "Home":
     f1, f2, f3, f4 = st.columns(4)
     features = [
         ("💻", "Live Interactive Classes", "Engage directly with expert faculty with immediate doubt resolution."),
-        ("📝", "Topical Past Papers", "Comprehensive topical past paper practice aligned with CAIE marking schemes."),
+        ("📝", "Topical Past Papers", "10+ years of topical past paper practice aligned with CAIE marking schemes."),
         ("🎯", "Keyword Mastery", "Learn subject-specific keywords required for full marks in exam papers."),
         ("📊", "Parent Tracking", "Regular attendance updates, test feedback, and personal performance reports.")
     ]
@@ -569,40 +560,6 @@ if st.session_state.active_tab == "Home":
                 <p style="font-size: 0.85rem; color: #64748b; line-height: 1.55; margin: 0;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
-
-    # --- STUDENT TESTIMONIALS SECTION ---
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; font-weight: 900;'>🌟 Success Stories from Our Students</h3>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 1.8rem;'>See how Sir Abdullah Academy helped students achieve top CAIE positions.</p>", unsafe_allow_html=True)
-    
-    t1, t2, t3 = st.columns(3)
-    with t1:
-        st.markdown("""
-        <div class="review-card">
-            <p style="color: #f59e0b; font-weight: 800; margin-bottom: 0.4rem;">⭐⭐⭐⭐⭐</p>
-            <p style="font-size: 0.88rem; color: #334155; line-height: 1.5;">"Sir Abdullah's keyword mastery strategy helped me score 4 A*s in O Level CS & Sciences. The topical past paper drills made all the difference!"</p>
-            <h5 style="font-weight: 800; color: #6d28d9; margin-top: 0.8rem; margin-bottom: 0;">— Hamza Malik</h5>
-            <span style="font-size: 0.75rem; color: #94a3b8;">4 A*s | O Level Student</span>
-        </div>
-        """, unsafe_allow_html=True)
-    with t2:
-        st.markdown("""
-        <div class="review-card">
-            <p style="color: #f59e0b; font-weight: 800; margin-bottom: 0.4rem;">⭐⭐⭐⭐⭐</p>
-            <p style="font-size: 0.88rem; color: #334155; line-height: 1.5;">"The live classes and instant doubt solver allowed me to stay ahead of my school syllabus. Best online academy in Pakistan hands down."</p>
-            <h5 style="font-weight: 800; color: #6d28d9; margin-top: 0.8rem; margin-bottom: 0;">— Ayesha Siddiqui</h5>
-            <span style="font-size: 0.75rem; color: #94a3b8;">3 A*s 1 A | IGCSE Student</span>
-        </div>
-        """, unsafe_allow_html=True)
-    with t3:
-        st.markdown("""
-        <div class="review-card">
-            <p style="color: #f59e0b; font-weight: 800; margin-bottom: 0.4rem;">⭐⭐⭐⭐⭐</p>
-            <p style="font-size: 0.88rem; color: #334155; line-height: 1.5;">"As a parent, I loved the weekly performance reports and test updates. My son improved from grade C to an A* in just 4 months!"</p>
-            <h5 style="font-weight: 800; color: #6d28d9; margin-top: 0.8rem; margin-bottom: 0;">— Dr. Imran Tariq</h5>
-            <span style="font-size: 0.75rem; color: #94a3b8;">Parent of A Level Student</span>
-        </div>
-        """, unsafe_allow_html=True)
 
 # PAGE: COURSES
 elif st.session_state.active_tab == "Courses":
