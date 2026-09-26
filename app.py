@@ -14,190 +14,229 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 2. ADVANCED COMMERCIAL STYLING ---
+# --- 2. ENTERPRISE-GRADE CSS OVERHAUL ---
 st.markdown("""
 <style>
-    /* Hide Default Streamlit Chrome */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    /* Hide Streamlit Chrome */
+    #MainMenu, footer, header { visibility: hidden; }
     
-    /* Global Page Styling */
+    /* Font Import */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+    /* Global canvas */
     .stApp {
-        background: radial-gradient(circle at 5% 10%, #f5f0ff 0%, #faf8ff 40%, #f8fafc 100%);
+        background: radial-gradient(circle at 10% 10%, #f6f0ff 0%, #faf8ff 45%, #f8fafc 100%);
         color: #0f172a;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Container Spacing Fix */
     .block-container {
-        padding-top: 1.5rem !important;
+        padding-top: 1.2rem !important;
         padding-bottom: 2rem !important;
-        max-width: 1280px;
+        max-width: 1240px;
     }
 
-    /* Navbar Custom Layout */
-    .navbar-container {
+    /* Custom Floating Navbar */
+    .brand-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         background: #ffffff;
-        padding: 0.75rem 2rem;
+        padding: 0.8rem 1.8rem;
         border-radius: 100px;
-        box-shadow: 0 4px 20px rgba(109, 40, 217, 0.05);
+        box-shadow: 0 10px 30px rgba(109, 40, 217, 0.05);
         border: 1px solid #f1f5f9;
-        margin-bottom: 2.5rem;
+        margin-bottom: 2rem;
     }
-    .brand-logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 800;
+    .brand-logo-text {
         font-size: 1.25rem;
-        color: #3b0764;
+        font-weight: 800;
+        color: #4c1d95;
+        letter-spacing: -0.5px;
     }
-    .brand-circle {
-        background: #6b21a8;
-        color: #ffffff;
-        width: 40px;
-        height: 40px;
+    .brand-badge {
+        background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        color: white;
+        width: 38px;
+        height: 38px;
         border-radius: 50%;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         font-weight: 800;
-        font-size: 1rem;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
     }
 
-    /* Floating Badge */
-    .pill-badge {
+    /* Seamless Navigation Link Styling */
+    div[data-testid="stColumn"] button[kind="tertiary"] {
+        color: #475569 !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+        border: none !important;
+        background: transparent !important;
+    }
+    div[data-testid="stColumn"] button[kind="tertiary"]:hover {
+        color: #7c3aed !important;
+    }
+    div[data-testid="stColumn"] button[kind="primary"] {
+        background: #f3e8ff !important;
+        color: #6d28d9 !important;
+        font-weight: 700 !important;
+        border-radius: 50px !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Solid CTA Buttons Override */
+    .btn-solid-purple button {
+        background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%) !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        border-radius: 50px !important;
+        padding: 0.65rem 1.8rem !important;
+        border: none !important;
+        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25) !important;
+    }
+    .btn-solid-purple button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(124, 58, 237, 0.35) !important;
+    }
+
+    .btn-solid-amber button {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        border-radius: 50px !important;
+        padding: 0.65rem 1.8rem !important;
+        border: none !important;
+        box-shadow: 0 8px 20px rgba(217, 119, 6, 0.25) !important;
+    }
+    .btn-solid-amber button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(217, 119, 6, 0.35) !important;
+    }
+
+    /* Hero Typography */
+    .hero-badge-pill {
         display: inline-flex;
         align-items: center;
         gap: 6px;
         background: #ffffff;
-        color: #475569;
+        color: #64748b;
         font-size: 0.8rem;
         font-weight: 700;
-        padding: 0.35rem 1rem;
+        padding: 0.4rem 1.1rem;
         border-radius: 50px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
         border: 1px solid #e2e8f0;
-        margin-bottom: 1rem;
-    }
-
-    /* Hero Typography */
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: 900;
-        color: #0f172a;
-        line-height: 1.1;
-        letter-spacing: -1.5px;
         margin-bottom: 1.2rem;
     }
-    .text-purple {
-        color: #6b21a8;
+    .hero-headline {
+        font-size: 3.6rem;
+        font-weight: 900;
+        color: #0f172a;
+        line-height: 1.12;
+        letter-spacing: -1.8px;
+        margin-bottom: 1rem;
     }
-    .text-orange {
-        color: #d97706;
-    }
-    .hero-description {
+    .text-purple { color: #6d28d9; }
+    .text-amber { color: #d97706; }
+
+    .hero-subheadline {
         font-size: 1.1rem;
         color: #64748b;
         line-height: 1.6;
         margin-bottom: 2rem;
-        max-width: 580px;
+        font-weight: 400;
     }
 
-    /* Smartphone / App Graphic Frame */
-    .phone-mockup-wrapper {
+    /* Polished Mockup Graphic Frame */
+    .mockup-container {
         position: relative;
-        padding: 10px;
-    }
-    .phone-mockup {
-        background: #0f172a;
-        border: 12px solid #1e293b;
-        border-radius: 36px;
-        overflow: hidden;
-        box-shadow: 0 25px 50px -12px rgba(109, 40, 217, 0.25);
-        position: relative;
-    }
-    .phone-screen {
-        background: linear-gradient(135deg, #581c87 0%, #3b0764 100%);
-        padding: 3rem 1.8rem 2.5rem 1.8rem;
-        text-align: center;
-        color: #ffffff;
+        padding: 12px;
     }
     .floating-result-badge {
         position: absolute;
-        top: -12px;
-        right: 20px;
+        top: -10px;
+        right: 25px;
         background: #ffffff;
         color: #0f172a;
         font-size: 0.8rem;
         font-weight: 800;
-        padding: 0.45rem 1rem;
+        padding: 0.5rem 1.1rem;
         border-radius: 50px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         border: 1px solid #e2e8f0;
         z-index: 10;
     }
+    .phone-bezel {
+        background: #0f172a;
+        border-radius: 32px;
+        padding: 10px;
+        box-shadow: 0 25px 60px rgba(109, 40, 217, 0.2);
+    }
+    .phone-screen {
+        background: linear-gradient(135deg, #4c1d95 0%, #2e1065 100%);
+        border-radius: 24px;
+        padding: 2.5rem 1.5rem;
+        color: white;
+        text-align: center;
+    }
+    .screen-card {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 14px;
+        padding: 0.85rem 1rem;
+        margin-top: 0.8rem;
+        text-align: left;
+        backdrop-filter: blur(10px);
+    }
+
+    /* Enterprise Feature Cards */
+    .feature-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 1.8rem 1.2rem;
+        text-align: center;
+        border: 1px solid #f1f5f9;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(109, 40, 217, 0.08);
+        border-color: #ddd6fe;
+    }
+    .feature-icon-wrapper {
+        width: 54px;
+        height: 54px;
+        background: #f3e8ff;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
 
     /* Course Cards */
-    .ivy-card {
+    .course-card-wrapper {
         background: #ffffff;
-        border-radius: 20px;
-        padding: 1.6rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        border-radius: 24px;
+        padding: 1.8rem;
         border: 1px solid #f1f5f9;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        margin-bottom: 1.2rem;
     }
-    .ivy-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 30px rgba(109, 40, 217, 0.08);
-        border-color: #e9d5ff;
-    }
-    .ivy-combo-card {
+    .combo-card-wrapper {
         background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
-        border-radius: 20px;
-        padding: 1.6rem;
-        box-shadow: 0 6px 20px rgba(109, 40, 217, 0.08);
+        border-radius: 24px;
+        padding: 1.8rem;
         border: 2px solid #c084fc;
-    }
-    .badge-purple {
-        background: #f3e8ff;
-        color: #7e22ce;
-        font-weight: 800;
-        font-size: 0.72rem;
-        padding: 0.3rem 0.8rem;
-        border-radius: 50px;
-    }
-    .badge-gold {
-        background: #fef3c7;
-        color: #b45309;
-        font-weight: 800;
-        font-size: 0.72rem;
-        padding: 0.3rem 0.8rem;
-        border-radius: 50px;
-    }
-    .price-tag {
-        font-size: 1.35rem;
-        font-weight: 900;
-        color: #6b21a8;
-    }
-
-    /* Clean Button Tweaks */
-    .stButton>button {
-        border-radius: 50px !important;
-        font-weight: 700 !important;
-        transition: all 0.2s ease !important;
-    }
-    
-    /* Radio Filter Styling */
-    [data-testid="stRadio"] div[role="radiogroup"] {
-        background: #ffffff;
-        padding: 6px;
-        border-radius: 50px;
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 10px 30px rgba(192, 132, 252, 0.15);
+        margin-bottom: 1.2rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -330,84 +369,91 @@ if "selected_course_for_enrollment" not in st.session_state:
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "Home"
 
-# --- 4. TOP NAVIGATION HEADER ---
-col_logo, col_nav_items, col_cta = st.columns([1.5, 3, 1.2])
+# --- 4. NAVIGATION BAR HEADER ---
+col_logo, col_nav, col_cta = st.columns([1.8, 3.2, 1.2])
 
 with col_logo:
     st.markdown("""
-    <div class="brand-logo">
-        <div class="brand-circle">SAA</div>
-        <span>Sir Abdullah Academy</span>
+    <div style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
+        <div class="brand-badge">SAA</div>
+        <span class="brand-logo-text">Sir Abdullah Academy</span>
     </div>
     """, unsafe_allow_html=True)
 
-with col_nav_items:
+with col_nav:
     n1, n2, n3, n4 = st.columns(4)
     with n1:
-        if st.button("Home", key="nav_home", type="tertiary" if st.session_state.active_tab != "Home" else "primary"):
+        if st.button("Home", key="nav_home", type="primary" if st.session_state.active_tab == "Home" else "tertiary"):
             st.session_state.active_tab = "Home"
             st.rerun()
     with n2:
-        if st.button("Courses", key="nav_courses", type="tertiary" if st.session_state.active_tab != "Courses" else "primary"):
+        if st.button("Courses", key="nav_courses", type="primary" if st.session_state.active_tab == "Courses" else "tertiary"):
             st.session_state.active_tab = "Courses"
             st.rerun()
     with n3:
-        if st.button("Admission", key="nav_admission", type="tertiary" if st.session_state.active_tab != "Admission" else "primary"):
+        if st.button("Admission", key="nav_admission", type="primary" if st.session_state.active_tab == "Admission" else "tertiary"):
             st.session_state.active_tab = "Admission"
             st.rerun()
     with n4:
-        if st.button("AI Tutor", key="nav_ai", type="tertiary" if st.session_state.active_tab != "Assistant" else "primary"):
+        if st.button("AI Tutor", key="nav_ai", type="primary" if st.session_state.active_tab == "Assistant" else "tertiary"):
             st.session_state.active_tab = "Assistant"
             st.rerun()
 
 with col_cta:
+    st.markdown('<div class="btn-solid-purple">', unsafe_allow_html=True)
     if st.button("⚡ Enroll Now", key="nav_enroll_btn", use_container_width=True):
         st.session_state.active_tab = "Admission"
         st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<hr style='border-color: #f1f5f9; margin-top: 0.5rem; margin-bottom: 2rem;'>", unsafe_allow_html=True)
+st.markdown("<hr style='border: none; border-bottom: 1px solid #f1f5f9; margin: 0.8rem 0 2rem 0;'>", unsafe_allow_html=True)
 
-# --- 5. ROUTE CONTROLLER ---
+# --- 5. PAGE ROUTING ---
 
 # PAGE: HOME HERO
 if st.session_state.active_tab == "Home":
-    hero_left, hero_right = st.columns([1.2, 1])
+    hero_left, hero_right = st.columns([1.25, 1])
 
     with hero_left:
         st.markdown("""
-        <div class="pill-badge">⭐ Every Lesson Counts</div>
-        <div class="hero-title">
-            Pakistan's <span class="text-purple">#1 Online</span> Platform for <span class="text-orange">O & A Level</span> Success
+        <div class="hero-badge-pill">⭐ Every Lesson Counts</div>
+        <div class="hero-headline">
+            Pakistan's <span class="text-purple">#1 Online</span> Platform for <span class="text-amber">O & A Level</span> Success
         </div>
-        <div class="hero-description">
+        <div class="hero-subheadline">
             High-quality interactive live classes, topical solved past papers, examiner keyword mastery, and expert teachers — designed to guarantee top A* grades.
         </div>
         """, unsafe_allow_html=True)
 
         cta1, cta2 = st.columns(2)
         with cta1:
+            st.markdown('<div class="btn-solid-purple">', unsafe_allow_html=True)
             if st.button("🚀 Explore Courses", key="hero_explore", use_container_width=True):
                 st.session_state.active_tab = "Courses"
                 st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
+
         with cta2:
+            st.markdown('<div class="btn-solid-amber">', unsafe_allow_html=True)
             if st.button("📝 Apply for Admission", key="hero_apply", use_container_width=True):
                 st.session_state.active_tab = "Admission"
                 st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
 
     with hero_right:
         st.markdown("""
-        <div class="phone-mockup-wrapper">
+        <div class="mockup-container">
             <div class="floating-result-badge">🎗️ 10,000+ A* Results</div>
-            <div class="phone-mockup">
+            <div class="phone-bezel">
                 <div class="phone-screen">
-                    <p style="text-transform: uppercase; letter-spacing: 1px; font-weight: 800; font-size: 0.8rem; opacity: 0.8; margin-bottom: 0.5rem;">Live Online Batch</p>
-                    <h2 style="font-weight: 900; font-size: 1.8rem; color: #fbbf24; margin-bottom: 0.5rem;">NOW STUDY ONLINE</h2>
-                    <p style="font-size: 0.88rem; opacity: 0.9; margin-bottom: 1.5rem;">Interactive Zoom & Meet Classes with Sir Abdullah</p>
-                    <div style="background: rgba(255,255,255,0.12); padding: 0.9rem; border-radius: 14px; text-align: left; margin-bottom: 0.8rem; border: 1px solid rgba(255,255,255,0.15);">
-                        <p style="margin: 0; font-weight: 700; font-size: 0.85rem;">💻 Digital Whiteboard & Live Doubts</p>
+                    <p style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 800; color: #a78bfa; margin-bottom: 0.4rem;">LIVE ONLINE BATCH</p>
+                    <h2 style="font-weight: 900; font-size: 1.8rem; color: #fbbf24; margin-bottom: 0.4rem;">NOW STUDY ONLINE</h2>
+                    <p style="font-size: 0.88rem; opacity: 0.85; margin-bottom: 1.5rem;">Interactive Zoom & Meet Classes with Sir Abdullah</p>
+                    <div class="screen-card">
+                        <p style="margin:0; font-size:0.85rem; font-weight:700;">💻 Digital Whiteboard & Live Doubts</p>
                     </div>
-                    <div style="background: rgba(255,255,255,0.12); padding: 0.9rem; border-radius: 14px; text-align: left; border: 1px solid rgba(255,255,255,0.15);">
-                        <p style="margin: 0; font-weight: 700; font-size: 0.85rem;">📚 10+ Yrs Solved Past Papers</p>
+                    <div class="screen-card">
+                        <p style="margin:0; font-size:0.85rem; font-weight:700;">📚 10+ Yrs Solved Past Papers</p>
                     </div>
                 </div>
             </div>
@@ -427,9 +473,9 @@ if st.session_state.active_tab == "Home":
     for col, (icon, title, desc) in zip([f1, f2, f3, f4], features):
         with col:
             st.markdown(f"""
-            <div class="ivy-card" style="text-align: center;">
-                <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">{icon}</div>
-                <h4 style="font-weight: 800; color: #0f172a; margin-bottom: 0.4rem; font-size: 1rem;">{title}</h4>
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">{icon}</div>
+                <h4 style="font-weight: 800; color: #0f172a; margin-bottom: 0.4rem; font-size: 1.05rem;">{title}</h4>
                 <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin: 0;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
@@ -439,7 +485,6 @@ elif st.session_state.active_tab == "Courses":
     st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.3rem;'>O Level & IGCSE Courses</h2>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Select an individual subject or discount combo package below.</p>", unsafe_allow_html=True)
 
-    # Filters
     f_col1, f_col2 = st.columns([2, 1])
     with f_col1:
         cat_filter = st.radio("Category Filter", ["All", "Combos", "Sciences", "Humanities"], horizontal=True, label_visibility="collapsed")
@@ -462,33 +507,36 @@ elif st.session_state.active_tab == "Courses":
 
     for item in filtered:
         c_img, c_main, c_side = st.columns([1, 2.5, 1])
-        card_style = "ivy-combo-card" if item["is_combo"] else "ivy-card"
-        badge_style = "badge-gold" if item["is_combo"] else "badge-purple"
+        card_class = "combo-card-wrapper" if item["is_combo"] else "course-card-wrapper"
+        badge_bg = "#fef3c7" if item["is_combo"] else "#f3e8ff"
+        badge_color = "#b45309" if item["is_combo"] else "#7e22ce"
 
         with c_img:
             st.image(item["image_url"], use_container_width=True)
         with c_main:
             st.markdown(f"""
-            <div class="{card_style}">
-                <span class="{badge_style}">{item['badge']}</span>
-                <h3 style="font-weight: 800; color: #0f172a; margin-top: 0.5rem; margin-bottom: 0.4rem;">{item['title']}</h3>
+            <div class="{card_class}">
+                <span style="background: {badge_bg}; color: {badge_color}; font-weight: 800; font-size: 0.72rem; padding: 0.3rem 0.8rem; border-radius: 50px;">{item['badge']}</span>
+                <h3 style="font-weight: 800; color: #0f172a; margin-top: 0.6rem; margin-bottom: 0.4rem;">{item['title']}</h3>
                 <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.8rem;">{item['desc']}</p>
-                <p style="color: #6b21a8; font-size: 0.82rem; font-weight: 700;">Key Features: {', '.join(item['highlights'])}</p>
+                <p style="color: #6d28d9; font-size: 0.82rem; font-weight: 700;">Key Features: {', '.join(item['highlights'])}</p>
             </div>
             """, unsafe_allow_html=True)
         with c_side:
             st.markdown(f"""
-            <div class="{card_style}" style="text-align: center;">
+            <div class="{card_class}" style="text-align: center;">
                 <p style="color: #64748b; font-size: 0.8rem; font-weight: 700; margin: 0;">Monthly Tuition Fee</p>
-                <div class="price-tag">{item['fee']}</div>
+                <div style="font-size: 1.4rem; font-weight: 900; color: #6d28d9;">{item['fee']}</div>
                 <p style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 1rem;">⏱️ {item['duration']}</p>
             </div>
             """, unsafe_allow_html=True)
 
+            st.markdown('<div class="btn-solid-purple">', unsafe_allow_html=True)
             if st.button(f"Enroll in {item['id']}", key=f"btn_enroll_{item['id']}", use_container_width=True):
                 st.session_state.selected_course_for_enrollment = item['title']
                 st.session_state.active_tab = "Admission"
                 st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
 
 # PAGE: ADMISSION
 elif st.session_state.active_tab == "Admission":
@@ -554,8 +602,8 @@ elif st.session_state.active_tab == "Assistant":
         with st.chat_message("assistant"):
             st.write(response)
 
-# ADMIN MODAL EXPANDER
-st.markdown("<br><hr style='border-color: #f1f5f9;'><br>", unsafe_allow_html=True)
+# ADMIN PANEL TRIGGER
+st.markdown("<br><hr style='border: none; border-bottom: 1px solid #f1f5f9;'><br>", unsafe_allow_html=True)
 with st.expander("🔒 Admin Portal Access"):
     admin_pwd = st.text_input("Enter Admin Password", type="password")
     if admin_pwd == ADMIN_PASSWORD:
