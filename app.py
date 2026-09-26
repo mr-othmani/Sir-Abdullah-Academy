@@ -23,13 +23,13 @@ st.markdown("""
     /* Font Import */
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
-    /* Global Canvas with Mesh Radiant Animated Background */
+    /* Global Canvas with Rich Vibrant Animated Background */
     .stApp {
         background: 
-            radial-gradient(circle at 10% 10%, rgba(147, 51, 234, 0.15) 0%, transparent 45%),
-            radial-gradient(circle at 90% 15%, rgba(245, 158, 11, 0.12) 0%, transparent 40%),
-            radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 80% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+            radial-gradient(circle at 10% 15%, rgba(124, 58, 237, 0.22) 0%, transparent 45%),
+            radial-gradient(circle at 85% 10%, rgba(245, 158, 11, 0.20) 0%, transparent 40%),
+            radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.18) 0%, transparent 45%),
             #f8fafc;
         color: #0f172a;
         font-family: 'Plus Jakarta Sans', sans-serif;
@@ -43,80 +43,70 @@ st.markdown("""
 
     /* Fixed Top Navbar Glassmorphic Container */
     .brand-circle {
-        background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        background: linear-gradient(135deg, #8b5cf6 0%, #4c1d95 100%);
         color: white;
-        width: 44px;
-        height: 44px;
+        width: 46px;
+        height: 46px;
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         font-weight: 900;
-        font-size: 1.1rem;
-        box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+        font-size: 1.15rem;
+        box-shadow: 0 4px 18px rgba(139, 92, 246, 0.5);
     }
     
     .brand-title {
-        font-size: 1.35rem;
+        font-size: 1.4rem;
         font-weight: 900;
-        background: linear-gradient(135deg, #4c1d95 0%, #1e1b4b 100%);
+        background: linear-gradient(135deg, #6d28d9 0%, #1e1b4b 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         letter-spacing: -0.5px;
     }
 
-    /* Navigation Button Customization */
+    /* Primary & Secondary Action Button Styling Override */
+    div.stButton > button {
+        border-radius: 50px !important;
+        font-weight: 800 !important;
+        font-size: 0.95rem !important;
+        padding: 0.65rem 1.4rem !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        border: none !important;
+    }
+
+    div.stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%) !important;
+        color: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35) !important;
+    }
+    div.stButton > button[kind="primary"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(124, 58, 237, 0.5) !important;
+    }
+
+    div.stButton > button[kind="secondary"] {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+        color: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(217, 119, 6, 0.35) !important;
+    }
+    div.stButton > button[kind="secondary"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(217, 119, 6, 0.5) !important;
+    }
+
+    /* Navigation Tertiary Buttons */
     div[data-testid="stColumn"] button[kind="tertiary"] {
         color: #475569 !important;
         font-weight: 700 !important;
         font-size: 0.95rem !important;
-        border: none !important;
         background: transparent !important;
         padding: 0.4rem 0.8rem !important;
+        box-shadow: none !important;
     }
     div[data-testid="stColumn"] button[kind="tertiary"]:hover {
         color: #7c3aed !important;
-    }
-    div[data-testid="stColumn"] button[kind="primary"] {
-        background: #f3e8ff !important;
-        color: #6d28d9 !important;
-        font-weight: 800 !important;
-        border-radius: 50px !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
-
-    /* Vibrant Buttons */
-    .btn-gradient-purple button {
-        background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%) !important;
-        color: #ffffff !important;
-        font-weight: 800 !important;
-        font-size: 0.98rem !important;
-        border-radius: 50px !important;
-        padding: 0.75rem 1.8rem !important;
-        border: none !important;
-        box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35) !important;
-        transition: all 0.25s ease !important;
-    }
-    .btn-gradient-purple button:hover {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 14px 30px rgba(124, 58, 237, 0.5) !important;
-    }
-
-    .btn-gradient-amber button {
-        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
-        color: #ffffff !important;
-        font-weight: 800 !important;
-        font-size: 0.98rem !important;
-        border-radius: 50px !important;
-        padding: 0.75rem 1.8rem !important;
-        border: none !important;
-        box-shadow: 0 10px 25px rgba(217, 119, 6, 0.35) !important;
-        transition: all 0.25s ease !important;
-    }
-    .btn-gradient-amber button:hover {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 14px 30px rgba(217, 119, 6, 0.5) !important;
+        background: rgba(124, 58, 237, 0.08) !important;
     }
 
     /* Hero Typography */
@@ -124,14 +114,15 @@ st.markdown("""
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: #ffffff;
-        color: #6d28d9;
-        font-size: 0.82rem;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        color: #7c3aed;
+        font-size: 0.85rem;
         font-weight: 800;
-        padding: 0.45rem 1.2rem;
+        padding: 0.5rem 1.3rem;
         border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(109, 40, 217, 0.1);
-        border: 1px solid #ede9fe;
+        box-shadow: 0 6px 20px rgba(124, 58, 237, 0.15);
+        border: 1px solid #ddd6fe;
         margin-bottom: 1.2rem;
     }
 
@@ -145,13 +136,13 @@ st.markdown("""
     }
     
     .gradient-purple {
-        background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
     
     .gradient-gold {
-        background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -165,7 +156,7 @@ st.markdown("""
         max-width: 580px;
     }
 
-    /* Hero Frame */
+    /* Hero Frame & Bezel */
     .hero-graphic-card {
         position: relative;
         padding: 10px;
@@ -177,12 +168,12 @@ st.markdown("""
         right: 20px;
         background: #ffffff;
         color: #0f172a;
-        font-size: 0.85rem;
+        font-size: 0.88rem;
         font-weight: 800;
-        padding: 0.6rem 1.2rem;
+        padding: 0.65rem 1.3rem;
         border-radius: 50px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        border: 1px solid #cbd5e1;
         z-index: 10;
         display: flex;
         align-items: center;
@@ -192,13 +183,13 @@ st.markdown("""
     .device-bezel {
         background: #090d16;
         border-radius: 36px;
-        padding: 12px;
-        box-shadow: 0 30px 70px rgba(109, 40, 217, 0.25);
-        border: 1px solid #1e293b;
+        padding: 14px;
+        box-shadow: 0 35px 80px rgba(109, 40, 217, 0.3);
+        border: 1px solid #334155;
     }
 
     .device-screen {
-        background: linear-gradient(145deg, #3b0764 0%, #1e1b4b 100%);
+        background: linear-gradient(145deg, #2e1065 0%, #0f172a 100%);
         border-radius: 26px;
         padding: 2.8rem 1.8rem 2.2rem 1.8rem;
         color: white;
@@ -208,19 +199,19 @@ st.markdown("""
     }
 
     .pulse-dot {
-        height: 8px;
-        width: 8px;
+        height: 10px;
+        width: 10px;
         background-color: #22c55e;
         border-radius: 50%;
         display: inline-block;
-        box-shadow: 0 0 10px #22c55e;
+        box-shadow: 0 0 12px #22c55e;
     }
 
     .screen-pill {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.22);
         border-radius: 16px;
-        padding: 0.9rem 1.2rem;
+        padding: 0.95rem 1.2rem;
         margin-top: 0.9rem;
         text-align: left;
         backdrop-filter: blur(12px);
@@ -228,58 +219,64 @@ st.markdown("""
     }
     .screen-pill:hover {
         transform: scale(1.02);
-        background: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.16);
     }
 
-    /* Enterprise Feature Cards */
+    /* Features Grid Cards */
     .vibrant-feature-card {
         background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(14px);
         border-radius: 24px;
         padding: 2rem 1.4rem;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         height: 100%;
     }
     .vibrant-feature-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(109, 40, 217, 0.15);
+        box-shadow: 0 22px 45px rgba(124, 58, 237, 0.18);
         border-color: #c084fc;
     }
 
     .icon-box {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
         color: #7c3aed;
         border-radius: 20px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.7rem;
+        font-size: 1.8rem;
         margin-bottom: 1.2rem;
-        box-shadow: 0 6px 15px rgba(124, 58, 237, 0.15);
+        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
     }
 
     /* Live Stat KPI Counter Bar */
     .stat-card {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        border: 1px solid #ede9fe;
-        border-radius: 20px;
-        padding: 1.2rem;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border: 1px solid #ddd6fe;
+        border-radius: 22px;
+        padding: 1.4rem;
         text-align: center;
-        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.06);
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+        transition: transform 0.25s ease;
+    }
+    .stat-card:hover {
+        transform: translateY(-4px);
     }
     .stat-number {
-        font-size: 2rem;
+        font-size: 2.2rem;
         font-weight: 900;
-        color: #6d28d9;
+        background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
     .stat-label {
-        font-size: 0.85rem;
+        font-size: 0.88rem;
         color: #64748b;
         font-weight: 700;
     }
@@ -290,7 +287,7 @@ st.markdown("""
         border-radius: 24px;
         padding: 1.8rem;
         border: 1px solid #f1f5f9;
-        box-shadow: 0 6px 25px rgba(0,0,0,0.03);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.04);
         margin-bottom: 1.2rem;
     }
     .combo-card-wrapper {
@@ -298,7 +295,7 @@ st.markdown("""
         border-radius: 24px;
         padding: 1.8rem;
         border: 2px solid #c084fc;
-        box-shadow: 0 12px 35px rgba(192, 132, 252, 0.18);
+        box-shadow: 0 14px 40px rgba(192, 132, 252, 0.22);
         margin-bottom: 1.2rem;
     }
 </style>
@@ -433,7 +430,7 @@ if "active_tab" not in st.session_state:
     st.session_state.active_tab = "Home"
 
 # --- 4. TOP FLOATING NAVBAR ---
-col_logo, col_nav, col_cta = st.columns([2, 3, 1.3])
+col_logo, col_nav, col_cta = st.columns([2.2, 3, 1.3])
 
 with col_logo:
     st.markdown("""
@@ -463,11 +460,9 @@ with col_nav:
             st.rerun()
 
 with col_cta:
-    st.markdown('<div class="btn-gradient-purple">', unsafe_allow_html=True)
-    if st.button("⚡ Enroll Now", key="nav_enroll_btn", use_container_width=True):
+    if st.button("⚡ Enroll Now", key="nav_enroll_btn", type="primary", use_container_width=True):
         st.session_state.active_tab = "Admission"
         st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("<hr style='border: none; border-bottom: 1px solid rgba(226, 232, 240, 0.8); margin: 0.8rem 0 2rem 0;'>", unsafe_allow_html=True)
 
@@ -490,18 +485,14 @@ if st.session_state.active_tab == "Home":
 
         cta1, cta2 = st.columns(2)
         with cta1:
-            st.markdown('<div class="btn-gradient-purple">', unsafe_allow_html=True)
-            if st.button("🚀 Explore Courses", key="hero_explore", use_container_width=True):
+            if st.button("🚀 Explore Courses", key="hero_explore", type="primary", use_container_width=True):
                 st.session_state.active_tab = "Courses"
                 st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
 
         with cta2:
-            st.markdown('<div class="btn-gradient-amber">', unsafe_allow_html=True)
-            if st.button("📝 Apply for Admission", key="hero_apply", use_container_width=True):
+            if st.button("📝 Apply for Admission", key="hero_apply", type="secondary", use_container_width=True):
                 st.session_state.active_tab = "Admission"
                 st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
 
     with hero_right:
         st.markdown("""
@@ -610,12 +601,10 @@ elif st.session_state.active_tab == "Courses":
             </div>
             """, unsafe_allow_html=True)
 
-            st.markdown('<div class="btn-gradient-purple">', unsafe_allow_html=True)
-            if st.button(f"Enroll in {item['id']}", key=f"btn_enroll_{item['id']}", use_container_width=True):
+            if st.button(f"Enroll in {item['id']}", key=f"btn_enroll_{item['id']}", type="primary", use_container_width=True):
                 st.session_state.selected_course_for_enrollment = item['title']
                 st.session_state.active_tab = "Admission"
                 st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
 
 # PAGE: ADMISSION
 elif st.session_state.active_tab == "Admission":
@@ -636,7 +625,7 @@ elif st.session_state.active_tab == "Admission":
             phone = st.text_input("WhatsApp Number *", placeholder="e.g. +92 332 1234567")
             selected_course = st.selectbox("Target Course / Combo *", all_options, index=default_idx)
 
-        submitted = st.form_submit_button("Submit Admission Application")
+        submitted = st.form_submit_button("Submit Admission Application", type="primary")
 
         if submitted:
             if not name.strip():
