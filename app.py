@@ -8,155 +8,172 @@ from github_store import sync_to_github
 
 # --- 1. PAGE CONFIG ---
 st.set_page_config(
-    page_title="Sir Abdullah Academy | Premier O & A Level Online Platform",
+    page_title="Sir Abdullah Academy | Premier O & A Level Platform",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# --- 2. VIBRANT & ADVANCED MODERN STYLING WITH BACKGROUND MESH ---
+# --- 2. ULTRA-PROFESSIONAL & VIBRANT STYLING ---
 st.markdown("""
 <style>
-    /* Hide Default Streamlit Chrome */
+    /* Hide Default Streamlit Elements */
     #MainMenu, footer, header { visibility: hidden; }
 
-    /* Font Import */
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+    /* Modern Typography Import */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
-    /* Global Canvas with Rich Vibrant Animated Background */
+    /* Global Dynamic Canvas */
     .stApp {
         background: 
-            radial-gradient(circle at 10% 15%, rgba(124, 58, 237, 0.22) 0%, transparent 45%),
-            radial-gradient(circle at 85% 10%, rgba(245, 158, 11, 0.20) 0%, transparent 40%),
-            radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.18) 0%, transparent 45%),
-            #f8fafc;
-        color: #0f172a;
+            radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 35%),
+            radial-gradient(circle at 100% 20%, rgba(236, 72, 153, 0.12) 0%, transparent 40%),
+            radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.18) 0%, transparent 45%),
+            radial-gradient(circle at 90% 90%, rgba(245, 158, 11, 0.15) 0%, transparent 35%),
+            #0b0f19;
+        color: #f8fafc;
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     .block-container {
-        padding-top: 1.2rem !important;
-        padding-bottom: 2.5rem !important;
-        max-width: 1260px;
+        padding-top: 1.5rem !important;
+        padding-bottom: 3rem !important;
+        max-width: 1280px;
     }
 
-    /* Fixed Top Navbar Glassmorphic Container */
+    /* Floating Keyframe Animations */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+        100% { transform: translateY(0px); }
+    }
+
+    @keyframes pulseGlow {
+        0% { box-shadow: 0 0 15px rgba(124, 58, 237, 0.4); }
+        50% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.7); }
+        100% { box-shadow: 0 0 15px rgba(124, 58, 237, 0.4); }
+    }
+
+    /* Brand Logo & Header Styling */
     .brand-circle {
-        background: linear-gradient(135deg, #8b5cf6 0%, #4c1d95 100%);
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
         color: white;
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         font-weight: 900;
         font-size: 1.15rem;
-        box-shadow: 0 4px 18px rgba(139, 92, 246, 0.5);
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     .brand-title {
-        font-size: 1.4rem;
+        font-size: 1.45rem;
         font-weight: 900;
-        background: linear-gradient(135deg, #6d28d9 0%, #1e1b4b 100%);
+        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         letter-spacing: -0.5px;
     }
 
-    /* Primary & Secondary Action Button Styling Override */
+    /* Premium Streamlit Button Overrides */
     div.stButton > button {
         border-radius: 50px !important;
-        font-weight: 800 !important;
+        font-weight: 700 !important;
         font-size: 0.95rem !important;
-        padding: 0.65rem 1.4rem !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        border: none !important;
+        padding: 0.65rem 1.6rem !important;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        border: 1px solid transparent !important;
     }
 
+    /* Primary Action Button (Electric Indigo Gradient) */
     div.stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%) !important;
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
         color: #ffffff !important;
-        box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35) !important;
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
     div.stButton > button[kind="primary"]:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 14px 30px rgba(124, 58, 237, 0.5) !important;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6) !important;
     }
 
+    /* Secondary Action Button (Vibrant Amber Gradient) */
     div.stButton > button[kind="secondary"] {
         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
         color: #ffffff !important;
-        box-shadow: 0 10px 25px rgba(217, 119, 6, 0.35) !important;
+        box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
     div.stButton > button[kind="secondary"]:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 14px 30px rgba(217, 119, 6, 0.5) !important;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(245, 158, 11, 0.55) !important;
     }
 
-    /* Navigation Tertiary Buttons */
+    /* Navigation Buttons */
     div[data-testid="stColumn"] button[kind="tertiary"] {
-        color: #475569 !important;
-        font-weight: 700 !important;
+        color: #94a3b8 !important;
+        font-weight: 600 !important;
         font-size: 0.95rem !important;
         background: transparent !important;
-        padding: 0.4rem 0.8rem !important;
-        box-shadow: none !important;
+        padding: 0.5rem 1rem !important;
     }
     div[data-testid="stColumn"] button[kind="tertiary"]:hover {
-        color: #7c3aed !important;
-        background: rgba(124, 58, 237, 0.08) !important;
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.05) !important;
     }
 
-    /* Hero Typography */
+    /* Hero Section UI */
     .floating-pill {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(8px);
-        color: #7c3aed;
+        background: rgba(139, 92, 246, 0.15);
+        backdrop-filter: blur(12px);
+        color: #a78bfa;
         font-size: 0.85rem;
-        font-weight: 800;
-        padding: 0.5rem 1.3rem;
+        font-weight: 700;
+        padding: 0.5rem 1.2rem;
         border-radius: 50px;
-        box-shadow: 0 6px 20px rgba(124, 58, 237, 0.15);
-        border: 1px solid #ddd6fe;
-        margin-bottom: 1.2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(167, 139, 250, 0.3);
+        margin-bottom: 1.5rem;
     }
 
     .hero-heading {
         font-size: 3.8rem;
         font-weight: 900;
-        color: #0f172a;
+        color: #ffffff;
         line-height: 1.1;
         letter-spacing: -2px;
         margin-bottom: 1.2rem;
     }
     
     .gradient-purple {
-        background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
     
     .gradient-gold {
-        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .hero-subhead {
         font-size: 1.15rem;
-        color: #475569;
+        color: #94a3b8;
         line-height: 1.6;
         margin-bottom: 2.2rem;
-        font-weight: 500;
+        font-weight: 400;
         max-width: 580px;
     }
 
-    /* Hero Frame & Bezel */
+    /* Right Showcase Mockup Card */
     .hero-graphic-card {
         position: relative;
         padding: 10px;
@@ -164,139 +181,145 @@ st.markdown("""
 
     .badge-result-top {
         position: absolute;
-        top: -15px;
-        right: 20px;
-        background: #ffffff;
-        color: #0f172a;
-        font-size: 0.88rem;
+        top: -12px;
+        right: 15px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        color: #ffffff;
+        font-size: 0.85rem;
         font-weight: 800;
         padding: 0.65rem 1.3rem;
         border-radius: 50px;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-        border: 1px solid #cbd5e1;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         z-index: 10;
-        display: flex;
-        align-items: center;
-        gap: 6px;
+        animation: float 4s ease-in-out infinite;
     }
 
     .device-bezel {
-        background: #090d16;
-        border-radius: 36px;
+        background: #0f172a;
+        border-radius: 32px;
         padding: 14px;
-        box-shadow: 0 35px 80px rgba(109, 40, 217, 0.3);
-        border: 1px solid #334155;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        animation: pulseGlow 5s infinite;
     }
 
     .device-screen {
-        background: linear-gradient(145deg, #2e1065 0%, #0f172a 100%);
-        border-radius: 26px;
-        padding: 2.8rem 1.8rem 2.2rem 1.8rem;
+        background: linear-gradient(160deg, #1e1b4b 0%, #0f172a 100%);
+        border-radius: 22px;
+        padding: 2.5rem 1.8rem 2.2rem 1.8rem;
         color: white;
         text-align: center;
         position: relative;
         overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .pulse-dot {
         height: 10px;
         width: 10px;
-        background-color: #22c55e;
+        background-color: #10b981;
         border-radius: 50%;
         display: inline-block;
-        box-shadow: 0 0 12px #22c55e;
+        box-shadow: 0 0 12px #10b981;
     }
 
     .screen-pill {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 16px;
-        padding: 0.95rem 1.2rem;
-        margin-top: 0.9rem;
+        padding: 1rem 1.2rem;
+        margin-top: 1rem;
         text-align: left;
         backdrop-filter: blur(12px);
-        transition: transform 0.2s ease;
+        transition: all 0.3s ease;
     }
     .screen-pill:hover {
-        transform: scale(1.02);
-        background: rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(167, 139, 250, 0.4);
     }
 
     /* Features Grid Cards */
     .vibrant-feature-card {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(14px);
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(16px);
         border-radius: 24px;
-        padding: 2rem 1.4rem;
+        padding: 2.2rem 1.5rem;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         height: 100%;
     }
     .vibrant-feature-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 22px 45px rgba(124, 58, 237, 0.18);
-        border-color: #c084fc;
+        background: rgba(15, 23, 42, 0.85);
+        border-color: rgba(139, 92, 246, 0.5);
+        box-shadow: 0 20px 45px rgba(139, 92, 246, 0.25);
     }
 
     .icon-box {
         width: 64px;
         height: 64px;
-        background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
-        color: #7c3aed;
-        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+        color: #a78bfa;
+        border-radius: 18px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         font-size: 1.8rem;
         margin-bottom: 1.2rem;
-        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
+        border: 1px solid rgba(167, 139, 250, 0.3);
     }
 
     /* Live Stat KPI Counter Bar */
     .stat-card {
-        background: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(12px);
-        border: 1px solid #ddd6fe;
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 22px;
-        padding: 1.4rem;
+        padding: 1.6rem;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         transition: transform 0.25s ease;
     }
     .stat-card:hover {
         transform: translateY(-4px);
+        border-color: rgba(167, 139, 250, 0.4);
     }
     .stat-number {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
         font-weight: 900;
-        background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        background: linear-gradient(135deg, #a78bfa 0%, #6366f1 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
     .stat-label {
-        font-size: 0.88rem;
-        color: #64748b;
-        font-weight: 700;
+        font-size: 0.9rem;
+        color: #94a3b8;
+        font-weight: 600;
+        margin-top: 0.2rem;
     }
 
-    /* Course Cards */
+    /* Course Cards Styling */
     .course-card-wrapper {
-        background: #ffffff;
+        background: rgba(15, 23, 42, 0.75);
         border-radius: 24px;
         padding: 1.8rem;
-        border: 1px solid #f1f5f9;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         margin-bottom: 1.2rem;
+        backdrop-filter: blur(12px);
     }
     .combo-card-wrapper {
-        background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
+        background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
         border-radius: 24px;
         padding: 1.8rem;
-        border: 2px solid #c084fc;
-        box-shadow: 0 14px 40px rgba(192, 132, 252, 0.22);
+        border: 1px solid rgba(192, 132, 252, 0.4);
+        box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
         margin-bottom: 1.2rem;
+        backdrop-filter: blur(12px);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -434,7 +457,7 @@ col_logo, col_nav, col_cta = st.columns([2.2, 3, 1.3])
 
 with col_logo:
     st.markdown("""
-    <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="display: flex; align-items: center; gap: 14px;">
         <div class="brand-circle">SAA</div>
         <span class="brand-title">Sir Abdullah Academy</span>
     </div>
@@ -460,11 +483,11 @@ with col_nav:
             st.rerun()
 
 with col_cta:
-    if st.button("⚡ Enroll Now", key="nav_enroll_btn", type="primary", use_container_width=True):
+    if st.button("⚡ Enroll Now", key="nav_enroll_btn", type="secondary", use_container_width=True):
         st.session_state.active_tab = "Admission"
         st.rerun()
 
-st.markdown("<hr style='border: none; border-bottom: 1px solid rgba(226, 232, 240, 0.8); margin: 0.8rem 0 2rem 0;'>", unsafe_allow_html=True)
+st.markdown("<hr style='border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 1rem 0 2.5rem 0;'>", unsafe_allow_html=True)
 
 # --- 5. ROUTE RENDERING ---
 
@@ -474,12 +497,12 @@ if st.session_state.active_tab == "Home":
 
     with hero_left:
         st.markdown("""
-        <div class="floating-pill">⭐ Every Lesson Counts</div>
+        <div class="floating-pill">✨ Premium Online Learning Platform</div>
         <div class="hero-heading">
-            Pakistan's <span class="gradient-purple">#1 Online</span> Platform for <span class="gradient-gold">O & A Level</span> Success
+            Pakistan's <span class="gradient-purple">#1 Online</span> Academy for <span class="gradient-gold">O & A Level</span>
         </div>
         <div class="hero-subhead">
-            High-quality interactive live classes, topical solved past papers, examiner keyword mastery, and expert teachers — guaranteed to secure top A* grades.
+            Unlock your full academic potential with interactive live classes, topical solved past papers, examiner keyword mastery, and personalized 1-on-1 mentorship.
         </div>
         """, unsafe_allow_html=True)
 
@@ -498,20 +521,20 @@ if st.session_state.active_tab == "Home":
         st.markdown("""
         <div class="hero-graphic-card">
             <div class="badge-result-top">
-                <span>🎗️</span> 10,000+ A* Results
+                <span>🏆</span> 10,000+ A* Grades
             </div>
             <div class="device-bezel">
                 <div class="device-screen">
-                    <p style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 800; color: #c084fc; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                        <span class="pulse-dot"></span> LIVE ONLINE BATCH
+                    <p style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; font-weight: 800; color: #a78bfa; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <span class="pulse-dot"></span> LIVE ACADEMY PORTAL
                     </p>
-                    <h2 style="font-weight: 900; font-size: 1.9rem; color: #facc15; margin-bottom: 0.4rem; letter-spacing: -0.5px;">NOW STUDY ONLINE</h2>
-                    <p style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 1.5rem;">Interactive Zoom & Meet Classes with Sir Abdullah</p>
+                    <h2 style="font-weight: 900; font-size: 2rem; color: #fbbf24; margin-bottom: 0.4rem; letter-spacing: -0.5px;">NOW STUDY ONLINE</h2>
+                    <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1.5rem;">Interactive Zoom & Meet Classes with Sir Abdullah</p>
                     <div class="screen-pill">
-                        <p style="margin:0; font-size:0.88rem; font-weight:700;">💻 Digital Whiteboard & Instant Doubts</p>
+                        <p style="margin:0; font-size:0.88rem; font-weight:700; color: #f8fafc;">💻 Interactive Whiteboard & Instant Doubt Resolution</p>
                     </div>
                     <div class="screen-pill">
-                        <p style="margin:0; font-size:0.88rem; font-weight:700;">📚 10+ Yrs Topical Solved Papers</p>
+                        <p style="margin:0; font-size:0.88rem; font-weight:700; color: #f8fafc;">📚 10+ Years Topical Solved Past Papers</p>
                     </div>
                 </div>
             </div>
@@ -521,39 +544,39 @@ if st.session_state.active_tab == "Home":
     st.markdown("<br><br>", unsafe_allow_html=True)
 
     # --- LIVE ACADEMY STATS BAR ---
-    st.markdown("### 📈 Academy Impact at a Glance")
+    st.markdown("<h3 style='font-weight: 800; font-size: 1.4rem; margin-bottom: 1rem;'>📈 Academy Impact at a Glance</h3>", unsafe_allow_html=True)
     s1, s2, s3 = st.columns(3)
     with s1:
         st.markdown('<div class="stat-card"><div class="stat-number">10,000+</div><div class="stat-label">A* & A Grades Secured</div></div>', unsafe_allow_html=True)
     with s2:
         st.markdown('<div class="stat-card"><div class="stat-number">98.4%</div><div class="stat-label">CAIE Exam Pass Rate</div></div>', unsafe_allow_html=True)
     with s3:
-        st.markdown('<div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">AI Tutor Support</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">AI Learning Support</div></div>', unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     # Feature Grid
     f1, f2, f3, f4 = st.columns(4)
     features = [
-        ("💻", "Live Interactive Classes", "Engage directly with expert faculty with immediate doubt resolution."),
-        ("📝", "Topical Past Papers", "10+ years of topical past paper practice aligned with CAIE marking schemes."),
-        ("🎯", "Keyword Mastery", "Learn subject-specific keywords required for full marks in exam papers."),
-        ("📊", "Parent Tracking", "Regular attendance updates, test feedback, and personal performance reports.")
+        ("💻", "Live Interactive Classes", "Engage directly with expert faculty with immediate doubt resolution during live sessions."),
+        ("📝", "Topical Past Papers", "10+ years of topical past paper practice fully aligned with CAIE marking schemes."),
+        ("🎯", "Keyword Mastery", "Learn exact subject-specific examiner keywords required for top grade boundaries."),
+        ("📊", "Parent Tracking", "Regular attendance updates, test feedback, and personal student performance reports.")
     ]
     for col, (icon, title, desc) in zip([f1, f2, f3, f4], features):
         with col:
             st.markdown(f"""
             <div class="vibrant-feature-card">
                 <div class="icon-box">{icon}</div>
-                <h4 style="font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; font-size: 1.05rem;">{title}</h4>
-                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.55; margin: 0;">{desc}</p>
+                <h4 style="font-weight: 800; color: #ffffff; margin-bottom: 0.6rem; font-size: 1.1rem;">{title}</h4>
+                <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.6; margin: 0;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
 
 # PAGE: COURSES
 elif st.session_state.active_tab == "Courses":
     st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.3rem;'>O Level & IGCSE Courses</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Select an individual subject or discount combo package below.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #94a3b8; margin-bottom: 2rem;'>Select an individual subject or discount combo package below.</p>", unsafe_allow_html=True)
 
     f_col1, f_col2 = st.columns([2, 1])
     with f_col1:
@@ -578,26 +601,26 @@ elif st.session_state.active_tab == "Courses":
     for item in filtered:
         c_img, c_main, c_side = st.columns([1, 2.5, 1])
         card_class = "combo-card-wrapper" if item["is_combo"] else "course-card-wrapper"
-        badge_bg = "#fef3c7" if item["is_combo"] else "#f3e8ff"
-        badge_color = "#b45309" if item["is_combo"] else "#7e22ce"
+        badge_bg = "rgba(245, 158, 11, 0.2)" if item["is_combo"] else "rgba(139, 92, 246, 0.2)"
+        badge_color = "#fbbf24" if item["is_combo"] else "#c084fc"
 
         with c_img:
             st.image(item["image_url"], use_container_width=True)
         with c_main:
             st.markdown(f"""
             <div class="{card_class}">
-                <span style="background: {badge_bg}; color: {badge_color}; font-weight: 800; font-size: 0.72rem; padding: 0.3rem 0.8rem; border-radius: 50px;">{item['badge']}</span>
-                <h3 style="font-weight: 800; color: #0f172a; margin-top: 0.6rem; margin-bottom: 0.4rem;">{item['title']}</h3>
-                <p style="color: #475569; font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.8rem;">{item['desc']}</p>
-                <p style="color: #6d28d9; font-size: 0.82rem; font-weight: 700;">Key Features: {', '.join(item['highlights'])}</p>
+                <span style="background: {badge_bg}; color: {badge_color}; font-weight: 800; font-size: 0.75rem; padding: 0.35rem 0.9rem; border-radius: 50px; border: 1px solid {badge_color};">{item['badge']}</span>
+                <h3 style="font-weight: 800; color: #ffffff; margin-top: 0.8rem; margin-bottom: 0.4rem;">{item['title']}</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">{item['desc']}</p>
+                <p style="color: #a78bfa; font-size: 0.85rem; font-weight: 700;">Key Features: {', '.join(item['highlights'])}</p>
             </div>
             """, unsafe_allow_html=True)
         with c_side:
             st.markdown(f"""
             <div class="{card_class}" style="text-align: center;">
-                <p style="color: #64748b; font-size: 0.8rem; font-weight: 700; margin: 0;">Monthly Tuition Fee</p>
-                <div style="font-size: 1.4rem; font-weight: 900; color: #6d28d9;">{item['fee']}</div>
-                <p style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 1rem;">⏱️ {item['duration']}</p>
+                <p style="color: #94a3b8; font-size: 0.8rem; font-weight: 700; margin: 0;">Monthly Tuition Fee</p>
+                <div style="font-size: 1.5rem; font-weight: 900; color: #fbbf24; margin: 0.3rem 0;">{item['fee']}</div>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 1rem;">⏱️ {item['duration']}</p>
             </div>
             """, unsafe_allow_html=True)
 
@@ -609,7 +632,7 @@ elif st.session_state.active_tab == "Courses":
 # PAGE: ADMISSION
 elif st.session_state.active_tab == "Admission":
     st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.3rem;'>📝 Online Admission Portal</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Complete the details below to reserve your seat in the upcoming batch.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #94a3b8; margin-bottom: 2rem;'>Complete the details below to reserve your seat in the upcoming batch.</p>", unsafe_allow_html=True)
 
     all_options = [c["title"] for c in SPECIAL_COMBOS] + [c["title"] for c in O_LEVEL_COURSES]
     default_idx = 0
@@ -651,7 +674,7 @@ elif st.session_state.active_tab == "Admission":
 # PAGE: AI TUTOR
 elif st.session_state.active_tab == "Assistant":
     st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.3rem;'>🤖 AI Learning Assistant</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Ask questions about course syllabi, class schedules, or exam strategies.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #94a3b8; margin-bottom: 2rem;'>Ask questions about course syllabi, class schedules, or exam strategies.</p>", unsafe_allow_html=True)
 
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "assistant", "content": "Hello! How can I assist you with Cambridge O Level / IGCSE subjects today?"}]
@@ -671,7 +694,7 @@ elif st.session_state.active_tab == "Assistant":
             st.write(response)
 
 # ADMIN PANEL FOOTER
-st.markdown("<br><hr style='border: none; border-bottom: 1px solid rgba(226, 232, 240, 0.8);'><br>", unsafe_allow_html=True)
+st.markdown("<br><hr style='border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08);'><br>", unsafe_allow_html=True)
 with st.expander("🔒 Admin Portal Access"):
     admin_pwd = st.text_input("Enter Admin Password", type="password")
     if admin_pwd == ADMIN_PASSWORD:
