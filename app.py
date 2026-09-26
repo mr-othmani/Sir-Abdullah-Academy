@@ -531,14 +531,12 @@ if st.session_state.active_tab == "Home":
 
     # --- LIVE ACADEMY STATS BAR ---
     st.markdown("### 📈 Academy Impact at a Glance")
-    s1, s2, s3, s4 = st.columns(4)
+    s1, s2, s3 = st.columns(3)
     with s1:
         st.markdown('<div class="stat-card"><div class="stat-number">10,000+</div><div class="stat-label">A* & A Grades Secured</div></div>', unsafe_allow_html=True)
     with s2:
-        st.markdown('<div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Years Faculty Experience</div></div>', unsafe_allow_html=True)
-    with s3:
         st.markdown('<div class="stat-card"><div class="stat-number">98.4%</div><div class="stat-label">CAIE Exam Pass Rate</div></div>', unsafe_allow_html=True)
-    with s4:
+    with s3:
         st.markdown('<div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">AI Tutor Support</div></div>', unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
