@@ -14,67 +14,74 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 2. ENTERPRISE-GRADE CSS OVERHAUL ---
+# --- 2. VIBRANT & ADVANCED MODERN STYLING ---
 st.markdown("""
 <style>
-    /* Hide Streamlit Chrome */
+    /* Hide Default Streamlit Chrome */
     #MainMenu, footer, header { visibility: hidden; }
-    
+
     /* Font Import */
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
-    /* Global canvas */
+    /* Global Canvas with Mesh Radiant Background */
     .stApp {
-        background: radial-gradient(circle at 10% 10%, #f6f0ff 0%, #faf8ff 45%, #f8fafc 100%);
+        background: 
+            radial-gradient(circle at 15% 15%, rgba(192, 132, 252, 0.18) 0%, transparent 40%),
+            radial-gradient(circle at 85% 20%, rgba(251, 191, 36, 0.12) 0%, transparent 35%),
+            radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+            #f8fafc;
         color: #0f172a;
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     .block-container {
         padding-top: 1.2rem !important;
-        padding-bottom: 2rem !important;
-        max-width: 1240px;
+        padding-bottom: 2.5rem !important;
+        max-width: 1260px;
     }
 
-    /* Custom Floating Navbar */
-    .brand-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #ffffff;
-        padding: 0.8rem 1.8rem;
+    /* Fixed Top Navbar Bar Styling */
+    .nav-bar-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 232, 240, 0.8);
         border-radius: 100px;
+        padding: 0.6rem 1.8rem;
         box-shadow: 0 10px 30px rgba(109, 40, 217, 0.05);
-        border: 1px solid #f1f5f9;
         margin-bottom: 2rem;
     }
-    .brand-logo-text {
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: #4c1d95;
-        letter-spacing: -0.5px;
-    }
-    .brand-badge {
+
+    .brand-circle {
         background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
         color: white;
-        width: 38px;
-        height: 38px;
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        font-weight: 900;
+        font-size: 1.05rem;
+        box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+    }
+    
+    .brand-title {
+        font-size: 1.3rem;
         font-weight: 800;
-        font-size: 0.95rem;
-        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        background: linear-gradient(135deg, #4c1d95 0%, #1e1b4b 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.5px;
     }
 
-    /* Seamless Navigation Link Styling */
+    /* Navigation Button Customization */
     div[data-testid="stColumn"] button[kind="tertiary"] {
         color: #475569 !important;
         font-weight: 600 !important;
         font-size: 0.95rem !important;
         border: none !important;
         background: transparent !important;
+        padding: 0.4rem 0.8rem !important;
     }
     div[data-testid="stColumn"] button[kind="tertiary"]:hover {
         color: #7c3aed !important;
@@ -82,143 +89,186 @@ st.markdown("""
     div[data-testid="stColumn"] button[kind="primary"] {
         background: #f3e8ff !important;
         color: #6d28d9 !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
         border-radius: 50px !important;
         border: none !important;
         box-shadow: none !important;
     }
 
-    /* Solid CTA Buttons Override */
-    .btn-solid-purple button {
+    /* VIBRANT SOLID CTA BUTTONS */
+    .btn-gradient-purple button {
         background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%) !important;
         color: #ffffff !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
+        font-size: 0.98rem !important;
         border-radius: 50px !important;
-        padding: 0.65rem 1.8rem !important;
+        padding: 0.75rem 1.8rem !important;
         border: none !important;
-        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25) !important;
+        box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35) !important;
+        transition: all 0.25s ease !important;
     }
-    .btn-solid-purple button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 25px rgba(124, 58, 237, 0.35) !important;
+    .btn-gradient-purple button:hover {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 14px 30px rgba(124, 58, 237, 0.45) !important;
     }
 
-    .btn-solid-amber button {
+    .btn-gradient-amber button {
         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
         color: #ffffff !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
+        font-size: 0.98rem !important;
         border-radius: 50px !important;
-        padding: 0.65rem 1.8rem !important;
+        padding: 0.75rem 1.8rem !important;
         border: none !important;
-        box-shadow: 0 8px 20px rgba(217, 119, 6, 0.25) !important;
+        box-shadow: 0 10px 25px rgba(217, 119, 6, 0.35) !important;
+        transition: all 0.25s ease !important;
     }
-    .btn-solid-amber button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 25px rgba(217, 119, 6, 0.35) !important;
+    .btn-gradient-amber button:hover {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 14px 30px rgba(217, 119, 6, 0.45) !important;
     }
 
-    /* Hero Typography */
-    .hero-badge-pill {
+    /* Hero Badges & Typography */
+    .floating-pill {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         background: #ffffff;
-        color: #64748b;
-        font-size: 0.8rem;
-        font-weight: 700;
-        padding: 0.4rem 1.1rem;
+        color: #6d28d9;
+        font-size: 0.82rem;
+        font-weight: 800;
+        padding: 0.45rem 1.2rem;
         border-radius: 50px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 15px rgba(109, 40, 217, 0.08);
+        border: 1px solid #ede9fe;
         margin-bottom: 1.2rem;
     }
-    .hero-headline {
-        font-size: 3.6rem;
+
+    .hero-heading {
+        font-size: 3.8rem;
         font-weight: 900;
         color: #0f172a;
-        line-height: 1.12;
-        letter-spacing: -1.8px;
-        margin-bottom: 1rem;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        margin-bottom: 1.2rem;
     }
-    .text-purple { color: #6d28d9; }
-    .text-amber { color: #d97706; }
+    
+    .gradient-purple {
+        background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .gradient-gold {
+        background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-    .hero-subheadline {
-        font-size: 1.1rem;
-        color: #64748b;
+    .hero-subhead {
+        font-size: 1.15rem;
+        color: #475569;
         line-height: 1.6;
-        margin-bottom: 2rem;
-        font-weight: 400;
+        margin-bottom: 2.2rem;
+        font-weight: 500;
+        max-width: 580px;
     }
 
-    /* Polished Mockup Graphic Frame */
-    .mockup-container {
+    /* High-Impact Device Graphic Section */
+    .hero-graphic-card {
         position: relative;
-        padding: 12px;
+        padding: 10px;
     }
-    .floating-result-badge {
+
+    .badge-result-top {
         position: absolute;
-        top: -10px;
-        right: 25px;
+        top: -15px;
+        right: 20px;
         background: #ffffff;
         color: #0f172a;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         font-weight: 800;
-        padding: 0.5rem 1.1rem;
+        padding: 0.6rem 1.2rem;
         border-radius: 50px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
         border: 1px solid #e2e8f0;
         z-index: 10;
-    }
-    .phone-bezel {
-        background: #0f172a;
-        border-radius: 32px;
-        padding: 10px;
-        box-shadow: 0 25px 60px rgba(109, 40, 217, 0.2);
-    }
-    .phone-screen {
-        background: linear-gradient(135deg, #4c1d95 0%, #2e1065 100%);
-        border-radius: 24px;
-        padding: 2.5rem 1.5rem;
-        color: white;
-        text-align: center;
-    }
-    .screen-card {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 14px;
-        padding: 0.85rem 1rem;
-        margin-top: 0.8rem;
-        text-align: left;
-        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
 
-    /* Enterprise Feature Cards */
-    .feature-card {
+    .device-bezel {
+        background: #090d16;
+        border-radius: 36px;
+        padding: 12px;
+        box-shadow: 0 30px 70px rgba(109, 40, 217, 0.25);
+        border: 1px solid #1e293b;
+    }
+
+    .device-screen {
+        background: linear-gradient(145deg, #3b0764 0%, #1e1b4b 100%);
+        border-radius: 26px;
+        padding: 2.8rem 1.8rem 2.2rem 1.8rem;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .pulse-dot {
+        height: 8px;
+        width: 8px;
+        background-color: #22c55e;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 10px #22c55e;
+    }
+
+    .screen-pill {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 16px;
+        padding: 0.9rem 1.2rem;
+        margin-top: 0.9rem;
+        text-align: left;
+        backdrop-filter: blur(12px);
+        transition: transform 0.2s ease;
+    }
+    .screen-pill:hover {
+        transform: scale(1.02);
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Enterprise Feature Grid Cards */
+    .vibrant-feature-card {
         background: #ffffff;
-        border-radius: 20px;
-        padding: 1.8rem 1.2rem;
+        border-radius: 24px;
+        padding: 2rem 1.4rem;
         text-align: center;
         border: 1px solid #f1f5f9;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         height: 100%;
     }
-    .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(109, 40, 217, 0.08);
+    .vibrant-feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(109, 40, 217, 0.12);
         border-color: #ddd6fe;
     }
-    .feature-icon-wrapper {
-        width: 54px;
-        height: 54px;
-        background: #f3e8ff;
-        border-radius: 16px;
+
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+        color: #7c3aed;
+        border-radius: 20px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+        font-size: 1.7rem;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 6px 15px rgba(124, 58, 237, 0.15);
     }
 
     /* Course Cards */
@@ -227,7 +277,7 @@ st.markdown("""
         border-radius: 24px;
         padding: 1.8rem;
         border: 1px solid #f1f5f9;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.03);
         margin-bottom: 1.2rem;
     }
     .combo-card-wrapper {
@@ -235,7 +285,7 @@ st.markdown("""
         border-radius: 24px;
         padding: 1.8rem;
         border: 2px solid #c084fc;
-        box-shadow: 0 10px 30px rgba(192, 132, 252, 0.15);
+        box-shadow: 0 12px 35px rgba(192, 132, 252, 0.18);
         margin-bottom: 1.2rem;
     }
 </style>
@@ -369,14 +419,14 @@ if "selected_course_for_enrollment" not in st.session_state:
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "Home"
 
-# --- 4. NAVIGATION BAR HEADER ---
-col_logo, col_nav, col_cta = st.columns([1.8, 3.2, 1.2])
+# --- 4. TOP FLOATING NAVBAR ---
+col_logo, col_nav, col_cta = st.columns([2, 3, 1.3])
 
 with col_logo:
     st.markdown("""
-    <div style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
-        <div class="brand-badge">SAA</div>
-        <span class="brand-logo-text">Sir Abdullah Academy</span>
+    <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="brand-circle">SAA</div>
+        <span class="brand-title">Sir Abdullah Academy</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -400,15 +450,15 @@ with col_nav:
             st.rerun()
 
 with col_cta:
-    st.markdown('<div class="btn-solid-purple">', unsafe_allow_html=True)
+    st.markdown('<div class="btn-gradient-purple">', unsafe_allow_html=True)
     if st.button("⚡ Enroll Now", key="nav_enroll_btn", use_container_width=True):
         st.session_state.active_tab = "Admission"
         st.rerun()
     st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<hr style='border: none; border-bottom: 1px solid #f1f5f9; margin: 0.8rem 0 2rem 0;'>", unsafe_allow_html=True)
+st.markdown("<hr style='border: none; border-bottom: 1px solid rgba(226, 232, 240, 0.8); margin: 0.8rem 0 2rem 0;'>", unsafe_allow_html=True)
 
-# --- 5. PAGE ROUTING ---
+# --- 5. ROUTE RENDERING ---
 
 # PAGE: HOME HERO
 if st.session_state.active_tab == "Home":
@@ -416,25 +466,25 @@ if st.session_state.active_tab == "Home":
 
     with hero_left:
         st.markdown("""
-        <div class="hero-badge-pill">⭐ Every Lesson Counts</div>
-        <div class="hero-headline">
-            Pakistan's <span class="text-purple">#1 Online</span> Platform for <span class="text-amber">O & A Level</span> Success
+        <div class="floating-pill">⭐ Every Lesson Counts</div>
+        <div class="hero-heading">
+            Pakistan's <span class="gradient-purple">#1 Online</span> Platform for <span class="gradient-gold">O & A Level</span> Success
         </div>
-        <div class="hero-subheadline">
-            High-quality interactive live classes, topical solved past papers, examiner keyword mastery, and expert teachers — designed to guarantee top A* grades.
+        <div class="hero-subhead">
+            High-quality interactive live classes, topical solved past papers, examiner keyword mastery, and expert teachers — guaranteed to secure top A* grades.
         </div>
         """, unsafe_allow_html=True)
 
         cta1, cta2 = st.columns(2)
         with cta1:
-            st.markdown('<div class="btn-solid-purple">', unsafe_allow_html=True)
+            st.markdown('<div class="btn-gradient-purple">', unsafe_allow_html=True)
             if st.button("🚀 Explore Courses", key="hero_explore", use_container_width=True):
                 st.session_state.active_tab = "Courses"
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
 
         with cta2:
-            st.markdown('<div class="btn-solid-amber">', unsafe_allow_html=True)
+            st.markdown('<div class="btn-gradient-amber">', unsafe_allow_html=True)
             if st.button("📝 Apply for Admission", key="hero_apply", use_container_width=True):
                 st.session_state.active_tab = "Admission"
                 st.rerun()
@@ -442,18 +492,22 @@ if st.session_state.active_tab == "Home":
 
     with hero_right:
         st.markdown("""
-        <div class="mockup-container">
-            <div class="floating-result-badge">🎗️ 10,000+ A* Results</div>
-            <div class="phone-bezel">
-                <div class="phone-screen">
-                    <p style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 800; color: #a78bfa; margin-bottom: 0.4rem;">LIVE ONLINE BATCH</p>
-                    <h2 style="font-weight: 900; font-size: 1.8rem; color: #fbbf24; margin-bottom: 0.4rem;">NOW STUDY ONLINE</h2>
-                    <p style="font-size: 0.88rem; opacity: 0.85; margin-bottom: 1.5rem;">Interactive Zoom & Meet Classes with Sir Abdullah</p>
-                    <div class="screen-card">
-                        <p style="margin:0; font-size:0.85rem; font-weight:700;">💻 Digital Whiteboard & Live Doubts</p>
+        <div class="hero-graphic-card">
+            <div class="badge-result-top">
+                <span>🎗️</span> 10,000+ A* Results
+            </div>
+            <div class="device-bezel">
+                <div class="device-screen">
+                    <p style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 800; color: #c084fc; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <span class="pulse-dot"></span> LIVE ONLINE BATCH
+                    </p>
+                    <h2 style="font-weight: 900; font-size: 1.9rem; color: #facc15; margin-bottom: 0.4rem; letter-spacing: -0.5px;">NOW STUDY ONLINE</h2>
+                    <p style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 1.5rem;">Interactive Zoom & Meet Classes with Sir Abdullah</p>
+                    <div class="screen-pill">
+                        <p style="margin:0; font-size:0.88rem; font-weight:700;">💻 Digital Whiteboard & Instant Doubts</p>
                     </div>
-                    <div class="screen-card">
-                        <p style="margin:0; font-size:0.85rem; font-weight:700;">📚 10+ Yrs Solved Past Papers</p>
+                    <div class="screen-pill">
+                        <p style="margin:0; font-size:0.88rem; font-weight:700;">📚 10+ Yrs Topical Solved Papers</p>
                     </div>
                 </div>
             </div>
@@ -462,7 +516,7 @@ if st.session_state.active_tab == "Home":
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # Trust Features Grid
+    # Feature Grid
     f1, f2, f3, f4 = st.columns(4)
     features = [
         ("💻", "Live Interactive Classes", "Engage directly with expert faculty with immediate doubt resolution."),
@@ -473,10 +527,10 @@ if st.session_state.active_tab == "Home":
     for col, (icon, title, desc) in zip([f1, f2, f3, f4], features):
         with col:
             st.markdown(f"""
-            <div class="feature-card">
-                <div class="feature-icon-wrapper">{icon}</div>
-                <h4 style="font-weight: 800; color: #0f172a; margin-bottom: 0.4rem; font-size: 1.05rem;">{title}</h4>
-                <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin: 0;">{desc}</p>
+            <div class="vibrant-feature-card">
+                <div class="icon-box">{icon}</div>
+                <h4 style="font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; font-size: 1.05rem;">{title}</h4>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.55; margin: 0;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
 
@@ -531,7 +585,7 @@ elif st.session_state.active_tab == "Courses":
             </div>
             """, unsafe_allow_html=True)
 
-            st.markdown('<div class="btn-solid-purple">', unsafe_allow_html=True)
+            st.markdown('<div class="btn-gradient-purple">', unsafe_allow_html=True)
             if st.button(f"Enroll in {item['id']}", key=f"btn_enroll_{item['id']}", use_container_width=True):
                 st.session_state.selected_course_for_enrollment = item['title']
                 st.session_state.active_tab = "Admission"
@@ -602,8 +656,8 @@ elif st.session_state.active_tab == "Assistant":
         with st.chat_message("assistant"):
             st.write(response)
 
-# ADMIN PANEL TRIGGER
-st.markdown("<br><hr style='border: none; border-bottom: 1px solid #f1f5f9;'><br>", unsafe_allow_html=True)
+# ADMIN PANEL FOOTER
+st.markdown("<br><hr style='border: none; border-bottom: 1px solid rgba(226, 232, 240, 0.8);'><br>", unsafe_allow_html=True)
 with st.expander("🔒 Admin Portal Access"):
     admin_pwd = st.text_input("Enter Admin Password", type="password")
     if admin_pwd == ADMIN_PASSWORD:
