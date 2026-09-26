@@ -672,3 +672,14 @@ with st.expander("🔒 Admin Portal Access"):
             st.info("No enrollment submissions found.")
     elif admin_pwd:
         st.error("Incorrect password.")
+from hero import render_hero_section, render_value_grid
+from ui_components import render_top_navbar, render_footer
+
+# Inside app.py execution
+render_top_navbar()
+
+if st.session_state.active_tab == "Home":
+    render_hero_section()
+    render_value_grid()
+
+render_footer()
