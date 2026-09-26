@@ -23,14 +23,14 @@ st.markdown("""
     /* Modern Typography Import */
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
-    /* Global Dynamic Canvas */
+    /* Global Canvas */
     .stApp {
         background: 
-            radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 35%),
-            radial-gradient(circle at 100% 20%, rgba(236, 72, 153, 0.12) 0%, transparent 40%),
-            radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.18) 0%, transparent 45%),
+            radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.18) 0%, transparent 35%),
+            radial-gradient(circle at 100% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 45%),
             radial-gradient(circle at 90% 90%, rgba(245, 158, 11, 0.15) 0%, transparent 35%),
-            #0b0f19;
+            #0a0e1a;
         color: #f8fafc;
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
@@ -41,7 +41,7 @@ st.markdown("""
         max-width: 1280px;
     }
 
-    /* Floating Keyframe Animations */
+    /* Keyframe Animations */
     @keyframes float {
         0% { transform: translateY(0px); }
         50% { transform: translateY(-8px); }
@@ -54,7 +54,7 @@ st.markdown("""
         100% { box-shadow: 0 0 15px rgba(124, 58, 237, 0.4); }
     }
 
-    /* Brand Logo & Header Styling */
+    /* Header Styling */
     .brand-circle {
         background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
         color: white;
@@ -79,7 +79,7 @@ st.markdown("""
         letter-spacing: -0.5px;
     }
 
-    /* Premium Streamlit Button Overrides */
+    /* Streamlit Button Overrides */
     div.stButton > button {
         border-radius: 50px !important;
         font-weight: 700 !important;
@@ -89,7 +89,6 @@ st.markdown("""
         border: 1px solid transparent !important;
     }
 
-    /* Primary Action Button (Electric Indigo Gradient) */
     div.stButton > button[kind="primary"] {
         background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
         color: #ffffff !important;
@@ -101,7 +100,6 @@ st.markdown("""
         box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6) !important;
     }
 
-    /* Secondary Action Button (Vibrant Amber Gradient) */
     div.stButton > button[kind="secondary"] {
         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
         color: #ffffff !important;
@@ -113,7 +111,6 @@ st.markdown("""
         box-shadow: 0 15px 35px rgba(245, 158, 11, 0.55) !important;
     }
 
-    /* Navigation Buttons */
     div[data-testid="stColumn"] button[kind="tertiary"] {
         color: #94a3b8 !important;
         font-weight: 600 !important;
@@ -173,7 +170,7 @@ st.markdown("""
         max-width: 580px;
     }
 
-    /* Right Showcase Mockup Card */
+    /* Hero Graphics */
     .hero-graphic-card {
         position: relative;
         padding: 10px;
@@ -273,7 +270,7 @@ st.markdown("""
         border: 1px solid rgba(167, 139, 250, 0.3);
     }
 
-    /* Live Stat KPI Counter Bar */
+    /* Stat Cards */
     .stat-card {
         background: rgba(15, 23, 42, 0.7);
         backdrop-filter: blur(16px);
@@ -302,24 +299,57 @@ st.markdown("""
         margin-top: 0.2rem;
     }
 
-    /* Course Cards Styling */
+    /* --- FIXES FOR COURSES SECTION --- */
+    
+    /* 1. Radio Button Visibility Fix */
+    div[data-testid="stRadio"] label p {
+        color: #f8fafc !important;
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* 2. Text Input / Search Bar Customization */
+    div[data-testid="stTextInput"] input {
+        background-color: rgba(15, 23, 42, 0.8) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 14px !important;
+        padding: 0.6rem 1rem !important;
+    }
+    div[data-testid="stTextInput"] input:focus {
+        border-color: #8b5cf6 !important;
+        box-shadow: 0 0 12px rgba(139, 92, 246, 0.4) !important;
+    }
+
+    /* 3. High Quality Uniform Course Card Containers */
     .course-card-wrapper {
         background: rgba(15, 23, 42, 0.75);
         border-radius: 24px;
         padding: 1.8rem;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        margin-bottom: 1.2rem;
-        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(16px);
+        transition: all 0.3s ease;
     }
+    .course-card-wrapper:hover {
+        border-color: rgba(167, 139, 250, 0.4);
+        transform: translateY(-3px);
+    }
+
     .combo-card-wrapper {
-        background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+        background: linear-gradient(135deg, rgba(30, 27, 75, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
         border-radius: 24px;
         padding: 1.8rem;
-        border: 1px solid rgba(192, 132, 252, 0.4);
-        box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
-        margin-bottom: 1.2rem;
-        backdrop-filter: blur(12px);
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(16px);
+        transition: all 0.3s ease;
+    }
+    .combo-card-wrapper:hover {
+        border-color: rgba(245, 158, 11, 0.7);
+        transform: translateY(-3px);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -573,16 +603,17 @@ if st.session_state.active_tab == "Home":
             </div>
             """, unsafe_allow_html=True)
 
-# PAGE: COURSES
+# PAGE: COURSES (FIXED AREA)
 elif st.session_state.active_tab == "Courses":
     st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.3rem;'>O Level & IGCSE Courses</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #94a3b8; margin-bottom: 2rem;'>Select an individual subject or discount combo package below.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #94a3b8; margin-bottom: 2.2rem;'>Select an individual subject or discount combo package below.</p>", unsafe_allow_html=True)
 
-    f_col1, f_col2 = st.columns([2, 1])
+    # Filter Bar
+    f_col1, f_col2 = st.columns([2.5, 1.2])
     with f_col1:
         cat_filter = st.radio("Category Filter", ["All", "Combos", "Sciences", "Humanities"], horizontal=True, label_visibility="collapsed")
     with f_col2:
-        search_txt = st.text_input("Search subject...", placeholder="e.g. Computer Science or Pre-Medical", label_visibility="collapsed")
+        search_txt = st.text_input("Search subject...", placeholder="Search subject or bundle...", label_visibility="collapsed")
 
     combined_courses = []
     for c in SPECIAL_COMBOS:
@@ -598,10 +629,11 @@ elif st.session_state.active_tab == "Courses":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
+    # Render Course List
     for item in filtered:
         c_img, c_main, c_side = st.columns([1, 2.5, 1])
         card_class = "combo-card-wrapper" if item["is_combo"] else "course-card-wrapper"
-        badge_bg = "rgba(245, 158, 11, 0.2)" if item["is_combo"] else "rgba(139, 92, 246, 0.2)"
+        badge_bg = "rgba(245, 158, 11, 0.18)" if item["is_combo"] else "rgba(139, 92, 246, 0.18)"
         badge_color = "#fbbf24" if item["is_combo"] else "#c084fc"
 
         with c_img:
@@ -610,21 +642,22 @@ elif st.session_state.active_tab == "Courses":
             st.markdown(f"""
             <div class="{card_class}">
                 <span style="background: {badge_bg}; color: {badge_color}; font-weight: 800; font-size: 0.75rem; padding: 0.35rem 0.9rem; border-radius: 50px; border: 1px solid {badge_color};">{item['badge']}</span>
-                <h3 style="font-weight: 800; color: #ffffff; margin-top: 0.8rem; margin-bottom: 0.4rem;">{item['title']}</h3>
-                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">{item['desc']}</p>
-                <p style="color: #a78bfa; font-size: 0.85rem; font-weight: 700;">Key Features: {', '.join(item['highlights'])}</p>
+                <h3 style="font-weight: 800; color: #ffffff; margin-top: 0.8rem; margin-bottom: 0.5rem; font-size: 1.35rem;">{item['title']}</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">{item['desc']}</p>
+                <p style="color: #a78bfa; font-size: 0.85rem; font-weight: 700; margin: 0;">Key Features: {', '.join(item['highlights'])}</p>
             </div>
             """, unsafe_allow_html=True)
         with c_side:
             st.markdown(f"""
             <div class="{card_class}" style="text-align: center;">
                 <p style="color: #94a3b8; font-size: 0.8rem; font-weight: 700; margin: 0;">Monthly Tuition Fee</p>
-                <div style="font-size: 1.5rem; font-weight: 900; color: #fbbf24; margin: 0.3rem 0;">{item['fee']}</div>
-                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 1rem;">⏱️ {item['duration']}</p>
+                <div style="font-size: 1.55rem; font-weight: 900; color: #fbbf24; margin: 0.4rem 0;">{item['fee']}</div>
+                <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 1.2rem;">⏱️ {item['duration']}</p>
             </div>
             """, unsafe_allow_html=True)
 
-            if st.button(f"Enroll in {item['id']}", key=f"btn_enroll_{item['id']}", type="primary", use_container_width=True):
+            # Properly Labeled Enroll Button
+            if st.button("⚡ Enroll Now", key=f"btn_enroll_{item['id']}", type="primary", use_container_width=True):
                 st.session_state.selected_course_for_enrollment = item['title']
                 st.session_state.active_tab = "Admission"
                 st.rerun()
