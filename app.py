@@ -5,7 +5,8 @@ from models import load_json, save_json
 from utils import normalize_phone, sanitize_csv_field
 from chatbot import get_bot_response
 from github_store import sync_to_github
-
+from hero import render_hero_section, render_value_grid
+from ui_components import render_top_navbar, render_footer
 # --- 1. PAGE CONFIG ---
 st.set_page_config(
     page_title="Sir Abdullah Academy | Premier O & A Level Online Platform",
@@ -671,15 +672,19 @@ with st.expander("🔒 Admin Portal Access"):
         else:
             st.info("No enrollment submissions found.")
     elif admin_pwd:
-        st.error("Incorrect password.")
-from hero import render_hero_section, render_value_grid
-from ui_components import render_top_navbar, render_footer
+        st.error("Incorrect password.") # --- Place this near line 670 / end of app.py ---
 
-# Inside app.py execution
+# Initialize active tab state if not already present
+if "active_tab" not in st.session_state:
+    st.session_state.active_tab = "Home"
+
+# Render Navigation Bar at the top of the content
 render_top_navbar()
 
+# Render content based on selected tab
 if st.session_state.active_tab == "Home":
     render_hero_section()
     render_value_grid()
 
+# Render Footer at the very bottom
 render_footer()
