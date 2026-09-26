@@ -8,199 +8,183 @@ from github_store import sync_to_github
 
 # --- 1. PAGE CONFIG ---
 st.set_page_config(
-    page_title="Sir Abdullah Academy | Premier Learning Platform",
+    page_title="Sir Abdullah Academy | Premier O & A Level Online Platform",
     page_icon="🎓",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"  # Collapsed by default for clean web layout
 )
 
-# --- 2. ADVANCED COMMERCIAL STYLING ---
+# --- 2. IVY-STYLE LIGHT THEMING & CSS ---
 st.markdown("""
 <style>
-    /* Hide Default Streamlit Elements */
+    /* Hide Streamlit Chrome */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
-    /* App Base Background */
+    /* Main Background with Soft Lavender Glow */
     .stApp {
-        background: #070a12;
-        color: #f8fafc;
+        background: radial-gradient(circle at 10% 20%, #f3e8ff 0%, #f8fafc 45%, #f1f5f9 100%);
+        color: #0f172a;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    /* Sidebar Refinements */
-    [data-testid="stSidebar"] {
-        background-color: #0b1120 !important;
-        border-right: 1px solid #1e293b;
-    }
-    [data-testid="stSidebar"] div[role="radiogroup"] label {
-        color: #e2e8f0 !important;
-        font-weight: 500;
-        padding: 8px 12px;
-        border-radius: 8px;
-        transition: all 0.2s ease;
-    }
-    [data-testid="stSidebar"] div[role="radiogroup"] label:hover {
-        background: #1e293b;
-    }
-
-    /* Modern Top App Header */
-    .app-header {
+    /* Top Navigation Header */
+    .ivy-navbar {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 1rem 1.5rem;
-        background: rgba(15, 23, 42, 0.75);
-        backdrop-filter: blur(12px);
-        border: 1px solid #1e293b;
-        border-radius: 16px;
-        margin-bottom: 2rem;
+        justify-content: space-between;
+        background: #ffffff;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2.5rem;
+        border: 1px solid #f1f5f9;
     }
-    .brand-title {
-        font-size: 1.4rem;
-        font-weight: 800;
-        background: linear-gradient(90deg, #38bdf8, #818cf8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    /* Hero Banner with Glass Effect */
-    .hero-banner {
-        background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(49, 27, 146, 0.5) 50%, rgba(15, 23, 42, 0.8) 100%);
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 3.5rem 2rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-    .hero-badge {
-        background: rgba(99, 102, 241, 0.15);
-        color: #818cf8;
-        border: 1px solid #6366f1;
-        font-size: 0.8rem;
-        font-weight: 700;
-        padding: 0.4rem 1.2rem;
-        border-radius: 9999px;
-        display: inline-block;
-        margin-bottom: 1.2rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-    }
-    .hero-title {
-        font-size: 3rem;
-        font-weight: 800;
-        color: #ffffff;
-        margin-bottom: 1rem;
-        line-height: 1.2;
-    }
-    .hero-subtitle {
-        font-size: 1.1rem;
-        color: #94a3b8;
-        max-width: 750px;
-        margin: 0 auto 1.5rem auto;
-        line-height: 1.6;
-    }
-
-    /* Stat Cards */
-    .stat-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid #1e293b;
-        border-radius: 14px;
-        padding: 1.25rem;
-        text-align: center;
-        transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .stat-card:hover {
-        border-color: #38bdf8;
-        transform: translateY(-2px);
-    }
-    .stat-number {
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: #38bdf8;
-    }
-    .stat-label {
-        font-size: 0.82rem;
-        color: #94a3b8;
-        font-weight: 600;
-    }
-
-    /* Feature Cards */
-    .feature-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid #1e293b;
-        border-radius: 14px;
-        padding: 1.5rem 1rem;
-        text-align: center;
-        height: 100%;
-        transition: border-color 0.2s ease;
-    }
-    .feature-card:hover {
-        border-color: #6366f1;
-    }
-    .feature-icon {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-    }
-    .feature-title {
-        font-size: 1.05rem;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 0.4rem;
-    }
-    .feature-desc {
-        font-size: 0.82rem;
-        color: #94a3b8;
-        line-height: 1.4;
-    }
-
-    /* Course Cards */
-    .course-card {
-        background: #0f172a;
-        border: 1px solid #1e293b;
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 1.2rem;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-    .combo-card {
-        background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
-        border: 1.5px solid #6366f1;
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 1.2rem;
-        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
-    }
-    .course-badge {
-        background: #312e81;
-        color: #a5b4fc;
-        font-size: 0.72rem;
-        font-weight: 700;
-        padding: 0.25rem 0.6rem;
-        border-radius: 6px;
-        text-transform: uppercase;
-    }
-    .combo-badge {
-        background: #4f46e5;
-        color: #ffffff;
-        font-size: 0.72rem;
-        font-weight: 800;
-        padding: 0.25rem 0.6rem;
-        border-radius: 6px;
-        text-transform: uppercase;
-    }
-    .course-fee {
-        color: #34d399;
+    .ivy-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
         font-size: 1.3rem;
+        color: #4c1d95;
+    }
+    .brand-circle {
+        background: #6d28d9;
+        color: #ffffff;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-weight: 800;
+        font-size: 1.1rem;
     }
 
-    [data-testid="stImage"] img {
-        border-radius: 12px;
-        border: 1px solid #1e293b;
+    /* Floating Pill Badge */
+    .floating-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #ffffff;
+        color: #475569;
+        font-size: 0.82rem;
+        font-weight: 700;
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e2e8f0;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Large Ivy Hero Typography */
+    .ivy-hero-heading {
+        font-size: 3.4rem;
+        font-weight: 900;
+        color: #0f172a;
+        line-height: 1.15;
+        letter-spacing: -1px;
+        margin-bottom: 1rem;
+    }
+    .highlight-purple {
+        color: #6d28d9;
+    }
+    .highlight-gold {
+        color: #d97706;
+    }
+    .ivy-hero-subtext {
+        font-size: 1.15rem;
+        color: #64748b;
+        line-height: 1.6;
+        margin-bottom: 1.8rem;
+    }
+
+    /* Device / App Showcase Box */
+    .device-mockup-container {
+        position: relative;
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 1.5rem;
+        box-shadow: 0 20px 40px rgba(109, 40, 217, 0.12);
+        border: 2px solid #f1f5f9;
+        text-align: center;
+    }
+    .floating-result-tag {
+        position: absolute;
+        top: -15px;
+        right: 15px;
+        background: #ffffff;
+        color: #0f172a;
+        font-size: 0.8rem;
+        font-weight: 800;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border: 1px solid #e2e8f0;
+    }
+
+    /* Light Theme Cards */
+    .ivy-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 1.8rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        border: 1px solid #f1f5f9;
+        height: 100%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .ivy-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(109, 40, 217, 0.08);
+        border-color: #ddd6fe;
+    }
+    .ivy-combo-card {
+        background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
+        border-radius: 20px;
+        padding: 1.8rem;
+        box-shadow: 0 6px 20px rgba(109, 40, 217, 0.08);
+        border: 2px solid #c084fc;
+        height: 100%;
+    }
+    .tag-purple {
+        background: #f3e8ff;
+        color: #7e22ce;
+        font-weight: 800;
+        font-size: 0.72rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 50px;
+        text-transform: uppercase;
+    }
+    .tag-gold {
+        background: #fef3c7;
+        color: #b45309;
+        font-weight: 800;
+        font-size: 0.72rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 50px;
+        text-transform: uppercase;
+    }
+    .price-text {
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: #6d28d9;
+    }
+
+    /* Buttons Override */
+    .stButton>button {
+        background: #fbbf24 !important;
+        color: #0f172a !important;
+        font-weight: 800 !important;
+        border-radius: 50px !important;
+        border: none !important;
+        padding: 0.6rem 1.5rem !important;
+        box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+        transition: all 0.2s ease !important;
+    }
+    .stButton>button:hover {
+        background: #f59e0b !important;
+        transform: scale(1.02);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -211,36 +195,36 @@ ADMIN_PASSWORD = st.secrets.get("ADMIN_PASSWORD", "osmanibhai112233")
 SPECIAL_COMBOS = [
     {
         "id": "combo_med",
-        "title": "The Pre-Medical Combo (Bio, Physics, Chem, Math)",
+        "title": "Pre-Medical Master Bundle",
         "image_url": "assets/pre_medical_combo_logo.png",
-        "badge": "PRE-MEDICAL SPECIAL BUNDLE",
+        "badge": "SPECIAL BUNDLE",
         "fee": "PKR 16,000 / mo",
         "category": "Combos",
         "duration": "Online Live Classes",
-        "desc": "Complete 4-subject package covering Biology, Physics, Chemistry, and Mathematics. Includes intensive syllabus coverage, topical past papers, and ATP exam preparation.",
-        "highlights": ["Save PKR 4,000/mo vs individual enrolment", "Full coverage of Bio, Physics, Chemistry & Math", "Weekly Mocks & Topical Past Paper Drills"]
+        "desc": "Complete 4-subject package for Biology, Physics, Chemistry, and Mathematics. Includes complete syllabus, topical solved papers, and ATP prep.",
+        "highlights": ["Save PKR 4,000/mo", "Full 4-Subject Coverage", "Weekly Mocks & Topical Papers"]
     },
     {
         "id": "combo_cs",
-        "title": "The Computer Science Combo (CS, Physics, Chem, Math)",
+        "title": "Pre-Engineering & CS Bundle",
         "image_url": "assets/cs_combo_logo.png",
-        "badge": "PRE-ENGINEERING & CS BUNDLE",
+        "badge": "SPECIAL BUNDLE",
         "fee": "PKR 16,000 / mo",
         "category": "Combos",
         "duration": "Online Live Classes",
-        "desc": "Complete 4-subject package designed for future Engineers & Tech students: Computer Science, Physics, Chemistry, and Mathematics. Focuses on Pseudocode, Logic Gates & ATPs.",
-        "highlights": ["Save PKR 4,000/mo vs individual enrolment", "Full coverage of CS, Physics, Chem & Math", "Logic Drills, Code Practice & Marking Scheme Mastery"]
+        "desc": "Complete 4-subject package: Computer Science, Physics, Chemistry, and Math. Practice pseudocode, logic gates, and calculation strategies.",
+        "highlights": ["Save PKR 4,000/mo", "Full CS & Engineering Prep", "Marking Scheme Drills"]
     },
     {
         "id": "combo_core",
-        "title": "O1 / O2 Core Appearing Combo (Islamiat + PST)",
+        "title": "O1 / O2 Core Subjects Combo",
         "image_url": "assets/core_combo_logo.png",
-        "badge": "CORE SUBJECTS BUNDLE",
+        "badge": "CORE BUNDLE",
         "fee": "PKR 4,500 / mo",
         "category": "Combos",
         "duration": "Online Live Classes",
-        "desc": "Complete dual-subject bundle for early appearing O Level / IGCSE subjects (Islamiat 2058 / PST 2059). Covers full Paper 1 & Paper 2 syllabus with structured exam notes.",
-        "highlights": ["Save PKR 500/mo vs individual enrolment", "Full coverage of Islamiat, History & Geography", "Topical Past Paper Revision & Mock Exams"]
+        "desc": "Dual-subject bundle for Islamiat (2058) and Pakistan Studies (2059). Complete Paper 1 & Paper 2 coverage with structured exam notes.",
+        "highlights": ["Save PKR 500/mo", "Islamiat & PST Dual Prep", "Topical Past Paper Revision"]
     }
 ]
 
@@ -253,8 +237,8 @@ O_LEVEL_COURSES = [
         "fee": "PKR 5,000 / mo",
         "category": "Sciences",
         "duration": "Online Live Classes",
-        "desc": "Master Theory (Hardware, Logic Gates, Data Transmission) & Paper 2 Problem Solving. Comprehensive practice in Pseudocode, Flowcharts, and Algorithm Design.",
-        "highlights": ["10+ Years Past Paper Practice", "Pseudocode & Logic Drills", "Marking Scheme Mastery"]
+        "desc": "Master Theory & Paper 2 Problem Solving. Extensive practice with pseudocode, algorithms, flowcharts, and hardware theory.",
+        "highlights": ["10+ Yrs Past Papers", "Pseudocode Practice", "Paper 1 & 2 Focus"]
     },
     {
         "id": "math",
@@ -264,8 +248,8 @@ O_LEVEL_COURSES = [
         "fee": "PKR 5,000 / mo",
         "category": "Sciences",
         "duration": "Online Live Classes",
-        "desc": "Clear step-by-step conceptual learning across Algebra, Trigonometry, Vectors, Mensuration, and Probability with intensive exam-style problem solving.",
-        "highlights": ["Topical Worksheets & Solutions", "Exam Speed & Accuracy Drills", "Regular Assessment Tests"]
+        "desc": "Step-by-step conceptual clarity across Algebra, Trigonometry, Vectors, and Statistics with exam speed drills.",
+        "highlights": ["Topical Worksheets", "Speed & Accuracy Drills", "Weekly Assessments"]
     },
     {
         "id": "phy",
@@ -275,8 +259,8 @@ O_LEVEL_COURSES = [
         "fee": "PKR 5,000 / mo",
         "category": "Sciences",
         "duration": "Online Live Classes",
-        "desc": "In-depth physics coverage: Mechanics, Thermal Physics, Waves, Electricity & Magnetism, Space Physics, and ATP (Paper 4) exam techniques.",
-        "highlights": ["Formula Memorization Sheets", "ATP Practical Exam Prep", "MCQ Paper 1 Strategies"]
+        "desc": "In-depth Physics coverage: Mechanics, Electricity, Magnetism, Waves, Space Physics, and ATP Paper 4 techniques.",
+        "highlights": ["Formula Memorization Sheets", "ATP Exam Preparation", "MCQ Paper Strategies"]
     },
     {
         "id": "chem",
@@ -286,8 +270,8 @@ O_LEVEL_COURSES = [
         "fee": "PKR 5,000 / mo",
         "category": "Sciences",
         "duration": "Online Live Classes",
-        "desc": "Build deep clarity in Stoichiometry, Organic Chemistry, Chemical Energetics, and Electrochemistry combined with dedicated ATP Paper preparation.",
-        "highlights": ["Stoichiometry Problem Drills", "Organic Chemistry Flowcharts", "ATP Practical Exam Prep"]
+        "desc": "Build deep clarity in Stoichiometry, Organic Chemistry, Chemical Energetics, and Electrochemistry with ATP practice.",
+        "highlights": ["Stoichiometry Drills", "Organic Chemistry Maps", "ATP Practical Prep"]
     },
     {
         "id": "bio",
@@ -297,8 +281,8 @@ O_LEVEL_COURSES = [
         "fee": "PKR 5,000 / mo",
         "category": "Sciences",
         "duration": "Online Live Classes",
-        "desc": "Cell Biology, Plant Physiology, Genetics, Biotechnology, and Human Systems taught with precise examiner keywords to ensure maximum marks.",
-        "highlights": ["Examiner Keywords Focus", "Diagram & Function Practice", "Past Paper Revision Packs"]
+        "desc": "Cell Biology, Plant Physiology, Genetics, and Human Systems with exact examiner keywords to ensure full marks.",
+        "highlights": ["Examiner Keyword Mastery", "Diagram Drills", "Past Paper Packs"]
     },
     {
         "id": "isl",
@@ -308,19 +292,19 @@ O_LEVEL_COURSES = [
         "fee": "PKR 2,500 / mo",
         "category": "Humanities",
         "duration": "Online Live Classes",
-        "desc": "Structured preparation for Paper 1 & Paper 2: Quranic Passages, Life of Prophet (PBUH), Caliphates, Hadiths, and Articles of Faith with ready-to-learn notes.",
-        "highlights": ["14-Mark & 4-Mark Structured Outlines", "Quranic & Hadith References", "Topical Exam Practice"]
+        "desc": "Structured preparation for Paper 1 & Paper 2: Quranic Passages, Seerah, Caliphates, and Hadith references with complete notes.",
+        "highlights": ["14 & 4-Mark Outlines", "Quranic References", "Topical Answer Practice"]
     },
     {
         "id": "pst",
-        "title": "O Level / IGCSE PST (Pakistan Studies)",
+        "title": "O Level / IGCSE Pakistan Studies",
         "image_url": "assets/pst_logo.png",
         "badge": "CAIE 2059 / 0448",
         "fee": "PKR 2,500 / mo",
         "category": "Humanities",
         "duration": "Online Live Classes",
-        "desc": "Complete coverage of Paper 1 (History & Culture) and Paper 2 (Environment of Pakistan). Features level-of-response answer templates, maps, and case studies.",
-        "highlights": ["Chronological Timelines & Templates", "Geography Map Skills & Case Studies", "Topical Source-Based Questions"]
+        "desc": "Complete history timelines & geography case studies with level-of-response answer templates and map skills.",
+        "highlights": ["Chronological Timelines", "Map Skills & Case Studies", "Source-Based Questions"]
     }
 ]
 
@@ -330,161 +314,183 @@ def is_valid_email(email: str) -> bool:
 if "selected_course_for_enrollment" not in st.session_state:
     st.session_state.selected_course_for_enrollment = SPECIAL_COMBOS[0]["title"]
 
-# --- 4. SIDEBAR ---
-with st.sidebar:
-    st.markdown("### 🎓 Sir Abdullah Academy")
-    st.caption("Cambridge O Level & IGCSE Platform")
-    st.markdown("---")
-    
-    menu = st.radio(
-        "Navigation",
-        ["🏠 Academy Portal", "📝 Instant Admission", "🤖 AI Tutor Assistant", "🔒 Admin Control"],
-        label_visibility="collapsed"
-    )
-
-    st.markdown("---")
-    st.markdown("""
-    <div style="background: #0f172a; padding: 1rem; border-radius: 12px; border: 1px solid #1e293b;">
-        <p style="color: #38bdf8; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem;">⚡ Next Session Starting</p>
-        <p style="color: #94a3b8; font-size: 0.8rem; margin: 0;">Live Interactive Batches via Zoom / Meet.</p>
-        <hr style="border-color: #1e293b; margin: 0.6rem 0;">
-        <p style="color: #ffffff; font-size: 0.8rem; font-weight: 600; margin: 0;">💬 WhatsApp Inquiry</p>
-        <p style="color: #38bdf8; font-size: 0.85rem; font-weight: 700; margin: 0;">+92 332 1234567</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# Top Application Bar
+# --- 4. TOP NAVIGATION BAR (IVY STYLE) ---
 st.markdown("""
-<div class="app-header">
-    <div class="brand-title">🎓 Sir Abdullah Academy</div>
-    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 500;">O Level & IGCSE Live Coaching</div>
+<div class="ivy-navbar">
+    <div class="ivy-brand">
+        <div class="brand-circle">SAA</div>
+        <span>Sir Abdullah Academy</span>
+    </div>
+    <div style="color: #64748b; font-size: 0.9rem; font-weight: 600;">
+        📍 Live Cambridge O & A Level Online Prep
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
-# --- 5. ROUTE CONTROLLERS ---
+# Main Section Switcher
+nav_col1, nav_col2, nav_col3, nav_col4 = st.columns([1, 1, 1, 1])
+with nav_col1:
+    btn_home = st.button("🏠 Home", use_container_width=True)
+with nav_col2:
+    btn_courses = st.button("📚 Courses & Pricing", use_container_width=True)
+with nav_col3:
+    btn_admission = st.button("📝 Direct Admission", use_container_width=True)
+with nav_col4:
+    btn_assistant = st.button("🤖 AI Assistant", use_container_width=True)
 
-# PAGE 1: ACADEMY PORTAL
-if menu == "🏠 Academy Portal":
-    st.markdown("""
-    <div class="hero-banner">
-        <span class="hero-badge">✨ ADMISSIONS OPEN • SESSION 2026</span>
-        <div class="hero-title">Premier Cambridge O Level & IGCSE Coaching</div>
-        <div class="hero-subtitle">Master core concepts, master past paper marking schemes, and learn proven examiner techniques to secure top A* grades.</div>
-    </div>
-    """, unsafe_allow_html=True)
+if "active_tab" not in st.session_state:
+    st.session_state.active_tab = "Home"
 
-    # Key Metrics
-    m1, m2, m3, m4 = st.columns(4)
-    metrics = [
-        ("100%", "Interactive Live Classes"),
-        ("10+ Yrs", "Topical Past Paper Practice"),
-        ("A* Focused", "Cambridge Examiner Methods"),
-        ("Small Groups", "Personalized Attention & Mocks")
-    ]
-    for col, (num, label) in zip([m1, m2, m3, m4], metrics):
-        with col:
-            st.markdown(f'<div class="stat-card"><div class="stat-number">{num}</div><div class="stat-label">{label}</div></div>', unsafe_allow_html=True)
+if btn_home:
+    st.session_state.active_tab = "Home"
+elif btn_courses:
+    st.session_state.active_tab = "Courses"
+elif btn_admission:
+    st.session_state.active_tab = "Admission"
+elif btn_assistant:
+    st.session_state.active_tab = "Assistant"
 
-    st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
 
-    # Features
-    c1, c2, c3, c4 = st.columns(4)
+# --- 5. PAGE CONTROLLER ---
+
+# PAGE: HOME & HERO
+if st.session_state.active_tab == "Home":
+    hero_left, hero_right = st.columns([1.3, 1])
+
+    with hero_left:
+        st.markdown("""
+        <div class="floating-badge">⭐ Every Lesson Counts</div>
+        <div class="ivy-hero-heading">
+            Pakistan's <span class="highlight-purple">#1 Online Platform</span> for <span class="highlight-gold">O & A Level Success</span>
+        </div>
+        <div class="ivy-hero-subtext">
+            High-quality interactive live classes, topical solved past papers, examiner keyword mastery, and expert teachers — designed to guarantee top A* grades.
+        </div>
+        """, unsafe_allow_html=True)
+
+        col_btn1, col_btn2 = st.columns(2)
+        with col_btn1:
+            if st.button("🚀 Explore Courses Now", use_container_width=True):
+                st.session_state.active_tab = "Courses"
+                st.rerun()
+        with col_btn2:
+            if st.button("📝 Apply for Admission", use_container_width=True):
+                st.session_state.active_tab = "Admission"
+                st.rerun()
+
+    with hero_right:
+        st.markdown("""
+        <div class="device-mockup-container">
+            <div class="floating-result-tag">🎗️ 10,000+ A* Results</div>
+            <div style="background: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%); padding: 2.5rem 1.5rem; border-radius: 20px; color: white;">
+                <h2 style="font-weight: 900; margin-bottom: 0.5rem; color: #fbbf24;">NOW STUDY ONLINE</h2>
+                <p style="font-size: 0.95rem; opacity: 0.9;">Join Live Zoom & Google Meet Classes with Sir Abdullah</p>
+                <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 12px; margin-top: 1.5rem; backdrop-filter: blur(8px);">
+                    <p style="margin: 0; font-weight: 700; font-size: 0.9rem;">📚 Interactive Whiteboards</p>
+                    <p style="margin: 0; font-weight: 700; font-size: 0.9rem; margin-top: 0.4rem;">📑 10+ Yrs Topical Solved Papers</p>
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<br><hr style='border-color: #e2e8f0;'><br>", unsafe_allow_html=True)
+
+    # Feature Highlights Grid
+    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 2rem;'>Why Students Choose Sir Abdullah Academy</h2>", unsafe_allow_html=True)
+    f1, f2, f3, f4 = st.columns(4)
     features = [
-        ("💻", "Live & Interactive", "Real-time doubt resolution, digital whiteboards & recorded sessions."),
-        ("📄", "Topical Past Papers", "Rigorous practice aligned directly with official CAIE marking schemes."),
-        ("🎯", "Keyword Mastery", "Learn subject-specific terminology required for top marks."),
-        ("📊", "Parent Reporting", "Regular testing, homework feedback, and performance monitoring.")
+        ("💻", "Live Interactive Classes", "Engage directly with expert faculty with immediate doubt resolution."),
+        ("📝", "Topical Past Papers", "10+ years of topical past paper practice aligned with CAIE marking schemes."),
+        ("🎯", "Keyword Mastery", "Learn subject-specific keywords required for full marks in exam papers."),
+        ("📊", "Parent Tracking", "Regular attendance updates, test feedback, and personal performance reports.")
     ]
-    for col, (icon, title, desc) in zip([c1, c2, c3, c4], features):
+    for col, (icon, title, desc) in zip([f1, f2, f3, f4], features):
         with col:
             st.markdown(f"""
-            <div class="feature-card">
-                <div class="feature-icon">{icon}</div>
-                <div class="feature-title">{title}</div>
-                <div class="feature-desc">{desc}</div>
+            <div class="ivy-card" style="text-align: center;">
+                <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">{icon}</div>
+                <h4 style="font-weight: 800; color: #0f172a; margin-bottom: 0.4rem;">{title}</h4>
+                <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
 
-    st.markdown("<br><h2 style='text-align: center; color: white;'>Course Catalog & Special Bundles</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #94a3b8; margin-bottom: 1.5rem;'>Filter by subject category or search for specific subjects below.</p>", unsafe_allow_html=True)
+# PAGE: COURSES & PRICING
+elif st.session_state.active_tab == "Courses":
+    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.5rem;'>O Level & IGCSE Course Offerings</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Filter by subject category or search for your required subject.</p>", unsafe_allow_html=True)
 
-    # Interactive Filter Bar
-    filter_col1, filter_col2 = st.columns([2, 1])
-    with filter_col1:
-        category_tab = st.radio("Category Filter", ["All", "Combos", "Sciences", "Humanities"], horizontal=True, label_visibility="collapsed")
-    with filter_col2:
-        search_query = st.text_input("Search courses...", placeholder="e.g. Physics or Combo", label_visibility="collapsed")
+    # Filter Bar
+    f_col1, f_col2 = st.columns([2, 1])
+    with f_col1:
+        cat_filter = st.radio("Category Filter", ["All", "Combos", "Sciences", "Humanities"], horizontal=True, label_visibility="collapsed")
+    with f_col2:
+        search_txt = st.text_input("Search subject...", placeholder="e.g. Physics or Pre-Medical", label_visibility="collapsed")
 
-    # Filter Data Logic
-    all_courses_combined = []
+    # Filter Logic
+    combined_courses = []
     for c in SPECIAL_COMBOS:
-        all_courses_combined.append({**c, "is_combo": True})
+        combined_courses.append({**c, "is_combo": True})
     for c in O_LEVEL_COURSES:
-        all_courses_combined.append({**c, "is_combo": False})
+        combined_courses.append({**c, "is_combo": False})
 
-    filtered_list = all_courses_combined
-    if category_tab != "All":
-        filtered_list = [c for c in filtered_list if c["category"] == category_tab]
-    if search_query:
-        filtered_list = [c for c in filtered_list if search_query.lower() in c["title"].lower() or search_query.lower() in c["desc"].lower()]
+    filtered = combined_courses
+    if cat_filter != "All":
+        filtered = [c for c in filtered if c["category"] == cat_filter]
+    if search_txt:
+        filtered = [c for c in filtered if search_txt.lower() in c["title"].lower() or search_txt.lower() in c["desc"].lower()]
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Render Filtered List
-    if not filtered_list:
-        st.info("No courses match your current search/filter criteria.")
-    else:
-        for item in filtered_list:
-            col_img, col_main, col_side = st.columns([1.2, 2.5, 1.1])
-            card_class = "combo-card" if item["is_combo"] else "course-card"
-            badge_class = "combo-badge" if item["is_combo"] else "course-badge"
+    for item in filtered:
+        c_img, c_main, c_side = st.columns([1, 2.5, 1])
+        card_style = "ivy-combo-card" if item["is_combo"] else "ivy-card"
+        badge_style = "tag-gold" if item["is_combo"] else "tag-purple"
 
-            with col_img:
-                st.image(item['image_url'], use_container_width=True)
-            with col_main:
-                st.markdown(f"""
-                <div class="{card_class}">
-                    <span class="{badge_class}">{item['badge']}</span>
-                    <h3 style="color: white; margin-top: 0.6rem; margin-bottom: 0.5rem;">{item['title']}</h3>
-                    <p style="color: #c7d2fe if item['is_combo'] else #94a3b8; font-size: 0.9rem; line-height: 1.5;">{item['desc']}</p>
-                    <p style="color: #38bdf8; font-size: 0.82rem; font-weight: 700;">Key Features: {', '.join(item['highlights'])}</p>
-                </div>
-                """, unsafe_allow_html=True)
-            with col_side:
-                st.markdown(f"""
-                <div class="{card_class}" style="text-align: center;">
-                    <p style="color: #a5b4fc; margin: 0; font-size: 0.8rem; font-weight: 700;">Tution Fee</p>
-                    <p class="course-fee">{item['fee']}</p>
-                    <p style="color: #cbd5e1; font-size: 0.8rem; margin-bottom: 1rem;">⏱️ {item['duration']}</p>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                # Immediate CTA Action
-                if st.button(f"Enroll in {item['id']}", key=f"btn_{item['id']}", use_container_width=True):
-                    st.session_state.selected_course_for_enrollment = item['title']
-                    st.info(f"Selected **{item['title']}**. Please open 'Instant Admission' from the sidebar menu to submit your details!")
+        with c_img:
+            st.image(item["image_url"], use_container_width=True)
+        with c_main:
+            st.markdown(f"""
+            <div class="{card_style}">
+                <span class="{badge_style}">{item['badge']}</span>
+                <h3 style="font-weight: 800; color: #0f172a; margin-top: 0.5rem; margin-bottom: 0.4rem;">{item['title']}</h3>
+                <p style="color: #475569; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">{item['desc']}</p>
+                <p style="color: #6d28d9; font-size: 0.82rem; font-weight: 700;">Highlights: {', '.join(item['highlights'])}</p>
+            </div>
+            """, unsafe_allow_html=True)
+        with c_side:
+            st.markdown(f"""
+            <div class="{card_style}" style="text-align: center;">
+                <p style="color: #64748b; font-size: 0.8rem; font-weight: 700; margin: 0;">Monthly Tuition Fee</p>
+                <div class="price-text">{item['fee']}</div>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 1rem;">⏱️ {item['duration']}</p>
+            </div>
+            """, unsafe_allow_html=True)
 
-# PAGE 2: INSTANT ADMISSION
-elif menu == "📝 Instant Admission":
-    st.title("📝 Student Admission Portal")
-    st.caption("Complete the form below to reserve a seat for online live classes.")
+            if st.button(f"Enroll in {item['id']}", key=f"btn_enroll_{item['id']}", use_container_width=True):
+                st.session_state.selected_course_for_enrollment = item['title']
+                st.session_state.active_tab = "Admission"
+                st.rerun()
+
+# PAGE: ADMISSION
+elif st.session_state.active_tab == "Admission":
+    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.5rem;'>📝 Online Admission Form</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Fill out your details to reserve your seat in the upcoming online batch.</p>", unsafe_allow_html=True)
 
     all_options = [c["title"] for c in SPECIAL_COMBOS] + [c["title"] for c in O_LEVEL_COURSES]
-    
-    # Pre-select course from home page CTA
-    default_index = 0
+    default_idx = 0
     if st.session_state.selected_course_for_enrollment in all_options:
-        default_index = all_options.index(st.session_state.selected_course_for_enrollment)
+        default_idx = all_options.index(st.session_state.selected_course_for_enrollment)
 
-    with st.form("admission_form", clear_on_submit=True):
-        col_a, col_b = st.columns(2)
-        with col_a:
+    with st.form("ivy_admission_form", clear_on_submit=True):
+        a1, a2 = st.columns(2)
+        with a1:
             name = st.text_input("Student's Full Name *", placeholder="e.g. Ali Ahmed")
             email = st.text_input("Parent / Student Email *", placeholder="e.g. parent@example.com")
-        with col_b:
-            phone = st.text_input("WhatsApp Phone *", placeholder="e.g. +92 332 1234567")
-            selected_course = st.selectbox("Selected Course / Combo *", all_options, index=default_index)
-        
+        with a2:
+            phone = st.text_input("WhatsApp Number *", placeholder="e.g. +92 332 1234567")
+            selected_course = st.selectbox("Select Target Course / Combo *", all_options, index=default_idx)
+
         submitted = st.form_submit_button("Submit Application")
 
         if submitted:
@@ -506,21 +512,21 @@ elif menu == "📝 Instant Admission":
                 enrollments.append(new_entry)
                 save_json("enrollments.json", enrollments)
                 sync_to_github("enrollments.json", enrollments)
-                st.success(f"Application submitted successfully for **{name}** ({selected_course})! Class details will be sent to {norm_phone} via WhatsApp.")
+                st.success(f"Application submitted successfully for **{name}**! Class details will be sent to **{norm_phone}** via WhatsApp.")
 
-# PAGE 3: CHAT ASSISTANT
-elif menu == "🤖 AI Tutor Assistant":
-    st.title("🤖 Online AI Learning Assistant")
-    st.caption("Ask questions about course syllabi, class schedules, or exam preparation tips.")
+# PAGE: AI ASSISTANT
+elif st.session_state.active_tab == "Assistant":
+    st.markdown("<h2 style='text-align: center; font-weight: 900; margin-bottom: 0.5rem;'>🤖 AI Learning Assistant</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>Ask questions about course syllabi, fee structures, or past paper strategy.</p>", unsafe_allow_html=True)
 
     if "messages" not in st.session_state:
-        st.session_state.messages = [{"role": "assistant", "content": "Hello! How can I assist you with O Level / IGCSE prep or course details today?"}]
+        st.session_state.messages = [{"role": "assistant", "content": "Hello! How can I assist you with Cambridge O Level / IGCSE subjects today?"}]
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    if prompt := st.chat_input("Ask about classes, fee structures, or past paper practice..."):
+    if prompt := st.chat_input("Ask a question about classes, fees, or subjects..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
@@ -530,36 +536,19 @@ elif menu == "🤖 AI Tutor Assistant":
         with st.chat_message("assistant"):
             st.write(response)
 
-# PAGE 4: ADMIN CONTROL
-elif menu == "🔒 Admin Control":
-    st.title("🔒 Administration Portal")
-    pwd = st.sidebar.text_input("Admin Password", type="password")
-    
-    if pwd == ADMIN_PASSWORD:
-        st.success("Authenticated Successfully")
-        tab1, tab2 = st.tabs(["Student Applications", "Course Catalog JSON"])
-        
-        with tab1:
-            enrollments = load_json("enrollments.json", [])
-            if enrollments:
-                df = pd.DataFrame(enrollments)
-                st.subheader(f"Total Applications Received: {len(df)}")
-                st.dataframe(df, use_container_width=True)
-                
-                csv = df.to_csv(index=False).encode('utf-8')
-                st.download_button(
-                    label="📥 Export Registrations (CSV)",
-                    data=csv,
-                    file_name="enrollments_export.csv",
-                    mime="text/csv"
-                )
-            else:
-                st.info("No enrollment submissions found.")
-                
-        with tab2:
-            courses = load_json("courses.json", [])
-            st.json(courses)
-    elif pwd:
-        st.error("Invalid credentials provided.")
-    else:
-        st.warning("Please enter your admin credentials in the sidebar.")
+# ADMIN PANEL FOOTER TRIGGER
+st.markdown("<br><hr style='border-color: #e2e8f0;'><br>", unsafe_allow_html=True)
+with st.expander("🔒 Admin Portal Access"):
+    admin_pwd = st.text_input("Enter Admin Password", type="password")
+    if admin_pwd == ADMIN_PASSWORD:
+        st.success("Authorized Access Granted")
+        enrollments = load_json("enrollments.json", [])
+        if enrollments:
+            df = pd.DataFrame(enrollments)
+            st.dataframe(df, use_container_width=True)
+            csv = df.to_csv(index=False).encode('utf-8')
+            st.download_button("📥 Export Registrations CSV", data=csv, file_name="enrollments_export.csv", mime="text/csv")
+        else:
+            st.info("No enrollment submissions found.")
+    elif admin_pwd:
+        st.error("Incorrect password.")
